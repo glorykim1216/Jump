@@ -13,7 +13,7 @@ public class player : MonoBehaviour
     public Transform tr;
     public Rigidbody rigid;
     public Transform cube;
-    private bool firstJump = true;
+    public bool firstJump = true;
     private ParticleSystem waterPs;
     ParticleSystem.MainModule psMain;
     bool stayEnd;
@@ -109,9 +109,11 @@ public class player : MonoBehaviour
                     currJumpPower = jumpPower = 90;
                     rigid.AddForce((Vector3.up + Vector3.forward) * currJumpPower);
                     firstJump = false;
+                    isJumping = false;
 
                     return;
                 }
+
                 if (tr.position.y >= 0.4f)
                     currJumpPower = jumpPower * 0.9f;
                 else if (tr.position.y >= -0.1f)
