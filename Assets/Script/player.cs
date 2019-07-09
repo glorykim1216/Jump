@@ -6,6 +6,8 @@ public class player : MonoBehaviour
 {
     public eMode gameMode = eMode.FirstWeak;
     public float speed = 5;
+    public float upPower = 1;
+    public float forwardPower = 1;
     public float jumpPower = 15;
     private float currJumpPower;
     public bool isJumping = false;
@@ -45,6 +47,11 @@ public class player : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (rigid.velocity.y < 0 && tr.position.y >= 2.0f)
+        {
+            isJumping = false;
+        }
+
         if (isAlive == true)
             Jump();
     }
@@ -98,16 +105,16 @@ public class player : MonoBehaviour
                     isAlive = false;
                     return;
                 }
-
-                rigid.AddForce((Vector3.up * 2 + Vector3.forward) * currJumpPower);
+                rigid.velocity = new Vector3(0, 0, 0);
+                rigid.AddForce((Vector3.up * 2 + Vector3.forward) * currJumpPower, ForceMode.Impulse);
                 isJumping = false;
             }
             else if (gameMode == eMode.FirstPower)
             {
                 if (firstJump == true)
                 {
-                    currJumpPower = jumpPower = 90;
-                    rigid.AddForce((Vector3.up + Vector3.forward) * currJumpPower);
+                    currJumpPower = jumpPower;
+                    rigid.AddForce((Vector3.up * upPower + Vector3.forward * forwardPower) * currJumpPower, ForceMode.Impulse);
                     firstJump = false;
                     isJumping = false;
 
@@ -124,7 +131,8 @@ public class player : MonoBehaviour
                     return;
                 }
 
-                rigid.AddForce((Vector3.up * 2 + Vector3.forward) * currJumpPower);
+                rigid.velocity = new Vector3(0, 0, 0);
+                rigid.AddForce((Vector3.up * upPower + Vector3.forward * forwardPower) * currJumpPower, ForceMode.Impulse);
                 isJumping = false;
             }
 
