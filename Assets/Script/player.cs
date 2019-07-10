@@ -36,7 +36,8 @@ public class player : MonoBehaviour
     {
         {
             if (Input.GetMouseButtonDown(0))
-                isJumping = true;
+                if (UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject() == false)
+                    isJumping = true;
         }
 
         if (rigid.velocity.magnitude <= 1f)
@@ -59,7 +60,7 @@ public class player : MonoBehaviour
     }
     void OnTriggerEnter(Collider collision) // 충돌한 대상의 collision을 얻는다.
     {
-      
+
 
         GameObject prefab = Resources.Load("Prefabs/Splash") as GameObject;
 
@@ -135,11 +136,11 @@ public class player : MonoBehaviour
                     isAlive = false;
                     return;
                 }
-                
+
                 rigid.velocity = new Vector3(0, 0, 0);
                 rigid.AddForce((Vector3.up * upPower + Vector3.forward * forwardPower) * currJumpPower, ForceMode.Impulse);
 
-                if(forwardPower<15f)
+                if (forwardPower < 15f)
                     forwardPower += speedIncreaseValue;
                 upPower *= upValue;
                 isJumping = false;
