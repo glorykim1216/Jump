@@ -14,7 +14,7 @@ public class FollowParticle : MonoBehaviour
 
 
     // Update is called once per frame
-    void FixedUpdate()
+    void LateUpdate()
     {
         tempY = cube.transform.position.y - tr.position.y;
         if (tempY < 0.6f)

@@ -9,13 +9,15 @@ public class player : MonoBehaviour
     public float upPower = 1;
     public float forwardPower = 1;
     public float jumpPower = 15;
-    private float currJumpPower;
+    public float currJumpPower;
     public bool isJumping = false;
     private bool isAlive = true;
     public Transform tr;
     public Rigidbody rigid;
     public Transform cube;
     public bool firstJump = true;
+    public float upValue = 0.5f;
+    public float speedIncreaseValue = 1;
     private ParticleSystem waterPs;
     ParticleSystem.MainModule psMain;
     bool stayEnd;
@@ -37,12 +39,12 @@ public class player : MonoBehaviour
                 isJumping = true;
         }
 
-        if (this.GetComponent<Rigidbody>().velocity.magnitude <= 3f)
+        if (rigid.velocity.magnitude <= 1f)
         {
             psMain.loop = false;
             waterPs.Stop();
         }
-        //Debug.Log(this.GetComponent<Rigidbody>().velocity.magnitude);
+        //Debug.Log(rigid.velocity.magnitude);
     }
 
     private void FixedUpdate()
@@ -57,6 +59,8 @@ public class player : MonoBehaviour
     }
     void OnTriggerEnter(Collider collision) // 충돌한 대상의 collision을 얻는다.
     {
+      
+
         GameObject prefab = Resources.Load("Prefabs/Splash") as GameObject;
 
         GameObject Splash = MonoBehaviour.Instantiate(prefab) as GameObject;
@@ -70,6 +74,7 @@ public class player : MonoBehaviour
     }
     void OnTriggerStay(Collider collision) // 충돌한 대상의 collision을 얻는다.
     {
+
         if (!stayEnd)
         {
             psMain.loop = true;
@@ -130,9 +135,13 @@ public class player : MonoBehaviour
                     isAlive = false;
                     return;
                 }
-
+                
                 rigid.velocity = new Vector3(0, 0, 0);
                 rigid.AddForce((Vector3.up * upPower + Vector3.forward * forwardPower) * currJumpPower, ForceMode.Impulse);
+
+                if(forwardPower<15f)
+                    forwardPower += speedIncreaseValue;
+                upPower *= upValue;
                 isJumping = false;
             }
 

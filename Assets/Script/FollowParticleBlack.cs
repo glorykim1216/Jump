@@ -14,7 +14,7 @@ public class FollowParticleBlack : MonoBehaviour
 
 
     // Update is called once per frame
-    void FixedUpdate()
+    void LateUpdate()
     {
         tr.position = new Vector3(cube.transform.position.x, 0, cube.transform.position.z);
     }
