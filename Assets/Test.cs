@@ -9,8 +9,12 @@ public class Test : MonoBehaviour
 	[SerializeField] string unitId;
 	[SerializeField] bool isTest;
 	[SerializeField] string deviceId;
-	
-	void Start ()
+
+    BannerView banner;
+    public AdSize size;
+    public AdPosition position;
+    bool active;
+    void Start ()
 	{
 		MobileAds.Initialize(appId);
 		ad = RewardBasedVideoAd.Instance;
@@ -31,9 +35,39 @@ public class Test : MonoBehaviour
 		ad.OnAdLeavingApplication += OnAdLeavingApplication;
 		
 		LoadAd();
-	}
-	
-	void LoadAd()
+        InitAd();
+
+    }
+
+
+    void InitAd()
+    {
+        string id = "ca-app-pub-3940256099942544/6300978111";
+        banner = new BannerView(id, AdSize.SmartBanner, position);
+
+        AdRequest request = new AdRequest.Builder().AddTestDevice(AdRequest.TestDeviceSimulator).AddTestDevice(deviceId).Build();
+
+        banner.LoadAd(request);
+
+        //banner.Show();
+    }
+
+    public void ToggleAd()
+    {
+        if (active)
+        {
+            banner.Show();
+            active = false;
+        }
+        else
+        {
+            banner.Hide();
+            active = true;
+        }
+
+    }
+
+    void LoadAd()
 	{
 		AdRequest request = new AdRequest.Builder().Build();
 		if (isTest)

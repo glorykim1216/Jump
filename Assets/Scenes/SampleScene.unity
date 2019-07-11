@@ -4555,7 +4555,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Jump :'
+  m_Text: "\uBC18\uAC10\uAE30 \uBE44\uC728"
 --- !u!222 &1881353352
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4705,7 +4705,7 @@ MonoBehaviour:
   rigid: {fileID: 0}
   cube: {fileID: 0}
   firstJump: 1
-  upValue: 0.92
+  upValue: 0.5
   speedIncreaseValue: 1
 --- !u!114 &1937125053
 MonoBehaviour:

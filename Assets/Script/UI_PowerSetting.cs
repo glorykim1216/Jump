@@ -14,7 +14,14 @@ public class UI_PowerSetting : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        jump.text = player.jumpPower.ToString();
+        
+
+
+        player.upValue = StaticData.jumpPower;
+        player.upPower = StaticData.upPower;
+        player.forwardPower = StaticData.forwardPower;
+
+        jump.text = player.upValue.ToString();
         up.text = player.upPower.ToString();
         forward.text = player.forwardPower.ToString();
     }
@@ -22,14 +29,26 @@ public class UI_PowerSetting : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        player.jumpPower = float.Parse(jump.text);
-        player.upPower = float.Parse(up.text);
-        player.forwardPower = float.Parse(forward.text);
+  
     }
 
     public void ReStart()
     {
-        SceneManager.LoadScene("SampleScene");
+        //SceneManager.LoadScene("SampleScene");
+        StaticData.jumpPower = float.Parse(jump.text);
+        StaticData.upPower = float.Parse(up.text);
+        StaticData.forwardPower = float.Parse(forward.text);
+        StartCoroutine(SceneLoad());
+       
+    }
+
+    IEnumerator SceneLoad()
+    {
+        var oper = SceneManager.LoadSceneAsync("SampleScene");
+
+        yield return new WaitUntil(() => oper.isDone);
+
+
     }
 
     public void Setting()

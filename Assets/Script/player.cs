@@ -20,6 +20,7 @@ public class player : MonoBehaviour
     public float speedIncreaseValue = 1;
     private ParticleSystem waterPs;
     ParticleSystem.MainModule psMain;
+    int jumpCount;
     bool stayEnd;
     void Start()
     {
@@ -126,6 +127,16 @@ public class player : MonoBehaviour
 
                     return;
                 }
+
+                if(jumpCount<2)
+                {
+                    jumpCount++;
+                    currJumpPower = jumpPower;
+                    rigid.velocity = new Vector3(0, 0, 0);
+                    rigid.AddForce((Vector3.up * upPower + Vector3.forward * forwardPower) * currJumpPower, ForceMode.Impulse);
+                    return;
+                }
+
 
                 if (tr.position.y >= 0.4f)
                     currJumpPower = jumpPower * 0.9f;
