@@ -38,6 +38,8 @@ public class UI_PowerSetting : MonoBehaviour
         StaticData.jumpPower = float.Parse(jump.text);
         StaticData.upPower = float.Parse(up.text);
         StaticData.forwardPower = float.Parse(forward.text);
+        //SceneManager.LoadScene("SampleScene");
+
         StartCoroutine(SceneLoad());
        
     }
