@@ -1,0 +1,545 @@
+fileFormatVersion: 2
+guid: 0066b8e3fea3a8244b288071d10fca1e
+ModelImporter:
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: '!'
+    100002: '!_end'
+    100004: =_=
+    100006: =_=_end
+    100008: '>_<'
+    100010: '>_<_end'
+    100012: '?'
+    100014: ?_end
+    100016: __left
+    100018: __left_end
+    100020: __up
+    100022: __up_end
+    100024: backUP
+    100026: backUP_end
+    100028: base
+    100030: big/small
+    100032: big/small_end
+    100034: centerUP
+    100036: centerUP_end
+    100038: frontUP
+    100040: frontUP_end
+    100042: idle
+    100044: idle_end
+    100046: O_O
+    100048: O_O_end
+    100050: slime
+    100052: //RootNode
+    100054: step
+    100056: step_end
+    100058: stretch
+    100060: stretch_end
+    100062: up
+    100064: up_end
+    100066: w
+    100068: w_end
+    100070: "\u25B3"
+    100072: "\u25B3_end"
+    100074: "\u53E3"
+    100076: "\u53E3_end"
+    400000: '!'
+    400002: '!_end'
+    400004: =_=
+    400006: =_=_end
+    400008: '>_<'
+    400010: '>_<_end'
+    400012: '?'
+    400014: ?_end
+    400016: __left
+    400018: __left_end
+    400020: __up
+    400022: __up_end
+    400024: backUP
+    400026: backUP_end
+    400028: base
+    400030: big/small
+    400032: big/small_end
+    400034: centerUP
+    400036: centerUP_end
+    400038: frontUP
+    400040: frontUP_end
+    400042: idle
+    400044: idle_end
+    400046: O_O
+    400048: O_O_end
+    400050: slime
+    400052: //RootNode
+    400054: step
+    400056: step_end
+    400058: stretch
+    400060: stretch_end
+    400062: up
+    400064: up_end
+    400066: w
+    400068: w_end
+    400070: "\u25B3"
+    400072: "\u25B3_end"
+    400074: "\u53E3"
+    400076: "\u53E3_end"
+    2100000: Material
+    2100002: Material.001
+    4300000: slime
+    7400000: Armature|emotion
+    7400002: Armature|idle
+    7400004: Armature|jump
+    7400006: Armature|run
+    7400008: Armature|TextWithFace
+    7400010: Armature|walk
+    9500000: //RootNode
+    11100000: //RootNode
+    13700000: slime
+    2186277476908879412: ImportLogs
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 3
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Armature|emotion
+      takeName: Armature|emotion
+      firstFrame: 0
+      lastFrame: 119
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Armature|idle
+      takeName: Armature|idle
+      firstFrame: 0
+      lastFrame: 79
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Armature|jump
+      takeName: Armature|jump
+      firstFrame: 0
+      lastFrame: 54
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Armature|run
+      takeName: Armature|run
+      firstFrame: 0
+      lastFrame: 99
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Armature|TextWithFace
+      takeName: Armature|TextWithFace
+      firstFrame: 0
+      lastFrame: 79
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Armature|walk
+      takeName: Armature|walk
+      firstFrame: 0
+      lastFrame: 19
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    previousCalculatedGlobalScale: 0.01
+    hasPreviousCalculatedGlobalScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton:
+    - name: slimeFin(Clone)
+      parentName: 
+      position: {x: -2, y: 0, z: 0}
+      rotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 100, y: 100, z: 100}
+    - name: slime
+      parentName: slimeFin(Clone)
+      position: {x: 0.02, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: base
+      parentName: slimeFin(Clone)
+      position: {x: 0.02, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: O_O
+      parentName: base
+      position: {x: -0.020999998, y: 0.001, z: 1.3435883e-10}
+      rotation: {x: -0.00000010053735, y: -0.000000005531286, z: -0.7071068, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: O_O_end
+      parentName: O_O
+      position: {x: -0, y: 0.0019999999, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: '>_<'
+      parentName: base
+      position: {x: -0.02459724, y: 0.001, z: 1.3435877e-10}
+      rotation: {x: -0.000000100537385, y: -0.0000000055312577, z: -0.7071068, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: '>_<_end'
+      parentName: '>_<'
+      position: {x: -0, y: 0.0019999999, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: =_=
+      parentName: base
+      position: {x: -0.028361797, y: 0.005, z: -4.6565582e-10}
+      rotation: {x: -0.00000010053738, y: -0.0000000055312577, z: -0.7071068, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: =_=_end
+      parentName: =_=
+      position: {x: -0, y: 0.0020000003, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: "\u53E3"
+      parentName: base
+      position: {x: -0.03171966, y: 0.001, z: 1.3435868e-10}
+      rotation: {x: -0.00000010053727, y: -0.00000000553137, z: -0.7071068, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: "\u53E3_end"
+      parentName: "\u53E3"
+      position: {x: -0, y: 0.0020000003, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: w
+      parentName: base
+      position: {x: -0.0353169, y: 0.001, z: 1.3435868e-10}
+      rotation: {x: -0.00000010053738, y: -0.0000000055312577, z: -0.7071068, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: w_end
+      parentName: w
+      position: {x: -0, y: 0.0020000003, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: "\u25B3"
+      parentName: base
+      position: {x: -0.039081458, y: 0.001, z: 1.3435868e-10}
+      rotation: {x: -0.0000001229346, y: -0, z: -0.9978621, w: 0.0653551}
+      scale: {x: 1, y: 1, z: 1}
+    - name: "\u25B3_end"
+      parentName: "\u25B3"
+      position: {x: -0, y: 0.0020000003, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: frontUP
+      parentName: base
+      position: {x: -0, y: 0, z: 0.015}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: frontUP_end
+      parentName: frontUP
+      position: {x: -0, y: 0.0019999999, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: backUP
+      parentName: base
+      position: {x: -0, y: 0, z: -0.015}
+      rotation: {x: 0.0000000037252903, y: -0, z: -0.99691355, w: 0.078507185}
+      scale: {x: 1, y: 1, z: 1}
+    - name: backUP_end
+      parentName: backUP
+      position: {x: -0, y: 0.0019999999, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: up
+      parentName: base
+      position: {x: -0, y: 0.02, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: up_end
+      parentName: up
+      position: {x: -0, y: 0.0020000003, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: centerUP
+      parentName: base
+      position: {x: -0, y: -0.003, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: centerUP_end
+      parentName: centerUP
+      position: {x: -0, y: 0.0019999999, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: step
+      parentName: base
+      position: {x: 0.018999998, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: step_end
+      parentName: step
+      position: {x: -0, y: 0.0019999999, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: stretch
+      parentName: base
+      position: {x: 0.018999998, y: 0.01, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: stretch_end
+      parentName: stretch
+      position: {x: -0, y: 0.0020000003, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: big/small
+      parentName: base
+      position: {x: 0.018999998, y: 0.005, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: big/small_end
+      parentName: big/small
+      position: {x: -0, y: 0.0019999999, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: idle
+      parentName: base
+      position: {x: -0, y: 0.022780797, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: idle_end
+      parentName: idle
+      position: {x: -0, y: 0.0020000003, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: '!'
+      parentName: base
+      position: {x: 0.01977174, y: 0.021835947, z: 2.4667568e-10}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: '!_end'
+      parentName: '!'
+      position: {x: -0, y: 0.0020000003, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: '?'
+      parentName: base
+      position: {x: 0.017088432, y: 0.021835947, z: 2.4667562e-10}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: ?_end
+      parentName: '?'
+      position: {x: -0, y: 0.0020000003, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: __up
+      parentName: slimeFin(Clone)
+      position: {x: 0.030122671, y: -0.0009998985, z: 0.025754565}
+      rotation: {x: 0.5000001, y: 0.49999988, z: 0.50000006, w: 0.49999994}
+      scale: {x: 1, y: 1, z: 1}
+    - name: __up_end
+      parentName: __up
+      position: {x: -0, y: 0.0020000003, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: __left
+      parentName: slimeFin(Clone)
+      position: {x: 0.030122671, y: -0.0009998989, z: 0.024930445}
+      rotation: {x: -0.5, y: 0.49999994, z: -0.5, w: 0.50000006}
+      scale: {x: 1, y: 1, z: 1}
+    - name: __left_end
+      parentName: __left
+      position: {x: -0, y: 0.0020000003, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

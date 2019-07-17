@@ -8,13 +8,15 @@ public class UIManager : MonoBehaviour
     public GameObject OptionPopup;
     public GameObject LobbyUI;
     public GameObject InGameUI;
-    public GameObject ScrollView;
     public TweenPosition tween;
+    public Transform ArrowRot;
+
     // Start is called before the first frame update
     void Start()
     {
-       
-      
+        //tween 시작시 2번클릭 방지
+        tween.PlayReverse();
+
     }
 
     // Update is called once per frame
@@ -22,10 +24,7 @@ public class UIManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.A))
         {
-            if(tween.isForward)
-                tween.PlayReverse();
-            else
-                tween.PlayForward();
+          
         }
         if (Input.GetKeyDown(KeyCode.B))
         {
@@ -35,13 +34,18 @@ public class UIManager : MonoBehaviour
 
     public void SkinButton()
     {
+        //트윈 위치 설정 (0,0,0,)으로 위치 이동하는 현상 제거
+        tween.From = new Vector3(tween.transform.localPosition.x, 300, 0);
+        tween.To = new Vector3(tween.transform.localPosition.x, 0, 0);
         if (tween.isForward)
         {
+            ArrowRot.localRotation = Quaternion.Euler(new Vector3(0, 0, -50));
             tween.PlayReverse();
         }
-          
+         
         else
         {
+            ArrowRot.localRotation = Quaternion.Euler(new Vector3(0, 0, 130));
             tween.PlayForward();
         }
            
@@ -68,12 +72,4 @@ public class UIManager : MonoBehaviour
         InGameUI.SetActive(true);
     }
 
-    public void OpenSkinView()
-    {
-        ScrollView.SetActive(true);
-    }
-    public void CloseSkinView()
-    {
-        ScrollView.SetActive(false);
-    }
 }
