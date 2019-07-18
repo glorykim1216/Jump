@@ -73,11 +73,13 @@ public class player : MonoBehaviour
     {
         isJumping = false;
     }
+    else
+            stayEnd = false;
 
-    if (isAlive == true)
-        Jump();
-}
-void OnTriggerEnter(Collider collision) // 충돌한 대상의 collision을 얻는다.
+        if (isAlive == true)
+            Jump();
+    }
+    void OnTriggerEnter(Collider collision) // 충돌한 대상의 collision을 얻는다.
 {
 
 
@@ -115,7 +117,7 @@ void Jump()
 {
     if (tr.position.y >= 0.7f)
     {
-        stayEnd = false;
+        //stayEnd = false;
         return;
     }
 

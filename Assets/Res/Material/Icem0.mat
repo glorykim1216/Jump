@@ -13,7 +13,7 @@ Material:
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
+  m_CustomRenderQueue: 2000
   stringTagMap: {}
   disabledShaderPasses: []
   m_SavedProperties:
@@ -36,7 +36,7 @@ Material:
         m_Scale: {x: 2, y: 2}
         m_Offset: {x: 0, y: 0}
     - _Cubemap:
-        m_Texture: {fileID: 8900000, guid: a9f053d430424adb925523ba78342596, type: 3}
+        m_Texture: {fileID: 8900000, guid: 56a68e301a0ff55469ae441c0112d256, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Depth:
@@ -70,6 +70,10 @@ Material:
     - _MainTex:
         m_Texture: {fileID: 0}
         m_Scale: {x: 2, y: 2}
+        m_Offset: {x: 0, y: 0}
+    - _Maintexture:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
         m_Texture: {fileID: 0}
@@ -111,6 +115,10 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _Secondarytexture:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _SnowAlbedo:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -136,11 +144,11 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _TextureSample1:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 8900000, guid: 56a68e301a0ff55469ae441c0112d256, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _TextureSample3:
-        m_Texture: {fileID: 8900000, guid: ef7513b54a0670140b9b967af7620563, type: 3}
+        m_Texture: {fileID: 8900000, guid: 56a68e301a0ff55469ae441c0112d256, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _ToonRamp:
@@ -148,7 +156,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _char_woodman_normals:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: 4be0e8aa5e8747240af836ab4904c4a5, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _node_3943:
@@ -167,11 +175,13 @@ Material:
     - _ASEOutlineWidth: 0
     - _BaseCellOffset: 0
     - _BaseCellSharpness: 0.01
+    - _Bias: 0.27
     - _BumpScale: 1
     - _Cutoff: 1
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
     - _EdgeLength: 2
+    - _Enablepulsation: 0
     - _Float0: -0.62
     - _Float1: -5.86
     - _Float2: -6.04
@@ -179,6 +189,7 @@ Material:
     - _Float4: 0.01
     - _Freezeeffectnormal: 10
     - _Freezing: 4.28
+    - _Globalopacity: 1
     - _Gloss: 1
     - _Gloss2: 0.763
     - _Glossiness: 0.5
@@ -189,19 +200,29 @@ Material:
     - _Ice_fresnel: 3
     - _IndirectDiffuseContribution: 1
     - _IndirectSpecularContribution: 1
+    - _Innerfresnelintensity: 0.458
+    - _Invertmaintexture: 0
+    - _Invertsecondarytexture: 0
     - _LocalGlobal: 0
+    - _Maintextureintensity: 1
     - _Metallic: 0
     - _Mode: 0
     - _NormalScale: 1
     - _OcclusionStrength: 1
-    - _Opacity: 1
+    - _Opacity: 0.779
+    - _Outerfresnelintensity: 1
     - _OutlineWidth: 0.02
     - _Parallax: 0.02
+    - _Power: 2.5164707
+    - _PulsationAmplitude: 3.08
+    - _PulsationSpeed: 5
     - _RimOffset: 0.49
     - _RimPower: 0.28
+    - _Scale: 0.31
+    - _Secondarytextureintensity: 1
     - _ShadowContribution: 0.5
     - _Shininess: 0.1
-    - _Smoothness: 0.243
+    - _Smoothness: 1
     - _SnowAmount: 0.13
     - _Specular: 0
     - _SpecularHighlights: 1
@@ -212,15 +233,19 @@ Material:
     - _TessMin: 10
     - _TessPhongStrength: 0.5
     - _TessValue: 4
-    - _TransAmbient: 0.2
-    - _TransDirect: 1
-    - _TransNormalDistortion: 0.1
+    - _TransAmbient: 0.899
+    - _TransDirect: 0.845
+    - _TransNormalDistortion: 0.255
     - _TransScattering: 2
-    - _TransShadow: 0.9
-    - _Translucency: 1
+    - _TransShadow: 0.404
+    - _Translucency: 20.5
     - _Transp: 0.128
     - _Transparency: 0.57
     - _UVSec: 0
+    - _XRayBias: 5.16
+    - _XRayIntensity: 7.05
+    - _XRayPower: 40.51
+    - _XRayScale: 5.19
     - _ZWrite: 1
     - __dirty: 0
     - _freeze: 0.46
@@ -237,17 +262,23 @@ Material:
     - _BaseTint: {r: 1, g: 1, b: 1, a: 0}
     - _Color: {r: 1, g: 0, b: 0, a: 1}
     - _Color0: {r: 0.4550255, g: 0, b: 0.6132076, a: 1}
-    - _Color1: {r: 1, g: 0.72249913, b: 0, a: 1}
+    - _Color1: {r: 1, g: 0, b: 0, a: 1}
     - _Color2: {r: 1, g: 1, b: 1, a: 0}
+    - _Edgecolor: {r: 1, g: 0.697198, b: 0, a: 0.666}
     - _Emission: {r: 0, g: 0, b: 0, a: 0}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _HighlightTint: {r: 1, g: 1, b: 1, a: 1}
+    - _Maincolor: {r: 1, g: 1, b: 1, a: 0.666}
+    - _Mainpanningspeed: {r: 0, g: 0, b: 0, a: 0}
     - _OutlineTint: {r: 0.5294118, g: 0.5294118, b: 0.5294118, a: 0}
     - _RimColor: {r: 1, g: 1, b: 1, a: 0}
+    - _Secondarycolor: {r: 0, g: 0, b: 0, a: 0}
+    - _Secondarypanningspeed: {r: 0, g: 0, b: 0, a: 0}
     - _SpecColor: {r: 1, g: 1, b: 1, a: 0}
-    - _Tint: {r: 0, g: 0, b: 0, a: 0}
-    - _UVOffset0: {r: 0.07, g: 0.1, b: 0.1, a: 0}
+    - _Tint: {r: 0.7075472, g: 0.24363652, b: 0.24363652, a: 0}
+    - _UVOffset0: {r: 0.1, g: 0.1, b: 0.1, a: 0}
     - _UVOffset1: {r: -0.1, g: -0.1, b: -0.1, a: 0}
+    - _XRayColor: {r: 0, g: 0, b: 0, a: 0}
     - _node_5379: {r: 1, g: 0.6397059, b: 0.6397059, a: 1}
     - _node_6644: {r: 0.5147059, g: 0.7389455, b: 1, a: 1}
     - _node_9193: {r: 1, g: 1, b: 0.49264705, a: 1}
