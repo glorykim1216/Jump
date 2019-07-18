@@ -30,7 +30,7 @@ public class player : MonoBehaviour
         tr = this.GetComponent<Transform>();
         rigid = this.GetComponent<Rigidbody>();
 
-        waterPs = GameObject.Find("CFX2_Blood").GetComponent<ParticleSystem>();
+        waterPs = GameObject.Find("waterPS").GetComponent<ParticleSystem>();
         psMain = waterPs.main;
         psMain.loop = false;
     }

@@ -9,13 +9,14 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: particleTrail
   m_Shader: {fileID: 210, guid: 0000000000000000f000000000000000, type: 0}
-  m_ShaderKeywords: _ALPHATEST_ON _MAPPING_LATITUDE_LONGITUDE_LAYOUT _TOGGLESWITCH0_ON
+  m_ShaderKeywords: _ALPHABLEND_ON _EMISSION _FADING_ON _MAPPING_LATITUDE_LONGITUDE_LAYOUT
+    _REQUIRE_UV2 _TOGGLESWITCH0_ON
   m_LightmapFlags: 0
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: 2450
+  m_CustomRenderQueue: 3000
   stringTagMap:
-    RenderType: TransparentCutout
+    RenderType: Transparent
   disabledShaderPasses:
   - ALWAYS
   m_SavedProperties:
@@ -126,7 +127,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: aa57983358713ef49a66adabed550326, type: 3}
+        m_Texture: {fileID: 10307, guid: 0000000000000000f000000000000000, type: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Maintexture:
@@ -268,20 +269,20 @@ Material:
     - _Cutoff: 0.07
     - _DetailNormalMapScale: 1
     - _DissolveAmount: 0
-    - _DistortionBlend: 0.5
+    - _DistortionBlend: 0
     - _DistortionEnabled: 0
-    - _DistortionStrength: 1
-    - _DistortionStrengthScaled: 0
-    - _DstBlend: 0
+    - _DistortionStrength: -6.32
+    - _DistortionStrengthScaled: -0.632
+    - _DstBlend: 10
     - _DstBlendMode: 10
-    - _EmissionEnabled: 0
+    - _EmissionEnabled: 1
     - _Enablepulsation: 0
     - _Exposure: 1
     - _FlakeColorVariationAmount: 0
     - _FlakesBump: 0
     - _FlakesMetallic: 0
     - _FlakesSmoothness: 0
-    - _FlipbookMode: 0
+    - _FlipbookMode: 1
     - _Float0: 0.1
     - _Float1: 0.7
     - _Float2: 1
@@ -289,7 +290,7 @@ Material:
     - _Float4: 0.45
     - _Globalopacity: 1
     - _GlossMapScale: 1
-    - _Glossiness: 0.5
+    - _Glossiness: 0
     - _GlossyReflections: 1
     - _ImageType: 0
     - _Innerfresnelintensity: 0
@@ -304,7 +305,7 @@ Material:
     - _MaskClipValue: 0.5
     - _Metallic: 0
     - _MirrorOnBack: 0
-    - _Mode: 1
+    - _Mode: 2
     - _NoiseMapStrength: 0
     - _NoiseScale: 0.1
     - _OcclusionStrength: 1
@@ -324,12 +325,12 @@ Material:
     - _Smoothness: 0
     - _SmoothnessTextureChannel: 0
     - _SnowAmount: 0.13
-    - _SoftParticlesEnabled: 0
-    - _SoftParticlesFarFadeDistance: 1
-    - _SoftParticlesNearFadeDistance: 0
+    - _SoftParticlesEnabled: 1
+    - _SoftParticlesFarFadeDistance: 6.59
+    - _SoftParticlesNearFadeDistance: 2.6
     - _SpecularHighlights: 1
     - _Speed: 1
-    - _SrcBlend: 1
+    - _SrcBlend: 5
     - _SrcBlendMode: 5
     - _Stencil: 0
     - _StencilComp: 8
@@ -353,7 +354,7 @@ Material:
     - _WaveWidthB: 2.5
     - _YDisplacementA: 0
     - _YDisplacementB: 5
-    - _ZWrite: 1
+    - _ZWrite: 0
     - __dirty: 0
     m_Colors:
     - EmberColorTint: {r: 0.9926471, g: 0.6777384, b: 0, a: 1}
@@ -362,7 +363,7 @@ Material:
     - _BaseColor1: {r: 1, g: 0.9310344, b: 0, a: 0}
     - _BaseColor2: {r: 1, g: 0.9310344, b: 0, a: 0}
     - _CameraFadeParams: {r: 0, g: Infinity, b: 0, a: 0}
-    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _Color: {r: 0.9339623, g: 0.6123621, b: 0.6123621, a: 1}
     - _Color0: {r: 0.7498947, g: 0.7054557, b: 0.7830189, a: 0}
     - _Color1: {r: 0.9150943, g: 0.7377, b: 0.2892043, a: 0}
     - _Color2: {r: 0.735849, g: 0.4269313, b: 0.6782569, a: 0}
@@ -372,7 +373,7 @@ Material:
     - _Edgecolor: {r: 0.7941176, g: 0.1284602, b: 0.1284602, a: 0.666}
     - _EmisColor: {r: 0.2, g: 0.2, b: 0.2, a: 0}
     - _Emission: {r: 0, g: 0, b: 0, a: 0}
-    - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
+    - _EmissionColor: {r: 0.5861042, g: 0.6226415, b: 0.4258633, a: 1}
     - _FlakesColor1: {r: 1, g: 0.9310344, b: 0, a: 0}
     - _FlakesColor2: {r: 1, g: 0.9310344, b: 0, a: 0}
     - _FrontColor: {r: 1, g: 1, b: 1, a: 0}
@@ -386,7 +387,7 @@ Material:
     - _RingPannerSpeed: {r: 0, g: 0, b: 0, a: 0}
     - _Secondarycolor: {r: 0, g: 0, b: 0, a: 0}
     - _Secondarypanningspeed: {r: 0, g: 0, b: 0, a: 0}
-    - _SoftParticleFadeParams: {r: 0, g: 0, b: 0, a: 0}
+    - _SoftParticleFadeParams: {r: 2.6, g: 0.25062656, b: 0, a: 0}
     - _SpecColor: {r: 0.5, g: 0.3466981, b: 0.3466981, a: 0}
     - _TileSize: {r: 2, g: 2, b: 0, a: 0}
     - _Tint: {r: 0.5, g: 0.5, b: 0.5, a: 0.5}
