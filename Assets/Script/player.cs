@@ -154,14 +154,16 @@ public class player : MonoBehaviour
                     currJumpPower = jumpPower * 0.9f;
                     GameManager.Instance.SetJudement("Excellent !!");
                     // 진동
-                    Vibration.Vibrate(1000);
+                    if (GameManager.Instance.isVibration == true)
+                        Vibration.Vibrate(GameManager.Instance.vibrationValue);
                 }
                 else if (tr.position.y >= -0.1f)
                 {
                     currJumpPower = jumpPower * 0.8f;
                     GameManager.Instance.SetJudement("Good");
                     // 진동
-                    Vibration.Vibrate(500);
+                    if (GameManager.Instance.isVibration == true)
+                        Vibration.Vibrate((int)(GameManager.Instance.vibrationValue * 0.5f));
                 }
                 else
                 {

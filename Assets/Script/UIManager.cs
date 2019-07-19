@@ -11,13 +11,15 @@ public class UIManager : MonoBehaviour
     public TweenPosition tween;
     public Transform ArrowRot;
 
-    public Text ui_gold;
-    public Text ui_bestScore;
+    public Text goldText;
+    public Text bestScoreText;
 
     public Image gagebar;
-    public Text ui_Score;
+    public Text currScoreText;
 
     public Text judgement;
+
+    public Button vibrationBtn;
 
     // Start is called before the first frame update
     void Start()
@@ -26,6 +28,8 @@ public class UIManager : MonoBehaviour
         tween.PlayReverse();
 
         GameManager.Instance.UI_Manager = this;
+        vibrationBtn.onClick.AddListener(VibrationOption);
+        VibrationOnOffCheck();
     }
 
     // Update is called once per frame
@@ -81,5 +85,20 @@ public class UIManager : MonoBehaviour
         InGameUI.SetActive(true);
         GameManager.Instance.isGamePlaying = true;
     }
-
+    public void VibrationOption()
+    {
+        GameManager.Instance.isVibration = !GameManager.Instance.isVibration;
+        VibrationOnOffCheck();
+    }
+    public void VibrationOnOffCheck()
+    {
+        if(GameManager.Instance.isVibration==true)
+        {
+            vibrationBtn.GetComponentInChildren<Text>().text = "On";
+        }
+        else
+        {
+            vibrationBtn.GetComponentInChildren<Text>().text = "Off";
+        }
+    }
 }

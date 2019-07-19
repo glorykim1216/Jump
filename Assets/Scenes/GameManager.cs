@@ -5,7 +5,7 @@ using UnityEngine;
 public class GameManager : MonoSingleton<GameManager>
 {
     public UIManager UI_Manager;
-    
+
     private bool isjudging = false;
 
     private bool isDBLoad = false;
@@ -26,7 +26,7 @@ public class GameManager : MonoSingleton<GameManager>
         set
         {
             gold = value;
-            UI_Manager.ui_gold.text = gold.ToString() + " Gold";
+            UI_Manager.goldText.text = gold.ToString() + " Gold";
             DatabaseSave(isDBLoad);
         }
     }
@@ -37,7 +37,7 @@ public class GameManager : MonoSingleton<GameManager>
         set
         {
             bestScore = value;
-            UI_Manager.ui_bestScore.text = "Bset Score\n" + bestScore.ToString() + "m";
+            UI_Manager.bestScoreText.text = "Bset Score\n" + bestScore.ToString() + "m";
             DatabaseSave(isDBLoad);
         }
     }
@@ -48,7 +48,8 @@ public class GameManager : MonoSingleton<GameManager>
     public Transform player;
     public bool isGamePlaying = false;
 
-    public int vibrationValue;
+    public int vibrationValue = 1000;
+    public bool isVibration = true;
 
     public Transform wall1;
     public Transform wall2;
@@ -61,7 +62,7 @@ public class GameManager : MonoSingleton<GameManager>
         wall1 = GameObject.Find("wall1").transform;
         wall2 = GameObject.Find("wall2").transform;
         player = GameObject.Find("Player").transform;
-        //UI_Manager = GameObject.Find("Canvas").GetComponent<UIManager>();
+        UI_Manager = GameObject.Find("Canvas").GetComponent<UIManager>();
 
         loopPosition = loopValue;
         DatabaseManager.Instance.Load();
@@ -83,7 +84,7 @@ public class GameManager : MonoSingleton<GameManager>
             return;
 
         distance = player.position.z;
-        UI_Manager.ui_Score.text = ((int)distance).ToString();
+        UI_Manager.currScoreText.text = ((int)distance).ToString();
         if (player.position.z > loopPosition)
             Move();
     }
