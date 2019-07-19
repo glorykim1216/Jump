@@ -16,7 +16,7 @@ public class GameManager : MonoSingleton<GameManager>
         set
         {
             skin = value;
-            DatabaseSave(isDBLoad);
+            //skin 배열 관련함수 필요
         }
     }
     private int gold;
@@ -38,13 +38,12 @@ public class GameManager : MonoSingleton<GameManager>
         {
             bestScore = value;
             UI_Manager.bestScoreText.text = "Bset Score\n" + bestScore.ToString() + "m";
-            DatabaseSave(isDBLoad);
         }
     }
 
     public float gage = 100;
 
-    private float distance;
+    private int distance;
     public Transform player;
     public bool isGamePlaying = false;
 
@@ -73,6 +72,7 @@ public class GameManager : MonoSingleton<GameManager>
 
         isDBLoad = true;
     }
+    // DB 저장
     void DatabaseSave(bool _value)
     {
         if (_value)
@@ -83,11 +83,17 @@ public class GameManager : MonoSingleton<GameManager>
         if (isGamePlaying == false)
             return;
 
-        distance = player.position.z;
-        UI_Manager.currScoreText.text = ((int)distance).ToString();
+        // 현재 거리
+        distance = (int)player.position.z;
+        UI_Manager.currScoreText.text = distance.ToString();
         if (player.position.z > loopPosition)
             Move();
+
+        // 신기록
+        if (distance >= bestScore)
+            NewBestScore();
     }
+    // wall loop
     void Move()
     {
         loopPosition += loopValue;
@@ -99,12 +105,12 @@ public class GameManager : MonoSingleton<GameManager>
 
         isMove = !isMove;
     }
-
+    // 게이지 출력
     public void SetGagebar(float _value)
     {
         UI_Manager.gagebar.fillAmount = _value;
     }
-
+    // 판정 출력
     public void SetJudement(string _str)
     {
         if (isjudging == true)
@@ -121,5 +127,12 @@ public class GameManager : MonoSingleton<GameManager>
         yield return new WaitForSeconds(1);
         isjudging = false;
         UI_Manager.judgement.gameObject.SetActive(false);
+    }
+    // 신기록
+    public void NewBestScore()
+    {
+        BestScore = (int)distance;
+        if (UI_Manager.newBestScore.activeSelf == false)
+            UI_Manager.newBestScore.SetActive(true);
     }
 }

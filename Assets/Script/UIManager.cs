@@ -21,6 +21,8 @@ public class UIManager : MonoBehaviour
 
     public Button vibrationBtn;
 
+    public GameObject newBestScore;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -68,28 +70,30 @@ public class UIManager : MonoBehaviour
     {
         Debug.Log("작동 잘됨");
     }
-
+    // 옵션창 On
     public void OpenOption()
     {
         OptionPopup.SetActive(true);
     }
-
+    // 옵션창 Off
     public void CloseOption()
     {
         OptionPopup.SetActive(false);
     }
-
+    // 게임시작
     public void StartGame()
     {
         LobbyUI.SetActive(false);
         InGameUI.SetActive(true);
         GameManager.Instance.isGamePlaying = true;
     }
+    // 진동 옵션
     public void VibrationOption()
     {
         GameManager.Instance.isVibration = !GameManager.Instance.isVibration;
         VibrationOnOffCheck();
     }
+    // 진동 On/Off 체크
     public void VibrationOnOffCheck()
     {
         if(GameManager.Instance.isVibration==true)
