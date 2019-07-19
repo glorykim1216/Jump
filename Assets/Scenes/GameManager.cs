@@ -56,12 +56,18 @@ public class GameManager : MonoSingleton<GameManager>
     private float loopValue = 1000;
     private bool isMove = false;
 
+    public Transform bestScoreWall;
+    public override void Init()
+    {
+    }
     private void Start()
     {
         wall1 = GameObject.Find("wall1").transform;
         wall2 = GameObject.Find("wall2").transform;
         player = GameObject.Find("Player").transform;
         UI_Manager = GameObject.Find("Canvas").GetComponent<UIManager>();
+        bestScoreWall = GameObject.Find("BestScoreWall").transform;
+        bestScoreWall.gameObject.SetActive(false);
 
         loopPosition = loopValue;
         DatabaseManager.Instance.Load();
@@ -71,6 +77,8 @@ public class GameManager : MonoSingleton<GameManager>
         Skin = DatabaseManager.Instance.ItemList[0].skin;
 
         isDBLoad = true;
+
+        bestScoreWall.position = new Vector3(bestScoreWall.position.x, bestScoreWall.position.y, bestScore);
     }
     // DB 저장
     void DatabaseSave(bool _value)
@@ -89,6 +97,8 @@ public class GameManager : MonoSingleton<GameManager>
         if (player.position.z > loopPosition)
             Move();
 
+        if (distance >= bestScore - 100 && bestScoreWall.gameObject.activeSelf == false)
+            bestScoreWall.gameObject.SetActive(true);
         // 신기록
         if (distance >= bestScore)
             NewBestScore();

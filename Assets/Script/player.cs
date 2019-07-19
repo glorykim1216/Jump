@@ -65,7 +65,12 @@ public class player : MonoBehaviour
             psMain.loop = false;
             waterPs.Stop();
         }
-        //Debug.Log(rigid.velocity.magnitude);
+
+        if (firstJump == false && tr.position.y < -0.1f)
+        {
+            GameManager.Instance.SetJudement("Fail");
+            isAlive = false;
+        }
     }
 
     private void FixedUpdate()
@@ -121,77 +126,51 @@ public class player : MonoBehaviour
             GameManager.Instance.gage -= 10;
             GameManager.Instance.SetGagebar(GameManager.Instance.gage / 100);
 
-            if (gameMode == eMode.FirstWeak)
+            if (firstJump == true)
             {
-                if (tr.position.y >= 0.4f)
-                    currJumpPower *= 1.2f;
-                else if (tr.position.y >= -0.1f)
-                    currJumpPower = jumpPower;
-                else
-                {
-                    isAlive = false;
-                    return;
-                }
-                rigid.velocity = new Vector3(0, 0, 0);
-                rigid.AddForce((Vector3.up * 2 + Vector3.forward) * currJumpPower, ForceMode.Impulse);
+                currJumpPower = jumpPower;
+                rigid.AddForce((Vector3.up * upPower + Vector3.forward * forwardPower) * currJumpPower, ForceMode.Impulse);
+                firstJump = false;
                 isJumping = false;
+
+                return;
             }
-            else if (gameMode == eMode.FirstPower)
+
+            if (tr.position.y >= 0.4f)
             {
+                currJumpPower = jumpPower * 0.9f;
+                GameManager.Instance.SetJudement("Excellent !!");
+                // 진동
+                if (GameManager.Instance.isVibration == true)
+                    Vibration.Vibrate(GameManager.Instance.vibrationValue);
+            }
+            else if (tr.position.y >= -0.1f)
+            {
+                currJumpPower = jumpPower * 0.8f;
+                GameManager.Instance.SetJudement("Good");
+                // 진동
+                if (GameManager.Instance.isVibration == true)
+                    Vibration.Vibrate((int)(GameManager.Instance.vibrationValue * 0.5f));
+            }
 
-                if (firstJump == true)
-                {
-                    currJumpPower = jumpPower;
-                    rigid.AddForce((Vector3.up * upPower + Vector3.forward * forwardPower) * currJumpPower, ForceMode.Impulse);
-                    firstJump = false;
-                    isJumping = false;
-
-                    return;
-                }
-
-                if (tr.position.y >= 0.4f)
-                {
-                    currJumpPower = jumpPower * 0.9f;
-                    GameManager.Instance.SetJudement("Excellent !!");
-                    // 진동
-                    if (GameManager.Instance.isVibration == true)
-                        Vibration.Vibrate(GameManager.Instance.vibrationValue);
-                }
-                else if (tr.position.y >= -0.1f)
-                {
-                    currJumpPower = jumpPower * 0.8f;
-                    GameManager.Instance.SetJudement("Good");
-                    // 진동
-                    if (GameManager.Instance.isVibration == true)
-                        Vibration.Vibrate((int)(GameManager.Instance.vibrationValue * 0.5f));
-                }
-                else
-                {
-                    GameManager.Instance.SetJudement("Fail");
-                    isAlive = false;
-                    return;
-                }
-
-                if (jumpCount < 2)
-                {
-                    jumpCount++;
-                    currJumpPower = jumpPower;
-                    rigid.velocity = new Vector3(0, 0, 0);
-                    rigid.AddForce((Vector3.up * upPower + Vector3.forward * forwardPower) * currJumpPower, ForceMode.Impulse);
-                    return;
-                }
-
+            if (jumpCount < 2)
+            {
+                jumpCount++;
+                currJumpPower = jumpPower;
                 rigid.velocity = new Vector3(0, 0, 0);
                 rigid.AddForce((Vector3.up * upPower + Vector3.forward * forwardPower) * currJumpPower, ForceMode.Impulse);
-
-                if (forwardPower < 15f)
-                    forwardPower += speedIncreaseValue;
-
-                if (GameManager.Instance.gage < 30)
-                    upPower *= upValue;
-                isJumping = false;
+                return;
             }
 
+            rigid.velocity = new Vector3(0, 0, 0);
+            rigid.AddForce((Vector3.up * upPower + Vector3.forward * forwardPower) * currJumpPower, ForceMode.Impulse);
+
+            if (forwardPower < 15f)
+                forwardPower += speedIncreaseValue;
+
+            if (GameManager.Instance.gage < 30)
+                upPower *= upValue;
+            isJumping = false;
         }
     }
 

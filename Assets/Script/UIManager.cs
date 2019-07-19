@@ -101,7 +101,7 @@ public class UIManager : MonoBehaviour
             vibrationBtn.GetComponentInChildren<Text>().text = "On";
         }
         else
-        {
+        { 
             vibrationBtn.GetComponentInChildren<Text>().text = "Off";
         }
     }
