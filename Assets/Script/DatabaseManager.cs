@@ -25,14 +25,14 @@ public enum Test_DB_Table    // 테이블 이름
     MAX
 }
 
-public class DatabaseManager : MonoBehaviour
+public class DatabaseManager : MonoSingleton<DatabaseManager>
 {
     public List<DataTable> ItemList = new List<DataTable>();  // db에 있는 아이템을 저장할 리스트
 
     string m_NameDB = "TestDB.db";  // db 파일 이름
     string Filepath = string.Empty;
 
-    void Start()
+    public void Load()
     {
         LoadDB();
         LoadTable();

@@ -8,11 +8,47 @@ public class GameManager : MonoBehaviour
     public Text judgement;
     private bool isjudging = false;
 
+    private int skin;
+    public int Skin
+    {
+        get { return skin; }
+        set
+        {
+            skin = value;
+            DatabaseManager.Instance.UpdateItemTable(gold, bestScore, skin);
+        }
+    }
+    private int gold;
+    public int Gold
+    {
+        get { return gold; }
+        set
+        {
+            gold = value;
+            ui_gold.text = gold.ToString() + " Gold";
+            DatabaseManager.Instance.UpdateItemTable(gold, bestScore, skin);
+        }
+    }
+    private int bestScore;
+    public int BestScore
+    {
+        get { return bestScore; }
+        set
+        {
+            bestScore = value;
+            ui_bestScore.text = "Bset Score\n" + bestScore.ToString() + "m";
+            DatabaseManager.Instance.UpdateItemTable(gold, bestScore, skin);
+        }
+    }
+    public Text ui_gold;
+    public Text ui_bestScore;
+
     public float gage = 100;
     public Image gagebar;
     public Text ui_Score;
-    private float score;
+    private float distance;
     public Transform player;
+    public bool isGamePlaying = false;
 
     public Transform wall1;
     public Transform wall2;
@@ -22,11 +58,19 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         loopPosition = loopValue;
+        DatabaseManager.Instance.Load();
+
+        Gold = DatabaseManager.Instance.ItemList[0].gold;
+        BestScore = DatabaseManager.Instance.ItemList[0].bestScore;
+        skin = DatabaseManager.Instance.ItemList[0].skin;
     }
     void Update()
     {
-        score = player.position.z;
-        ui_Score.text = ((int)score).ToString();
+        if (isGamePlaying == false)
+            return;
+
+        distance = player.position.z;
+        ui_Score.text = ((int)distance).ToString();
         if (player.position.z > loopPosition)
             Move();
     }
