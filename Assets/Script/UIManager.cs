@@ -11,12 +11,21 @@ public class UIManager : MonoBehaviour
     public TweenPosition tween;
     public Transform ArrowRot;
 
+    public Text ui_gold;
+    public Text ui_bestScore;
+
+    public Image gagebar;
+    public Text ui_Score;
+
+    public Text judgement;
+
     // Start is called before the first frame update
     void Start()
     {
         //tween 시작시 2번클릭 방지
         tween.PlayReverse();
 
+        GameManager.Instance.UI_Manager = this;
     }
 
     // Update is called once per frame
@@ -70,6 +79,7 @@ public class UIManager : MonoBehaviour
     {
         LobbyUI.SetActive(false);
         InGameUI.SetActive(true);
+        GameManager.Instance.isGamePlaying = true;
     }
 
 }

@@ -1,13 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
-public class GameManager : MonoBehaviour
+public class GameManager : MonoSingleton<GameManager>
 {
-    public Text judgement;
+    public UIManager UI_Manager;
+    
     private bool isjudging = false;
 
+    private bool isDBLoad = false;
     private int skin;
     public int Skin
     {
@@ -15,7 +16,7 @@ public class GameManager : MonoBehaviour
         set
         {
             skin = value;
-            DatabaseManager.Instance.UpdateItemTable(gold, bestScore, skin);
+            DatabaseSave(isDBLoad);
         }
     }
     private int gold;
@@ -25,8 +26,8 @@ public class GameManager : MonoBehaviour
         set
         {
             gold = value;
-            ui_gold.text = gold.ToString() + " Gold";
-            DatabaseManager.Instance.UpdateItemTable(gold, bestScore, skin);
+            UI_Manager.ui_gold.text = gold.ToString() + " Gold";
+            DatabaseSave(isDBLoad);
         }
     }
     private int bestScore;
@@ -36,33 +37,45 @@ public class GameManager : MonoBehaviour
         set
         {
             bestScore = value;
-            ui_bestScore.text = "Bset Score\n" + bestScore.ToString() + "m";
-            DatabaseManager.Instance.UpdateItemTable(gold, bestScore, skin);
+            UI_Manager.ui_bestScore.text = "Bset Score\n" + bestScore.ToString() + "m";
+            DatabaseSave(isDBLoad);
         }
     }
-    public Text ui_gold;
-    public Text ui_bestScore;
 
     public float gage = 100;
-    public Image gagebar;
-    public Text ui_Score;
+
     private float distance;
     public Transform player;
     public bool isGamePlaying = false;
+
+    public int vibrationValue;
 
     public Transform wall1;
     public Transform wall2;
     private float loopPosition;
     private float loopValue = 1000;
     private bool isMove = false;
+
     private void Start()
     {
+        wall1 = GameObject.Find("wall1").transform;
+        wall2 = GameObject.Find("wall2").transform;
+        player = GameObject.Find("Player").transform;
+        //UI_Manager = GameObject.Find("Canvas").GetComponent<UIManager>();
+
         loopPosition = loopValue;
         DatabaseManager.Instance.Load();
 
         Gold = DatabaseManager.Instance.ItemList[0].gold;
         BestScore = DatabaseManager.Instance.ItemList[0].bestScore;
-        skin = DatabaseManager.Instance.ItemList[0].skin;
+        Skin = DatabaseManager.Instance.ItemList[0].skin;
+
+        isDBLoad = true;
+    }
+    void DatabaseSave(bool _value)
+    {
+        if (_value)
+            DatabaseManager.Instance.UpdateItemTable(gold, bestScore, skin);
     }
     void Update()
     {
@@ -70,7 +83,7 @@ public class GameManager : MonoBehaviour
             return;
 
         distance = player.position.z;
-        ui_Score.text = ((int)distance).ToString();
+        UI_Manager.ui_Score.text = ((int)distance).ToString();
         if (player.position.z > loopPosition)
             Move();
     }
@@ -88,7 +101,7 @@ public class GameManager : MonoBehaviour
 
     public void SetGagebar(float _value)
     {
-        gagebar.fillAmount = _value;
+        UI_Manager.gagebar.fillAmount = _value;
     }
 
     public void SetJudement(string _str)
@@ -96,16 +109,16 @@ public class GameManager : MonoBehaviour
         if (isjudging == true)
             StopCoroutine("cor_JudgementTime");
         isjudging = true;
-        judgement.text = _str;
+        UI_Manager.judgement.text = _str;
         StartCoroutine("cor_JudgementTime");
     }
 
     IEnumerator cor_JudgementTime()
     {
-        judgement.gameObject.SetActive(true);
+        UI_Manager.judgement.gameObject.SetActive(true);
 
         yield return new WaitForSeconds(1);
         isjudging = false;
-        judgement.gameObject.SetActive(false);
+        UI_Manager.judgement.gameObject.SetActive(false);
     }
 }
