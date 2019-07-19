@@ -326,8 +326,8 @@ Material:
     - _SmoothnessTextureChannel: 0
     - _SnowAmount: 0.13
     - _SoftParticlesEnabled: 1
-    - _SoftParticlesFarFadeDistance: 6.59
-    - _SoftParticlesNearFadeDistance: 2.6
+    - _SoftParticlesFarFadeDistance: 10
+    - _SoftParticlesNearFadeDistance: 0
     - _SpecularHighlights: 1
     - _Speed: 1
     - _SrcBlend: 5
@@ -387,7 +387,7 @@ Material:
     - _RingPannerSpeed: {r: 0, g: 0, b: 0, a: 0}
     - _Secondarycolor: {r: 0, g: 0, b: 0, a: 0}
     - _Secondarypanningspeed: {r: 0, g: 0, b: 0, a: 0}
-    - _SoftParticleFadeParams: {r: 2.6, g: 0.25062656, b: 0, a: 0}
+    - _SoftParticleFadeParams: {r: 0, g: 0.1, b: 0, a: 0}
     - _SpecColor: {r: 0.5, g: 0.3466981, b: 0.3466981, a: 0}
     - _TileSize: {r: 2, g: 2, b: 0, a: 0}
     - _Tint: {r: 0.5, g: 0.5, b: 0.5, a: 0.5}
