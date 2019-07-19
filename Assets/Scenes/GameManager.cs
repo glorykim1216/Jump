@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoSingleton<GameManager>
 {
@@ -144,5 +145,17 @@ public class GameManager : MonoSingleton<GameManager>
         BestScore = (int)distance;
         if (UI_Manager.newBestScore.activeSelf == false)
             UI_Manager.newBestScore.SetActive(true);
+        if (UI_Manager.resultNewBestScore.activeSelf == false)
+            UI_Manager.resultNewBestScore.SetActive(true);
+    }
+    public void GameOver()
+    {
+        UI_Manager.newBestScore.SetActive(false);
+
+        UI_Manager.ResultUI.SetActive(true);
+    }
+    public void ReStart()
+    {
+        SceneManager.LoadScene("SampleScene");
     }
 }

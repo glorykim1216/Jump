@@ -66,10 +66,16 @@ public class player : MonoBehaviour
             waterPs.Stop();
         }
 
-        if (firstJump == false && tr.position.y < -0.1f)
+        if (firstJump == false && jumpCount > 1 && tr.position.y < -0.1f)
         {
             GameManager.Instance.SetJudement("Fail");
             isAlive = false;
+        }
+
+        if (isAlive == false && rigid.velocity.z < 1)
+        {
+            GameManager.Instance.isGamePlaying = false;
+            GameManager.Instance.GameOver();
         }
     }
 
@@ -87,8 +93,6 @@ public class player : MonoBehaviour
     }
     void OnTriggerEnter(Collider collision) // 충돌한 대상의 collision을 얻는다.
     {
-
-
         GameObject prefab = Resources.Load("Prefabs/Splash") as GameObject;
 
         GameObject Splash = MonoBehaviour.Instantiate(prefab) as GameObject;
@@ -152,14 +156,16 @@ public class player : MonoBehaviour
                 if (GameManager.Instance.isVibration == true)
                     Vibration.Vibrate((int)(GameManager.Instance.vibrationValue * 0.5f));
             }
+            else
+            {
+                GameManager.Instance.SetJudement("Fail");
+                isAlive = false;
+                return;
+            }
 
             if (jumpCount < 2)
             {
                 jumpCount++;
-                currJumpPower = jumpPower;
-                rigid.velocity = new Vector3(0, 0, 0);
-                rigid.AddForce((Vector3.up * upPower + Vector3.forward * forwardPower) * currJumpPower, ForceMode.Impulse);
-                return;
             }
 
             rigid.velocity = new Vector3(0, 0, 0);

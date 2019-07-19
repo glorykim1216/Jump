@@ -8,6 +8,7 @@ public class UIManager : MonoBehaviour
     public GameObject OptionPopup;
     public GameObject LobbyUI;
     public GameObject InGameUI;
+    public GameObject ResultUI;
     public TweenPosition tween;
     public Transform ArrowRot;
 
@@ -20,8 +21,10 @@ public class UIManager : MonoBehaviour
     public Text judgement;
 
     public Button vibrationBtn;
+    public Button gameOverGoldBtn;
 
     public GameObject newBestScore;
+    public GameObject resultNewBestScore;
 
     // Start is called before the first frame update
     void Start()
@@ -30,7 +33,10 @@ public class UIManager : MonoBehaviour
         tween.PlayReverse();
 
         GameManager.Instance.UI_Manager = this;
+
         vibrationBtn.onClick.AddListener(VibrationOption);
+        gameOverGoldBtn.onClick.AddListener(ViewAD);
+
         VibrationOnOffCheck();
     }
 
@@ -104,5 +110,10 @@ public class UIManager : MonoBehaviour
         { 
             vibrationBtn.GetComponentInChildren<Text>().text = "Off";
         }
+    }
+
+    public void ViewAD()
+    {
+        GameManager.Instance.ReStart();
     }
 }
