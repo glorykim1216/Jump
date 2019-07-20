@@ -23,6 +23,7 @@ public class player : MonoBehaviour
     ParticleSystem.MainModule psMain;
     int jumpCount;
     bool stayEnd;
+    bool isFever;
     void Start()
     {
         currJumpPower = jumpPower;
@@ -54,12 +55,6 @@ public class player : MonoBehaviour
             if (EventSystem.current.IsPointerOverGameObject() == false)
                 isJumping = true;
 #endif
-
-        if (GameManager.Instance.gage <= 0)
-        {
-            isAlive = false;
-        }
-
         if (rigid.velocity.magnitude <= 1f)
         {
             psMain.loop = false;
@@ -70,12 +65,6 @@ public class player : MonoBehaviour
         {
             GameManager.Instance.SetJudement("Fail");
             isAlive = false;
-        }
-
-        if (isAlive == false && rigid.velocity.z < 1)
-        {
-            GameManager.Instance.isGamePlaying = false;
-            GameManager.Instance.GameOver();
         }
     }
 
@@ -102,7 +91,10 @@ public class player : MonoBehaviour
     }
     void OnTriggerStay(Collider collision) // 충돌한 대상의 collision을 얻는다.
     {
-
+        if (collision.name == "Water" && isFever == true)
+        {
+            Fever();
+        }
         if (!stayEnd)
         {
             psMain.loop = true;
@@ -177,6 +169,31 @@ public class player : MonoBehaviour
             if (GameManager.Instance.gage < 30)
                 upPower *= upValue;
             isJumping = false;
+
+            if (GameManager.Instance.gage <= 0)
+            {
+                isAlive = false;
+                isFever = true;
+                jumpCount = 0;
+            }
+        }
+    }
+    public void Fever()
+    {
+        currJumpPower = jumpPower * 0.9f;
+        //GameManager.Instance.SetJudement("Excellent !!");
+        // 진동
+        if (GameManager.Instance.isVibration == true)
+            Vibration.Vibrate(GameManager.Instance.vibrationValue);
+
+        rigid.velocity = new Vector3(0, 0, 0);
+        rigid.AddForce((Vector3.up * upPower + Vector3.forward * forwardPower) * currJumpPower, ForceMode.Impulse);
+
+        jumpCount++;
+        if (jumpCount > 15)
+        {
+            isFever = false;
+            StartCoroutine(GameManager.Instance.GameOver());
         }
     }
 

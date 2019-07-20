@@ -148,8 +148,11 @@ public class GameManager : MonoSingleton<GameManager>
         if (UI_Manager.resultNewBestScore.activeSelf == false)
             UI_Manager.resultNewBestScore.SetActive(true);
     }
-    public void GameOver()
+    public IEnumerator GameOver()
     {
+        yield return new WaitForSeconds(3);
+        isGamePlaying = false;
+
         UI_Manager.newBestScore.SetActive(false);
 
         UI_Manager.ResultUI.SetActive(true);
