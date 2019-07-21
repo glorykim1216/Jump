@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using Lofle.Tween;
-public class UIManager : MonoBehaviour
+public class UIManager : MonoSingleton<UIManager>
 {
     public GameObject OptionPopup;
     public GameObject LobbyUI;
@@ -26,13 +26,12 @@ public class UIManager : MonoBehaviour
     public GameObject newBestScore;
     public GameObject resultNewBestScore;
 
+    public override void Init(){}
     // Start is called before the first frame update
     void Start()
     {
         //tween 시작시 2번클릭 방지
         tween.PlayReverse();
-
-        GameManager.Instance.UI_Manager = this;
 
         vibrationBtn.onClick.AddListener(VibrationOption);
         gameOverGoldBtn.onClick.AddListener(ViewAD);

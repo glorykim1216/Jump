@@ -9,13 +9,19 @@ public class DataTable
 {
     public int gold;
     public int bestScore;
-    public int skin;
+    public int openSkinList;
+    public int currSkin;
+    public int upPower;
+    public int forwardPower;
 
-    public DataTable(int _gold, int _bestScore, int _skin)
+    public DataTable(int _gold, int _bestScore, int _openSkinList, int _currSkin, int _upPower, int _forwardPower)
     {
         gold = _gold;
         bestScore = _bestScore;
-        skin = _skin;
+        openSkinList = _openSkinList;
+        currSkin = _currSkin;
+        upPower = _upPower;
+        forwardPower = _forwardPower;
     }
 }
 
@@ -126,7 +132,8 @@ public class DatabaseManager : MonoSingleton<DatabaseManager>
             {
 
                 // 테이블을 생성하는 SQL 쿼리문
-                string sqlQuery = "CREATE TABLE `" + Test_DB_Table.DatabaseTable.ToString() + "`( `Gold` INTEGER NOT NULL, `BestScore` INTEGER NOT NULL, `Skin` INTEGER NOT NULL)";
+                string sqlQuery = "CREATE TABLE `" + Test_DB_Table.DatabaseTable.ToString() +
+                    "`( `Gold` INTEGER NOT NULL, `BestScore` INTEGER NOT NULL, `OpenSkinList` INTEGER NOT NULL, `CurrSkin` INTEGER NOT NULL, `UpPower` INTEGER NOT NULL, `FowardPower` INTEGER NOT NULL)";
                 dbCmd.CommandText = sqlQuery;
 
                 using (IDataReader reader = dbCmd.ExecuteReader()) // 테이블에 있는 데이터들이 들어간다. 
@@ -183,7 +190,7 @@ public class DatabaseManager : MonoSingleton<DatabaseManager>
                     while (reader.Read())
                     {
                         // Debug.Log(reader.GetString(1));  //  타입명 . (몇 열에있는것을 부를것인가)
-                        ItemList.Add(new DataTable(reader.GetInt32(0), reader.GetInt32(1), reader.GetInt32(2)));
+                        ItemList.Add(new DataTable(reader.GetInt32(0), reader.GetInt32(1), reader.GetInt32(2), reader.GetInt32(3), reader.GetInt32(4), reader.GetInt32(5)));
                     }
 
                     reader.Close();
@@ -193,14 +200,16 @@ public class DatabaseManager : MonoSingleton<DatabaseManager>
             }
         }
 
+
+        //TEST_CODE
         for (int i = 0; i < ItemList.Count; i++)
         {
-            Debug.Log(ItemList[i].gold + "::" + ItemList[i].bestScore + "::" + ItemList[i].skin);
+            Debug.Log(ItemList[i].gold + "::" + ItemList[i].bestScore + "::" + ItemList[i].openSkinList);
         }
     }
 
     // 속성값 수정
-    public void UpdateItemTable(int _gold, int _bestScore, int _skin)
+    public void UpdateItemTable(int _gold, int _bestScore, int _openSkinList, int _currSkin, int _upPower, int _forwardPower)
     {
         string connectionString = "URI=file:" + Filepath;
 
@@ -211,7 +220,8 @@ public class DatabaseManager : MonoSingleton<DatabaseManager>
             dbConnection.Open();
             using (IDbCommand dbCmd = dbConnection.CreateCommand())  // EnterSqL에 명령 할 수 있다. 
             {
-                string sqlQuery = "UPDATE " + Test_DB_Table.DatabaseTable.ToString() + " SET Gold='" + _gold + "', BestScore='" + _bestScore + "', Skin='" + _skin + "'";
+                string sqlQuery = "UPDATE " + Test_DB_Table.DatabaseTable.ToString() +
+                    " SET Gold='" + _gold + "', BestScore='" + _bestScore + "', OpenSkinList='" + _openSkinList + "', CurrSkin='" + _currSkin + "', UpPower='" + _upPower + "', ForwardPower='" + _forwardPower + "'";
 
                 dbCmd.CommandText = sqlQuery;
 
@@ -229,7 +239,7 @@ public class DatabaseManager : MonoSingleton<DatabaseManager>
     public void test()
     {
         SelectItemTable();
-        UpdateItemTable(1, 8, 2);
+        UpdateItemTable(0, 1, 2,1,1,1);
         SelectItemTable();
 
 

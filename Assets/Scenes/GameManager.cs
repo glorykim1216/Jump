@@ -5,21 +5,10 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoSingleton<GameManager>
 {
-    public UIManager UI_Manager;
-
     private bool isjudging = false;
 
     private bool isDBLoad = false;
-    private int skin;
-    public int Skin
-    {
-        get { return skin; }
-        set
-        {
-            skin = value;
-            //skin 배열 관련함수 필요
-        }
-    }
+
     private int gold;
     public int Gold
     {
@@ -27,7 +16,7 @@ public class GameManager : MonoSingleton<GameManager>
         set
         {
             gold = value;
-            UI_Manager.goldText.text = gold.ToString() + " Gold";
+            UIManager.Instance.goldText.text = gold.ToString() + " Gold";
             DatabaseSave(isDBLoad);
         }
     }
@@ -38,56 +27,88 @@ public class GameManager : MonoSingleton<GameManager>
         set
         {
             bestScore = value;
-            UI_Manager.bestScoreText.text = "Bset Score\n" + bestScore.ToString() + "m";
+            UIManager.Instance.bestScoreText.text = "Bset Score\n" + bestScore.ToString() + "m";
+        }
+    }
+    private int openSkinList;
+    public int OpenSkinList
+    {
+        get { return openSkinList; }
+        set
+        {
+            openSkinList = value;
+            //skin 배열 관련함수 필요
+            DatabaseSave(isDBLoad);
+        }
+    }
+    private int currSkin;
+    public int CurrSkin
+    {
+        get { return currSkin; }
+        set
+        {
+            currSkin = value;
+            DatabaseSave(isDBLoad);
+
+        }
+    }
+    private int upPower;
+    public int UpPower
+    {
+        get { return upPower; }
+        set
+        {
+            upPower = value;
+            DatabaseSave(isDBLoad);
+
+        }
+    }
+    private int forwardPower;
+    public int ForwardPower
+    {
+        get { return forwardPower; }
+        set
+        {
+            forwardPower = value;
+            DatabaseSave(isDBLoad);
+
         }
     }
 
-    public float gage = 100;
-
-    private int distance;
+    public int distance;
     public Transform player;
     public bool isGamePlaying = false;
 
     public int vibrationValue = 800;
     public bool isVibration = true;
 
-    public Transform wall1;
-    public Transform wall2;
-    private float loopPosition;
-    private float loopValue = 1000;
-    private bool isMove = false;
 
-    public Transform bestScoreWall;
-    public override void Init()
-    {
-    }
     private void Start()
     {
         Screen.SetResolution(720, 1280, true);
 
-        wall1 = GameObject.Find("wall1").transform;
-        wall2 = GameObject.Find("wall2").transform;
         player = GameObject.Find("Player").transform;
-        UI_Manager = GameObject.Find("Canvas").GetComponent<UIManager>();
-        bestScoreWall = GameObject.Find("BestScoreWall").transform;
-        bestScoreWall.gameObject.SetActive(false);
 
-        loopPosition = loopValue;
+
+
+  
         DatabaseManager.Instance.Load();
 
         Gold = DatabaseManager.Instance.ItemList[0].gold;
         BestScore = DatabaseManager.Instance.ItemList[0].bestScore;
-        Skin = DatabaseManager.Instance.ItemList[0].skin;
+        OpenSkinList = DatabaseManager.Instance.ItemList[0].openSkinList;
+        CurrSkin = DatabaseManager.Instance.ItemList[0].currSkin;
+        UpPower = DatabaseManager.Instance.ItemList[0].upPower;
+        ForwardPower = DatabaseManager.Instance.ItemList[0].forwardPower;
 
         isDBLoad = true;
 
-        bestScoreWall.position = new Vector3(bestScoreWall.position.x, bestScoreWall.position.y, bestScore);
     }
     // DB 저장
-    void DatabaseSave(bool _value)
+    public void DatabaseSave(bool _value)
     {
         if (_value)
-            DatabaseManager.Instance.UpdateItemTable(gold, bestScore, skin);
+            DatabaseManager.Instance.UpdateItemTable(gold, bestScore, openSkinList, currSkin, upPower, forwardPower);
     }
     void Update()
     {
@@ -95,33 +116,17 @@ public class GameManager : MonoSingleton<GameManager>
             return;
 
         // 현재 거리
-        distance = (int)player.position.z;
-        UI_Manager.currScoreText.text = distance.ToString();
-        if (player.position.z > loopPosition)
-            Move();
-
-        if (distance >= bestScore - 100 && bestScoreWall.gameObject.activeSelf == false)
-            bestScoreWall.gameObject.SetActive(true);
+        UIManager.Instance.currScoreText.text = distance.ToString();
+ 
         // 신기록
         if (distance >= bestScore)
             NewBestScore();
     }
-    // wall loop
-    void Move()
-    {
-        loopPosition += loopValue;
 
-        if (isMove == false)
-            wall1.position = new Vector3(wall1.position.x, wall1.position.y, loopPosition);
-        else
-            wall2.position = new Vector3(wall2.position.x, wall2.position.y, loopPosition);
-
-        isMove = !isMove;
-    }
     // 게이지 출력
     public void SetGagebar(float _value)
     {
-        UI_Manager.gagebar.fillAmount = _value;
+        UIManager.Instance.gagebar.fillAmount = _value;
     }
     // 판정 출력
     public void SetJudement(string _str)
@@ -129,26 +134,26 @@ public class GameManager : MonoSingleton<GameManager>
         if (isjudging == true)
             StopCoroutine("cor_JudgementTime");
         isjudging = true;
-        UI_Manager.judgement.text = _str;
+        UIManager.Instance.judgement.text = _str;
         StartCoroutine("cor_JudgementTime");
     }
 
     IEnumerator cor_JudgementTime()
     {
-        UI_Manager.judgement.gameObject.SetActive(true);
+        UIManager.Instance.judgement.gameObject.SetActive(true);
 
         yield return new WaitForSeconds(1);
         isjudging = false;
-        UI_Manager.judgement.gameObject.SetActive(false);
+        UIManager.Instance.judgement.gameObject.SetActive(false);
     }
     // 신기록
     public void NewBestScore()
     {
         BestScore = (int)distance;
-        if (UI_Manager.newBestScore.activeSelf == false)
-            UI_Manager.newBestScore.SetActive(true);
-        if (UI_Manager.resultNewBestScore.activeSelf == false)
-            UI_Manager.resultNewBestScore.SetActive(true);
+        if (UIManager.Instance.newBestScore.activeSelf == false)
+            UIManager.Instance.newBestScore.SetActive(true);
+        if (UIManager.Instance.resultNewBestScore.activeSelf == false)
+            UIManager.Instance.resultNewBestScore.SetActive(true);
     }
     public IEnumerator GameOver()
     {
@@ -156,9 +161,9 @@ public class GameManager : MonoSingleton<GameManager>
 
         yield return new WaitForSeconds(3);
 
-        UI_Manager.newBestScore.SetActive(false);
+        UIManager.Instance.newBestScore.SetActive(false);
 
-        UI_Manager.ResultUI.SetActive(true);
+        UIManager.Instance.ResultUI.SetActive(true);
     }
     public void ReStart()
     {

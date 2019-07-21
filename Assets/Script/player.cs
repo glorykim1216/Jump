@@ -24,6 +24,18 @@ public class player : MonoBehaviour
     bool stayEnd;
     bool isFever;
     GameObject splashPrefab;
+
+    // wall
+    public Transform wall1;
+    public Transform wall2;
+    private float loopPosition;
+    private float loopValue = 1000;
+    private bool isMove = false;
+
+    public Transform bestScoreWall;
+
+    public float gage = 100;
+
     void Start()
     {
         splashPrefab = Resources.Load("Prefabs/Splash") as GameObject;
@@ -35,6 +47,16 @@ public class player : MonoBehaviour
         waterPs = GameObject.Find("waterPS").GetComponent<ParticleSystem>();
         psMain = waterPs.main;
         psMain.loop = false;
+
+        // wall
+        wall1 = GameObject.Find("wall1").transform;
+        wall2 = GameObject.Find("wall2").transform;
+        loopPosition = loopValue;
+
+        bestScoreWall = GameObject.Find("BestScoreWall").transform;
+        bestScoreWall.gameObject.SetActive(false);
+        bestScoreWall.position = new Vector3(bestScoreWall.position.x, bestScoreWall.position.y, GameManager.Instance.BestScore);
+
     }
 
     void Update()
@@ -81,6 +103,14 @@ public class player : MonoBehaviour
             StartCoroutine(GameManager.Instance.GameOver());
         }
 
+        // wall 이동
+        if (tr.position.z > loopPosition)
+            WallMove();
+
+        if (tr.position.z >= GameManager.Instance.BestScore - 100 && bestScoreWall.gameObject.activeSelf == false)
+            bestScoreWall.gameObject.SetActive(true);
+
+        GameManager.Instance.distance = (int)tr.position.z;
     }
 
     private void FixedUpdate()
@@ -130,8 +160,8 @@ public class player : MonoBehaviour
         {
             isJumping = false;
 
-            GameManager.Instance.gage -= 10;
-            GameManager.Instance.SetGagebar(GameManager.Instance.gage / 100);
+            gage -= 10;
+            GameManager.Instance.SetGagebar(gage / 100);
 
             if (firstJump == true)
             {
@@ -175,10 +205,10 @@ public class player : MonoBehaviour
             if (forwardPower < 15f)
                 forwardPower += speedIncreaseValue;
 
-            if (GameManager.Instance.gage < 30)
+            if (gage < 30)
                 upPower *= upValue;
 
-            if (GameManager.Instance.gage <= 0)
+            if (gage <= 0)
             {
                 isFever = true;
                 jumpCount = 0;
@@ -204,5 +234,16 @@ public class player : MonoBehaviour
         }
     }
 
+    // wall loop
+    void WallMove()
+    {
+        loopPosition += loopValue;
 
+        if (isMove == false)
+            wall1.position = new Vector3(wall1.position.x, wall1.position.y, loopPosition);
+        else
+            wall2.position = new Vector3(wall2.position.x, wall2.position.y, loopPosition);
+
+        isMove = !isMove;
+    }
 }
