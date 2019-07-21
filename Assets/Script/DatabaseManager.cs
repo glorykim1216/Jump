@@ -41,22 +41,25 @@ public class DatabaseManager : MonoSingleton<DatabaseManager>
     // DB파일이 있는지 검사하고 없으면 생성
     public void LoadDB()
     {
-        Filepath = Application.streamingAssetsPath + "/" + m_NameDB;
-
         if (Application.platform == RuntimePlatform.Android)
         {
+            Filepath = Application.persistentDataPath + "/" + m_NameDB;
+
             if (!File.Exists(Filepath))
             {
                 Debug.LogWarning("File \"" + Filepath + "\" does not exist. Attempting to create from \"" +
                                  Application.dataPath + "!/assets/" + m_NameDB);
 
                 WWW loadDB = new WWW("jar:file://" + Application.dataPath + "!/assets/" + m_NameDB);
+                loadDB.bytesDownloaded.ToString();
                 while (!loadDB.isDone) { }
                 File.WriteAllBytes(Filepath, loadDB.bytes);
             }
         }
         else
         {
+            Filepath = Application.streamingAssetsPath + "/" + m_NameDB;
+
             if (!File.Exists(Filepath))
             {
                 WWW loadDB = new WWW("file://" + Filepath);

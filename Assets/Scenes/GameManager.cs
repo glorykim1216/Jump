@@ -48,7 +48,7 @@ public class GameManager : MonoSingleton<GameManager>
     public Transform player;
     public bool isGamePlaying = false;
 
-    public int vibrationValue = 1000;
+    public int vibrationValue = 800;
     public bool isVibration = true;
 
     public Transform wall1;
@@ -63,6 +63,8 @@ public class GameManager : MonoSingleton<GameManager>
     }
     private void Start()
     {
+        Screen.SetResolution(720, 1280, true);
+
         wall1 = GameObject.Find("wall1").transform;
         wall2 = GameObject.Find("wall2").transform;
         player = GameObject.Find("Player").transform;
@@ -150,8 +152,9 @@ public class GameManager : MonoSingleton<GameManager>
     }
     public IEnumerator GameOver()
     {
-        yield return new WaitForSeconds(3);
         isGamePlaying = false;
+
+        yield return new WaitForSeconds(3);
 
         UI_Manager.newBestScore.SetActive(false);
 

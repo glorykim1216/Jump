@@ -12,7 +12,6 @@ public class player : MonoBehaviour
     public float jumpPower = 15;
     public float currJumpPower;
     public bool isJumping = false;
-    private bool isAlive = true;
     public Transform tr;
     public Rigidbody rigid;
     public Transform cube;
@@ -24,8 +23,11 @@ public class player : MonoBehaviour
     int jumpCount;
     bool stayEnd;
     bool isFever;
+    GameObject splashPrefab;
     void Start()
     {
+        splashPrefab = Resources.Load("Prefabs/Splash") as GameObject;
+
         currJumpPower = jumpPower;
         tr = this.GetComponent<Transform>();
         rigid = this.GetComponent<Rigidbody>();
@@ -39,33 +41,46 @@ public class player : MonoBehaviour
     {
         if (GameManager.Instance.isGamePlaying == false)
             return;
-#if UNITY_ANDROID && !UNITY_EDITOR
-        if (Input.touchCount > 0)
+        //#if UNITY_ANDROID && !UNITY_EDITOR
+        if (Application.platform == RuntimePlatform.Android)
         {
-            //for (int i = 0; i < Input.touchCount; i++)
+            if (Input.touchCount > 0)
             {
-                if (EventSystem.current.IsPointerOverGameObject(0))
-                    return;
-                else
-                    isJumping = true;
+                Touch touch = Input.GetTouch(0);
+                if (touch.phase == TouchPhase.Began)
+                {
+                    if (EventSystem.current.IsPointerOverGameObject(0) == false)    // UI 터치 구분
+                    {
+                        isJumping = true;
+                    }
+                }
+                //for (int i = 0; i < Input.touchCount; i++)
+                //{
+                //    if (EventSystem.current.IsPointerOverGameObject(i) == false)    // UI 터치 구분
+                //    {
+                //        isJumping = true;
+                //        break;
+                //    }
+                //}
             }
         }
-#else
+        //#else
         if (Input.GetMouseButtonDown(0))
-            if (EventSystem.current.IsPointerOverGameObject() == false)
+            if (EventSystem.current.IsPointerOverGameObject() == false) // UI 클릭 구분
                 isJumping = true;
-#endif
+        //#endif
         if (rigid.velocity.magnitude <= 1f)
         {
             psMain.loop = false;
             waterPs.Stop();
         }
 
-        if (firstJump == false && jumpCount > 1 && tr.position.y < -0.1f)
+        if (firstJump == false && isFever == false && rigid.velocity.z < 0.5f)
         {
             GameManager.Instance.SetJudement("Fail");
-            isAlive = false;
+            StartCoroutine(GameManager.Instance.GameOver());
         }
+
     }
 
     private void FixedUpdate()
@@ -77,14 +92,11 @@ public class player : MonoBehaviour
         else
             stayEnd = false;
 
-        if (isAlive == true)
-            Jump();
+        Jump();
     }
     void OnTriggerEnter(Collider collision) // 충돌한 대상의 collision을 얻는다.
     {
-        GameObject prefab = Resources.Load("Prefabs/Splash") as GameObject;
-
-        GameObject Splash = MonoBehaviour.Instantiate(prefab) as GameObject;
+        GameObject Splash = MonoBehaviour.Instantiate(splashPrefab) as GameObject;
         // 실제 인스턴스 생성. GameObject name의 기본값은 Bullet (clone)
         Splash.name = "bullet"; // name을 변경
         Splash.transform.position = this.transform.position;
@@ -100,14 +112,11 @@ public class player : MonoBehaviour
             psMain.loop = true;
             waterPs.Play();
         }
-
-        // Debug.Log(collision.gameObject.name + "과 부딪혔습니다.");
     }
     void OnTriggerExit(Collider collision) // 충돌한 대상의 collision을 얻는다.
     {
         psMain.loop = false;
         stayEnd = true;
-        // Debug.Log(collision.gameObject.name + "과 부딪혔습니다.");
     }
     void Jump()
     {
@@ -119,6 +128,8 @@ public class player : MonoBehaviour
 
         if (isJumping == true)
         {
+            isJumping = false;
+
             GameManager.Instance.gage -= 10;
             GameManager.Instance.SetGagebar(GameManager.Instance.gage / 100);
 
@@ -127,8 +138,6 @@ public class player : MonoBehaviour
                 currJumpPower = jumpPower;
                 rigid.AddForce((Vector3.up * upPower + Vector3.forward * forwardPower) * currJumpPower, ForceMode.Impulse);
                 firstJump = false;
-                isJumping = false;
-
                 return;
             }
 
@@ -151,7 +160,7 @@ public class player : MonoBehaviour
             else
             {
                 GameManager.Instance.SetJudement("Fail");
-                isAlive = false;
+                StartCoroutine(GameManager.Instance.GameOver());
                 return;
             }
 
@@ -168,11 +177,9 @@ public class player : MonoBehaviour
 
             if (GameManager.Instance.gage < 30)
                 upPower *= upValue;
-            isJumping = false;
 
             if (GameManager.Instance.gage <= 0)
             {
-                isAlive = false;
                 isFever = true;
                 jumpCount = 0;
             }
@@ -184,7 +191,7 @@ public class player : MonoBehaviour
         //GameManager.Instance.SetJudement("Excellent !!");
         // 진동
         if (GameManager.Instance.isVibration == true)
-            Vibration.Vibrate(GameManager.Instance.vibrationValue);
+            Vibration.Vibrate((int)(GameManager.Instance.vibrationValue * 0.5f));
 
         rigid.velocity = new Vector3(0, 0, 0);
         rigid.AddForce((Vector3.up * upPower + Vector3.forward * forwardPower) * currJumpPower, ForceMode.Impulse);
