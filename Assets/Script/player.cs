@@ -56,7 +56,6 @@ public class player : MonoBehaviour
         bestScoreWall = GameObject.Find("BestScoreWall").transform;
         bestScoreWall.gameObject.SetActive(false);
         bestScoreWall.position = new Vector3(bestScoreWall.position.x, bestScoreWall.position.y, GameManager.Instance.BestScore);
-
     }
 
     void Update()
@@ -122,7 +121,8 @@ public class player : MonoBehaviour
         else
             stayEnd = false;
 
-        Jump();
+        if (isFever == false)
+            Jump();
     }
     void OnTriggerEnter(Collider collision) // 충돌한 대상의 collision을 얻는다.
     {
@@ -230,10 +230,15 @@ public class player : MonoBehaviour
         if (jumpCount > 15)
         {
             isFever = false;
-            StartCoroutine(GameManager.Instance.GameOver());
+            StartCoroutine("GameOver");
         }
     }
-
+    IEnumerator GameOver()
+    {
+        yield return new WaitForEndOfFrame();
+        while (rigid.velocity.z > 0.1f) { }
+        StartCoroutine(GameManager.Instance.GameOver());
+    }
     // wall loop
     void WallMove()
     {

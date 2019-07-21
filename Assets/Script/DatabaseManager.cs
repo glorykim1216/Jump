@@ -213,7 +213,7 @@ public class DatabaseManager : MonoSingleton<DatabaseManager>
     {
         string connectionString = "URI=file:" + Filepath;
 
-        ItemList.Clear();
+        //ItemList.Clear();
 
         using (IDbConnection dbConnection = new SqliteConnection(connectionString))
         {

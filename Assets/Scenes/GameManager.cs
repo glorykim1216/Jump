@@ -76,7 +76,6 @@ public class GameManager : MonoSingleton<GameManager>
     }
 
     public int distance;
-    public Transform player;
     public bool isGamePlaying = false;
 
     public int vibrationValue = 800;
@@ -87,22 +86,19 @@ public class GameManager : MonoSingleton<GameManager>
     {
         Screen.SetResolution(720, 1280, true);
 
-        player = GameObject.Find("Player").transform;
-
-
-
-  
         DatabaseManager.Instance.Load();
+        DatabaseInit();
+        isDBLoad = true;
 
+    }
+    public void DatabaseInit()
+    {
         Gold = DatabaseManager.Instance.ItemList[0].gold;
         BestScore = DatabaseManager.Instance.ItemList[0].bestScore;
         OpenSkinList = DatabaseManager.Instance.ItemList[0].openSkinList;
         CurrSkin = DatabaseManager.Instance.ItemList[0].currSkin;
         UpPower = DatabaseManager.Instance.ItemList[0].upPower;
         ForwardPower = DatabaseManager.Instance.ItemList[0].forwardPower;
-
-        isDBLoad = true;
-
     }
     // DB 저장
     public void DatabaseSave(bool _value)
@@ -117,7 +113,7 @@ public class GameManager : MonoSingleton<GameManager>
 
         // 현재 거리
         UIManager.Instance.currScoreText.text = distance.ToString();
- 
+
         // 신기록
         if (distance >= bestScore)
             NewBestScore();
