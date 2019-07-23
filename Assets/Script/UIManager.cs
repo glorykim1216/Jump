@@ -28,8 +28,11 @@ public class UIManager : MonoSingleton<UIManager>
 
     public GameObject SkinScrollViewObj;
 
+    public Sprite vibOn;
+    public Sprite vibOff;
+
     public override void Init(){}
-    // Start is called before the first frame update
+
     void Start()
     {
         //tween 시작시 2번클릭 방지
@@ -108,11 +111,11 @@ public class UIManager : MonoSingleton<UIManager>
     {
         if(GameManager.Instance.isVibration==true)
         {
-            vibrationBtn.GetComponentInChildren<Text>().text = "On";
+            vibrationBtn.GetComponent<Image>().sprite = vibOn;
         }
         else
         { 
-            vibrationBtn.GetComponentInChildren<Text>().text = "Off";
+            vibrationBtn.GetComponent<Image>().sprite = vibOff;
         }
     }
 

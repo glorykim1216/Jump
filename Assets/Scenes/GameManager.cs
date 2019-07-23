@@ -16,7 +16,7 @@ public class GameManager : MonoSingleton<GameManager>
         set
         {
             gold = value;
-            UIManager.Instance.goldText.text = gold.ToString() + " Gold";
+            UIManager.Instance.goldText.text = gold.ToString();
             DatabaseSave(isDBLoad);
         }
     }
@@ -27,7 +27,7 @@ public class GameManager : MonoSingleton<GameManager>
         set
         {
             bestScore = value;
-            UIManager.Instance.bestScoreText.text = "Bset Score\n" + bestScore.ToString() + "m";
+            UIManager.Instance.bestScoreText.text = bestScore.ToString();
         }
     }
     private int openSkinList;
@@ -112,7 +112,7 @@ public class GameManager : MonoSingleton<GameManager>
             return;
 
         // 현재 거리
-        UIManager.Instance.currScoreText.text = distance.ToString();
+        UIManager.Instance.currScoreText.text = distance.ToString() + "m";
 
         // 신기록
         if (distance >= bestScore)
