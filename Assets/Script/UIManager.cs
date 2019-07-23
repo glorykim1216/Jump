@@ -9,7 +9,7 @@ public class UIManager : MonoSingleton<UIManager>
     public GameObject LobbyUI;
     public GameObject InGameUI;
     public GameObject ResultUI;
-    public TweenPosition tween;
+   
     public Transform ArrowRot;
 
     public Text goldText;
@@ -26,12 +26,14 @@ public class UIManager : MonoSingleton<UIManager>
     public GameObject newBestScore;
     public GameObject resultNewBestScore;
 
+    public GameObject SkinScrollViewObj;
+
     public override void Init(){}
     // Start is called before the first frame update
     void Start()
     {
         //tween 시작시 2번클릭 방지
-        tween.PlayReverse();
+        //tween.PlayReverse();
 
         vibrationBtn.onClick.AddListener(VibrationOption);
         gameOverGoldBtn.onClick.AddListener(ViewAD);
@@ -55,20 +57,23 @@ public class UIManager : MonoSingleton<UIManager>
     public void SkinButton()
     {
         //트윈 위치 설정 (0,0,0,)으로 위치 이동하는 현상 제거
-        tween.From = new Vector3(tween.transform.localPosition.x, 300, 0);
-        tween.To = new Vector3(tween.transform.localPosition.x, 0, 0);
-        if (tween.isForward)
-        {
-            ArrowRot.localRotation = Quaternion.Euler(new Vector3(0, 0, -50));
-            tween.PlayReverse();
-        }
-         
+        //tween.From = new Vector3(tween.transform.localPosition.x, 300, 0);
+        //tween.To = new Vector3(tween.transform.localPosition.x, 0, 0);
+        //if (tween.isForward)
+        //{
+        //    ArrowRot.localRotation = Quaternion.Euler(new Vector3(0, 0, -50));
+        //    tween.PlayReverse();
+        //}
+
+        //else
+        //{
+        //    ArrowRot.localRotation = Quaternion.Euler(new Vector3(0, 0, 130));
+        //    tween.PlayForward();
+        //}
+        if(!SkinScrollViewObj.activeSelf)
+            SkinScrollViewObj.SetActive(true);
         else
-        {
-            ArrowRot.localRotation = Quaternion.Euler(new Vector3(0, 0, 130));
-            tween.PlayForward();
-        }
-           
+            SkinScrollViewObj.SetActive(false);
     }
 
     public void SkinSelectedValue()

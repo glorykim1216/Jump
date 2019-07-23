@@ -7,13 +7,13 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Icem1
-  m_Shader: {fileID: 4800000, guid: b9296e03131ee174198997c0f76cdc31, type: 3}
+  m_Name: Icem14
+  m_Shader: {fileID: 4800000, guid: 5dde35cabcdd6d84e916c4a7b1cfebc3, type: 3}
   m_ShaderKeywords: _EMISSION _NODE_2671_ON _NORMALMAP _SWITCHDIREC_ON
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
+  m_CustomRenderQueue: 2000
   stringTagMap: {}
   disabledShaderPasses: []
   m_SavedProperties:
@@ -261,7 +261,7 @@ Material:
     - _ASEOutlineColor: {r: 0, g: 0, b: 0, a: 0}
     - _BaseTint: {r: 1, g: 1, b: 1, a: 0}
     - _Color: {r: 1, g: 0, b: 0, a: 1}
-    - _Color0: {r: 0.7096974, g: 0.4009434, b: 1, a: 1}
+    - _Color0: {r: 0.4550255, g: 0, b: 0.6132076, a: 1}
     - _Color1: {r: 1, g: 0, b: 0, a: 1}
     - _Color2: {r: 1, g: 1, b: 1, a: 0}
     - _Edgecolor: {r: 1, g: 0.697198, b: 0, a: 0.666}
