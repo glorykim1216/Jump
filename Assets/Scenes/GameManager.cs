@@ -82,13 +82,15 @@ public class GameManager : MonoSingleton<GameManager>
     public bool isVibration = true;
 
 
-    private void Start()
+    private void Awake()
     {
         Screen.SetResolution(720, 1280, true);
 
         DatabaseManager.Instance.Load();
         DatabaseInit();
         isDBLoad = true;
+
+        //Gold = 60;
 
     }
     public void DatabaseInit()
