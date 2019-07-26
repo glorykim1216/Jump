@@ -3056,7 +3056,7 @@ GameObject:
   - component: {fileID: 115704285}
   - component: {fileID: 115704284}
   m_Layer: 0
-  m_Name: Camera (11)
+  m_Name: Camera12
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5180,8 +5180,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 52365785}
   m_HandleRect: {fileID: 52365784}
   m_Direction: 2
-  m_Value: 0.83076185
-  m_Size: 0.28124997
+  m_Value: 0
+  m_Size: 0.28125
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -6917,7 +6917,7 @@ GameObject:
   - component: {fileID: 273444778}
   - component: {fileID: 273444777}
   m_Layer: 0
-  m_Name: Camera (12)
+  m_Name: Camera13
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7702,7 +7702,7 @@ GameObject:
   - component: {fileID: 302322022}
   - component: {fileID: 302322021}
   m_Layer: 0
-  m_Name: Camera (6)
+  m_Name: Camera7
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8303,7 +8303,7 @@ GameObject:
   - component: {fileID: 339727213}
   - component: {fileID: 339727212}
   m_Layer: 0
-  m_Name: Camera (15)
+  m_Name: Camera16
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9220,7 +9220,7 @@ GameObject:
   - component: {fileID: 386912510}
   - component: {fileID: 386912509}
   m_Layer: 0
-  m_Name: Camera (1)
+  m_Name: Camera2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9684,7 +9684,7 @@ GameObject:
   - component: {fileID: 423563911}
   - component: {fileID: 423563910}
   m_Layer: 0
-  m_Name: Camera (9)
+  m_Name: Camera10
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12060,7 +12060,7 @@ GameObject:
   - component: {fileID: 535858846}
   - component: {fileID: 535858845}
   m_Layer: 0
-  m_Name: Camera (5)
+  m_Name: Camera6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12256,7 +12256,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1168965365}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -12935,7 +12935,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BuyCheck: 0
-  needMoney: 200
+  needMoney: 1
   moneyText: {fileID: 0}
   moneyImg: {fileID: 0}
   CheckImg: {fileID: 0}
@@ -14481,7 +14481,7 @@ GameObject:
   - component: {fileID: 635964775}
   - component: {fileID: 635964774}
   m_Layer: 0
-  m_Name: Camera (16)
+  m_Name: Camera17
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14985,7 +14985,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 660151024}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1787338795}
+        m_MethodName: BackButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &660151024
@@ -16361,7 +16372,7 @@ GameObject:
   - component: {fileID: 705583735}
   - component: {fileID: 705583734}
   m_Layer: 0
-  m_Name: Camera (8)
+  m_Name: Camera9
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -17260,6 +17271,78 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 750522206}
   m_CullTransparentMesh: 0
+--- !u!1 &750998033
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 750998034}
+  - component: {fileID: 750998036}
+  - component: {fileID: 750998035}
+  m_Layer: 5
+  m_Name: renderTexture (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &750998034
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 750998033}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 2.7288256, y: 2.0600038, z: 1.9120134}
+  m_Children: []
+  m_Father: {fileID: 1168965365}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0.1000061, y: 30.299805}
+  m_SizeDelta: {x: 80, y: 80}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &750998035
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 750998033}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -98529514, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 0
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_Texture: {fileID: 8400000, guid: 21fbfd7f255f2b7489b76c725fab5bfe, type: 2}
+  m_UVRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1
+    height: 1
+--- !u!222 &750998036
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 750998033}
+  m_CullTransparentMesh: 0
 --- !u!1 &753039024
 GameObject:
   m_ObjectHideFlags: 0
@@ -17684,7 +17767,7 @@ GameObject:
   - component: {fileID: 775147665}
   - component: {fileID: 775147664}
   m_Layer: 0
-  m_Name: Camera (14)
+  m_Name: Camera15
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -18077,7 +18160,7 @@ GameObject:
   - component: {fileID: 802747429}
   - component: {fileID: 802747428}
   m_Layer: 0
-  m_Name: Camera (19)
+  m_Name: Camera20
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -20550,7 +20633,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Texture: {fileID: 8400000, guid: 9c1645cb8e302a94796c826c14c08681, type: 2}
+  m_Texture: {fileID: 8400000, guid: 3ca1d2a3e8bb2d34eb47e139adb8bd81, type: 2}
   m_UVRect:
     serializedVersion: 2
     x: 0
@@ -21440,7 +21523,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BuyCheck: 0
-  needMoney: 170
+  needMoney: 2
   moneyText: {fileID: 0}
   moneyImg: {fileID: 0}
   CheckImg: {fileID: 0}
@@ -22762,7 +22845,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &974026481
 RectTransform:
   m_ObjectHideFlags: 0
@@ -22906,7 +22989,7 @@ GameObject:
   - component: {fileID: 977915372}
   - component: {fileID: 977915371}
   m_Layer: 0
-  m_Name: Camera (2)
+  m_Name: Camera3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -23118,7 +23201,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 743d1dc590be5114ebc6f8dac374af61, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BuyCheck: 0
+  BuyCheck: 1
   needMoney: 120
   moneyText: {fileID: 0}
   moneyImg: {fileID: 0}
@@ -23928,7 +24011,7 @@ GameObject:
   - component: {fileID: 1021489954}
   - component: {fileID: 1021489953}
   m_Layer: 0
-  m_Name: Camera (3)
+  m_Name: Camera4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -27156,7 +27239,7 @@ GameObject:
   - component: {fileID: 1167629341}
   - component: {fileID: 1167629340}
   m_Layer: 0
-  m_Name: Camera (20)
+  m_Name: Camera21
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -27239,6 +27322,7 @@ GameObject:
   - component: {fileID: 1168965368}
   - component: {fileID: 1168965367}
   - component: {fileID: 1168965366}
+  - component: {fileID: 1168965369}
   m_Layer: 5
   m_Name: BuyBtn
   m_TagString: Untagged
@@ -27258,6 +27342,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1771971942}
+  - {fileID: 750998034}
   - {fileID: 538604531}
   m_Father: {fileID: 974026481}
   m_RootOrder: 1
@@ -27306,7 +27391,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1168965367}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1787338795}
+        m_MethodName: Purchase
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &1168965367
@@ -27346,6 +27442,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1168965364}
   m_CullTransparentMesh: 0
+--- !u!114 &1168965369
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1168965364}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0af11ab25f8449489528a722cfab109, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1172206629
 GameObject:
   m_ObjectHideFlags: 0
@@ -31406,7 +31514,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: -0.000005888596, y: 194.62381}
+  m_AnchoredPosition: {x: -0.000005888596, y: 1150.0035}
   m_SizeDelta: {x: 600, y: 1600}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1384492505
@@ -32980,7 +33088,7 @@ GameObject:
   - component: {fileID: 1476596401}
   - component: {fileID: 1476596400}
   m_Layer: 0
-  m_Name: Camera (10)
+  m_Name: Camera11
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -34086,7 +34194,7 @@ GameObject:
   - component: {fileID: 1556230171}
   - component: {fileID: 1556230170}
   m_Layer: 0
-  m_Name: Camera (4)
+  m_Name: Camera5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -37092,7 +37200,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BuyCheck: 0
-  needMoney: 200
+  needMoney: 2
   moneyText: {fileID: 0}
   moneyImg: {fileID: 0}
   CheckImg: {fileID: 0}
@@ -37468,7 +37576,7 @@ GameObject:
   - component: {fileID: 1671185916}
   - component: {fileID: 1671185915}
   m_Layer: 0
-  m_Name: Camera (18)
+  m_Name: Camera19
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -38374,7 +38482,7 @@ GameObject:
   - component: {fileID: 1727917075}
   - component: {fileID: 1727917074}
   m_Layer: 0
-  m_Name: Camera (17)
+  m_Name: Camera18
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -39519,7 +39627,7 @@ GameObject:
   - component: {fileID: 1771971944}
   - component: {fileID: 1771971943}
   m_Layer: 5
-  m_Name: Text
+  m_Name: price
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -39825,12 +39933,16 @@ MonoBehaviour:
   gameOverGoldBtn: {fileID: 838387560}
   newBestScore: {fileID: 1732668914}
   resultNewBestScore: {fileID: 590203027}
-  SkinBuyPopupObj: {fileID: 0}
-  SkinScrollViewObj: {fileID: 1703489352}
+  SkinScrollViewObj: {fileID: 238786591}
   EffectScrollViewObj: {fileID: 2088599217}
   vibOn: {fileID: 21300000, guid: 6ee0762b9aaab50459fac73576ec34eb, type: 3}
   vibOff: {fileID: 21300000, guid: 1352b4892bb2ce24fa9b0c0021bd779d, type: 3}
   skinBuyList: 
+  BuyIMG: {fileID: 974026480}
+  priceTemp: 0
+  renderTemp: {fileID: 0}
+  ObjTemp: {fileID: 0}
+  SkinNumTemp: 0
 --- !u!1 &1788105917
 GameObject:
   m_ObjectHideFlags: 0
@@ -42351,7 +42463,7 @@ GameObject:
   - component: {fileID: 1935767364}
   - component: {fileID: 1935767363}
   m_Layer: 0
-  m_Name: Camera (13)
+  m_Name: Camera14
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -42689,7 +42801,7 @@ GameObject:
   - component: {fileID: 1953267746}
   - component: {fileID: 1953267745}
   m_Layer: 0
-  m_Name: Camera (0)
+  m_Name: Camera1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -42902,7 +43014,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BuyCheck: 0
-  needMoney: 120
+  needMoney: 1
   moneyText: {fileID: 0}
   moneyImg: {fileID: 0}
   CheckImg: {fileID: 0}
@@ -44384,7 +44496,7 @@ GameObject:
   - component: {fileID: 2031386244}
   - component: {fileID: 2031386243}
   m_Layer: 0
-  m_Name: Camera (7)
+  m_Name: Camera8
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
