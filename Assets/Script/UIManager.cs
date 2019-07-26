@@ -6,6 +6,8 @@ using Lofle.Tween;
 using UnityEngine.EventSystems;
 public class UIManager : MonoSingleton<UIManager>
 {
+    private int rewardGold = 50;
+
     public GameObject OptionPopup;
     public GameObject LobbyUI;
     public GameObject InGameUI;
@@ -19,18 +21,24 @@ public class UIManager : MonoSingleton<UIManager>
     public Image gagebar;
     public Text currScoreText;
 
-    public Text judgement;
-
     public Button vibrationBtn;
-    public Button gameOverGoldBtn;
+    public Button resultGoldBtn;
+    public Button resultGoldDoubleBtn;
 
-    public GameObject newBestScore;
-    public GameObject resultNewBestScore;
+    public Text resultScoreText;
+    public Text resultGoldText;
+    public Text resultGoldBtnText;
 
     public GameObject SkinScrollViewObj;
     public GameObject EffectScrollViewObj;
     public Sprite vibOn;
     public Sprite vibOff;
+
+    public GameObject judgementFailImage;
+    public GameObject judgementGoodImage;
+    public GameObject judgementExceImage;
+    public GameObject newBestScoreImage;
+    public GameObject resultNewBestScoreImage;
 
     public List<int> skinBuyList;
     CheckSkin[] CheckSkinData;
@@ -43,11 +51,6 @@ public class UIManager : MonoSingleton<UIManager>
    
     public override void Init(){}
 
-    private void Awake()
-    {
-     
-    }
-
     void Start()
     {
         //tween 시작시 2번클릭 방지
@@ -55,7 +58,7 @@ public class UIManager : MonoSingleton<UIManager>
         
         SkinScrollViewObj.SetActive(true);
         vibrationBtn.onClick.AddListener(VibrationOption);
-        gameOverGoldBtn.onClick.AddListener(ViewAD);
+        resultGoldBtn.onClick.AddListener(ViewAD);
 
         VibrationOnOffCheck();
 
@@ -100,6 +103,8 @@ public class UIManager : MonoSingleton<UIManager>
         BuyIMG.SetActive(false);
         SkinScrollViewObj.SetActive(false);
         GameObject.Find("Player").GetComponentInChildren<SkinnedMeshRenderer>().material = Resources.Load("Material/Icem" + GameManager.Instance.CurrSkin.ToString()) as Material;
+
+        GameManager.Instance.Init();
     }
     string Num;
     // Update is called once per frame
@@ -277,8 +282,29 @@ public class UIManager : MonoSingleton<UIManager>
         }
     }
 
+    public void Result()
+    {
+        if (newBestScoreImage.activeSelf == true)
+        {
+            newBestScoreImage.SetActive(false);
+            resultNewBestScoreImage.SetActive(true);
+        }
+        resultScoreText.text = currScoreText.text;
+
+        resultGoldText.text = string.Format("{0:#,##0}", rewardGold);
+        resultGoldBtnText.text = resultGoldText.text;
+
+        ResultUI.SetActive(true);
+    }
+
     public void ViewAD()
     {
+        GameManager.Instance.Gold += rewardGold;
         GameManager.Instance.ReStart();
+        //StartCoroutine(test());
+    }
+    IEnumerator test()
+    {
+        yield return new WaitForSeconds(5);
     }
 }

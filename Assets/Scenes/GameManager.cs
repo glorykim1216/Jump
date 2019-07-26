@@ -5,7 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoSingleton<GameManager>
 {
-    private bool isjudging = false;
+    private eJudgement currJudgement = eJudgement.None;
+    public bool isjudging = false;
 
     private bool isDBLoad = false;
 
@@ -16,7 +17,7 @@ public class GameManager : MonoSingleton<GameManager>
         set
         {
             gold = value;
-            UIManager.Instance.goldText.text = gold.ToString();
+            UIManager.Instance.goldText.text = string.Format("{0:#,##0}", gold);
             DatabaseSave(isDBLoad);
         }
     }
@@ -27,7 +28,7 @@ public class GameManager : MonoSingleton<GameManager>
         set
         {
             bestScore = value;
-            UIManager.Instance.bestScoreText.text = bestScore.ToString();
+            UIManager.Instance.bestScoreText.text = string.Format("{0:#,##0}", bestScore);
         }
     }
     private int openSkinList;
@@ -87,20 +88,26 @@ public class GameManager : MonoSingleton<GameManager>
         Screen.SetResolution(720, 1280, true);
 
         DatabaseManager.Instance.Load();
-        DatabaseInit();
+        Init();
         isDBLoad = true;
 
-        //Gold = 60;
-
+        //BestScore = 0;
+        //Gold = Gold;
     }
-    public void DatabaseInit()
+    public new void Init()
     {
+        distance = 0;
+
+        isDBLoad = false;
+
         Gold = DatabaseManager.Instance.ItemList[0].gold;
         BestScore = DatabaseManager.Instance.ItemList[0].bestScore;
         OpenSkinList = DatabaseManager.Instance.ItemList[0].openSkinList;
         CurrSkin = DatabaseManager.Instance.ItemList[0].currSkin;
         UpPower = DatabaseManager.Instance.ItemList[0].upPower;
         ForwardPower = DatabaseManager.Instance.ItemList[0].forwardPower;
+
+        isDBLoad = true;
     }
     // DB 저장
     public void DatabaseSave(bool _value)
@@ -114,7 +121,7 @@ public class GameManager : MonoSingleton<GameManager>
             return;
 
         // 현재 거리
-        UIManager.Instance.currScoreText.text = distance.ToString() + "m";
+        UIManager.Instance.currScoreText.text = string.Format("{0:#,##0}", distance) + "m";
 
         // 신기록
         if (distance >= bestScore)
@@ -127,31 +134,47 @@ public class GameManager : MonoSingleton<GameManager>
         UIManager.Instance.gagebar.fillAmount = _value;
     }
     // 판정 출력
-    public void SetJudement(string _str)
+    public void SetJudgement(eJudgement _judgement)
     {
+        currJudgement = _judgement;
         if (isjudging == true)
+        {
             StopCoroutine("cor_JudgementTime");
+            UIManager.Instance.judgementFailImage.SetActive(false);
+            UIManager.Instance.judgementGoodImage.SetActive(false);
+            UIManager.Instance.judgementExceImage.SetActive(false);
+        }
         isjudging = true;
-        UIManager.Instance.judgement.text = _str;
         StartCoroutine("cor_JudgementTime");
     }
 
     IEnumerator cor_JudgementTime()
     {
-        UIManager.Instance.judgement.gameObject.SetActive(true);
+        if (currJudgement == eJudgement.Fail)
+            UIManager.Instance.judgementFailImage.SetActive(true);
+        else if (currJudgement == eJudgement.Good)
+            UIManager.Instance.judgementGoodImage.SetActive(true);
+        else if (currJudgement == eJudgement.Excellent)
+            UIManager.Instance.judgementExceImage.SetActive(true);
 
         yield return new WaitForSeconds(1);
+
         isjudging = false;
-        UIManager.Instance.judgement.gameObject.SetActive(false);
+        if (currJudgement == eJudgement.Fail)
+            UIManager.Instance.judgementFailImage.SetActive(false);
+        else if (currJudgement == eJudgement.Good)
+            UIManager.Instance.judgementGoodImage.SetActive(false);
+        else if (currJudgement == eJudgement.Excellent)
+            UIManager.Instance.judgementExceImage.SetActive(false);
     }
     // 신기록
     public void NewBestScore()
     {
         BestScore = (int)distance;
-        if (UIManager.Instance.newBestScore.activeSelf == false)
-            UIManager.Instance.newBestScore.SetActive(true);
-        if (UIManager.Instance.resultNewBestScore.activeSelf == false)
-            UIManager.Instance.resultNewBestScore.SetActive(true);
+        if (UIManager.Instance.newBestScoreImage.activeSelf == false)
+            UIManager.Instance.newBestScoreImage.SetActive(true);
+        if (UIManager.Instance.resultNewBestScoreImage.activeSelf == false)
+            UIManager.Instance.resultNewBestScoreImage.SetActive(true);
     }
     public IEnumerator GameOver()
     {
@@ -159,9 +182,7 @@ public class GameManager : MonoSingleton<GameManager>
 
         yield return new WaitForSeconds(3);
 
-        UIManager.Instance.newBestScore.SetActive(false);
-
-        UIManager.Instance.ResultUI.SetActive(true);
+        UIManager.Instance.Result();
     }
     public void ReStart()
     {

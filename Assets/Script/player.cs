@@ -98,7 +98,7 @@ public class player : MonoBehaviour
 
         if (firstJump == false && isFever == false && rigid.velocity.z < 0.5f)
         {
-            GameManager.Instance.SetJudement("Fail");
+            GameManager.Instance.SetJudgement(eJudgement.Fail);
             StartCoroutine(GameManager.Instance.GameOver());
         }
 
@@ -106,7 +106,7 @@ public class player : MonoBehaviour
         if (tr.position.z > loopPosition)
             WallMove();
 
-        if (tr.position.z >= GameManager.Instance.BestScore - 100 && bestScoreWall.gameObject.activeSelf == false)
+        if (GameManager.Instance.BestScore > 10 && tr.position.z >= GameManager.Instance.BestScore - 100 && bestScoreWall.gameObject.activeSelf == false)
             bestScoreWall.gameObject.SetActive(true);
 
         GameManager.Instance.distance = (int)tr.position.z;
@@ -174,7 +174,7 @@ public class player : MonoBehaviour
             if (tr.position.y >= 0.4f)
             {
                 currJumpPower = jumpPower * 0.9f;
-                GameManager.Instance.SetJudement("Excellent !!");
+                GameManager.Instance.SetJudgement(eJudgement.Excellent);
                 // 진동
                 if (GameManager.Instance.isVibration == true)
                     Vibration.Vibrate(GameManager.Instance.vibrationValue);
@@ -182,14 +182,14 @@ public class player : MonoBehaviour
             else if (tr.position.y >= -0.1f)
             {
                 currJumpPower = jumpPower * 0.8f;
-                GameManager.Instance.SetJudement("Good");
+                GameManager.Instance.SetJudgement(eJudgement.Good);
                 // 진동
                 if (GameManager.Instance.isVibration == true)
                     Vibration.Vibrate((int)(GameManager.Instance.vibrationValue * 0.5f));
             }
             else
             {
-                GameManager.Instance.SetJudement("Fail");
+                GameManager.Instance.SetJudgement(eJudgement.Fail);
                 StartCoroutine(GameManager.Instance.GameOver());
                 return;
             }
@@ -217,8 +217,9 @@ public class player : MonoBehaviour
     }
     public void Fever()
     {
+        GameManager.Instance.isjudging = false;
+
         currJumpPower = jumpPower * 0.9f;
-        //GameManager.Instance.SetJudement("Excellent !!");
         // 진동
         if (GameManager.Instance.isVibration == true)
             Vibration.Vibrate((int)(GameManager.Instance.vibrationValue * 0.5f));

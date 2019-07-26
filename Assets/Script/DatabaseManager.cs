@@ -227,12 +227,19 @@ public class DatabaseManager : MonoSingleton<DatabaseManager>
 
                 using (IDataReader reader = dbCmd.ExecuteReader()) // 테이블에 있는 데이터들이 들어간다. 
                 {
+                    //while (reader.Read())
+                    //{
+                    //    // Debug.Log(reader.GetString(1));  //  타입명 . (몇 열에있는것을 부를것인가)
+                    //    ItemList.Add(new DataTable(reader.GetInt32(0), reader.GetInt32(1), reader.GetInt32(2), reader.GetInt32(3), reader.GetInt32(4), reader.GetInt32(5)));
+                    //}
+
                     reader.Close();
                     dbCmd.Dispose();
                     dbConnection.Close();
                 }
             }
         }
+        SelectItemTable();
     }
 
     // TEST_CODE
