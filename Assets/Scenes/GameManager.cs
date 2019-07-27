@@ -214,7 +214,7 @@ public class GameManager : MonoSingleton<GameManager>
     {
         isGamePlaying = false;
 
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(1f);
 
         UIManager.Instance.Result();
     }

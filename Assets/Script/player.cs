@@ -25,6 +25,8 @@ public class player : MonoBehaviour
     bool isFever;
     GameObject splashPrefab;
 
+    private bool isAlive = true;
+
     // wall
     public Transform wall1;
     public Transform wall2;
@@ -62,6 +64,30 @@ public class player : MonoBehaviour
     {
         if (GameManager.Instance.isGamePlaying == false)
             return;
+
+        if (rigid.velocity.magnitude <= 1f)
+        {
+            psMain.loop = false;
+            waterPs.Stop();
+        }
+
+        // wall 이동
+        if (tr.position.z > loopPosition)
+            WallMove();
+
+        if (GameManager.Instance.BestScore > 10 && tr.position.z >= GameManager.Instance.BestScore - 100 && bestScoreWall.gameObject.activeSelf == false)
+            bestScoreWall.gameObject.SetActive(true);
+
+        GameManager.Instance.distance = (int)tr.position.z;
+
+        if (isAlive == false)
+            return;
+
+        if (firstJump == false && isFever == false && rigid.velocity.z < 0.2f)
+        {
+            GameManager.Instance.SetJudgement(eJudgement.Fail);
+            StartCoroutine(GameManager.Instance.GameOver());
+        }
         //#if UNITY_ANDROID && !UNITY_EDITOR
         if (Application.platform == RuntimePlatform.Android)
         {
@@ -90,26 +116,7 @@ public class player : MonoBehaviour
             if (EventSystem.current.IsPointerOverGameObject() == false) // UI 클릭 구분
                 isJumping = true;
         //#endif
-        if (rigid.velocity.magnitude <= 1f)
-        {
-            psMain.loop = false;
-            waterPs.Stop();
-        }
 
-        if (firstJump == false && isFever == false && rigid.velocity.z < 0.5f)
-        {
-            GameManager.Instance.SetJudgement(eJudgement.Fail);
-            StartCoroutine(GameManager.Instance.GameOver());
-        }
-
-        // wall 이동
-        if (tr.position.z > loopPosition)
-            WallMove();
-
-        if (GameManager.Instance.BestScore > 10 && tr.position.z >= GameManager.Instance.BestScore - 100 && bestScoreWall.gameObject.activeSelf == false)
-            bestScoreWall.gameObject.SetActive(true);
-
-        GameManager.Instance.distance = (int)tr.position.z;
     }
 
     private void FixedUpdate()
@@ -217,6 +224,7 @@ public class player : MonoBehaviour
     }
     public void Fever()
     {
+        isAlive = false;
         GameManager.Instance.isjudging = false;
 
         currJumpPower = jumpPower * 0.9f;
@@ -224,7 +232,7 @@ public class player : MonoBehaviour
         if (GameManager.Instance.isVibration == true)
             Vibration.Vibrate((int)(GameManager.Instance.vibrationValue * 0.5f));
 
-        rigid.velocity = new Vector3(0, 0, 0);
+        rigid.velocity = new Vector3(0, 0, 1);
         rigid.AddForce((Vector3.up * upPower + Vector3.forward * forwardPower) * currJumpPower, ForceMode.Impulse);
 
         jumpCount++;
@@ -237,7 +245,12 @@ public class player : MonoBehaviour
     IEnumerator GameOver()
     {
         yield return new WaitForEndOfFrame();
-        while (rigid.velocity.z > 0.1f) { }
+        while (true)
+        {
+            if (rigid.velocity.z < 0.2f)
+                break;
+            yield return null;
+        }
         StartCoroutine(GameManager.Instance.GameOver());
     }
     // wall loop
