@@ -76,6 +76,17 @@ public class GameManager : MonoSingleton<GameManager>
         }
     }
 
+
+    private Material playerMat;
+    public Material PlayerMat
+    {
+        get { return playerMat; }
+        set
+        {
+            playerMat = value;
+        }
+    }
+
     public int distance;
     public bool isGamePlaying = false;
 
@@ -88,6 +99,7 @@ public class GameManager : MonoSingleton<GameManager>
         Screen.SetResolution(720, 1280, true);
 
         DatabaseManager.Instance.Load();
+        ADManager.Instance.init();
         Init();
         isDBLoad = true;
 

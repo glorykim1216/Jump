@@ -50,6 +50,7 @@ public class UIManager : MonoSingleton<UIManager>
     public int SkinNumTemp;
 
     public RectTransform crossBanner;
+    public GameObject skinEffectObj;
 
     public override void Init() { }
 
@@ -57,7 +58,7 @@ public class UIManager : MonoSingleton<UIManager>
     {
         //tween 시작시 2번클릭 방지
         //tween.PlayReverse();
-
+        skinEffectObj.SetActive(false);
         SkinScrollViewObj.SetActive(true);
         vibrationBtn.onClick.AddListener(VibrationOption);
         resultGoldBtn.onClick.AddListener(ViewAD);
@@ -120,6 +121,11 @@ public class UIManager : MonoSingleton<UIManager>
         }
     }
 
+    public void FreeSkin()
+    {
+
+    }
+
     public void CheckSkin(int CurrentSkin)
     {
         if (EventSystem.current.currentSelectedGameObject.GetComponent<CheckSkin>().BuyCheck)
@@ -143,6 +149,7 @@ public class UIManager : MonoSingleton<UIManager>
             priceTemp = EventSystem.current.currentSelectedGameObject.GetComponent<CheckSkin>().needMoney;
             renderTemp = EventSystem.current.currentSelectedGameObject.transform.parent.GetComponentInChildren<RawImage>().texture;
             ObjTemp = EventSystem.current.currentSelectedGameObject;
+            GameManager.Instance.PlayerMat = GameObject.Find("Player").GetComponentInChildren<SkinnedMeshRenderer>().material;
             SkinNumTemp = CurrentSkin;
             BuyIMG.SetActive(true);
             //BuyIMG.transform.Find("price").GetComponent<Text>().text = EventSystem.current.currentSelectedGameObject.GetComponent<CheckSkin>().needMoney.ToString();
@@ -225,11 +232,18 @@ public class UIManager : MonoSingleton<UIManager>
     public void SkinButton()
     {
         if (!SkinScrollViewObj.activeSelf)
+        {
+            skinEffectObj.SetActive(true);
             SkinScrollViewObj.SetActive(true);
+            skinEffectObj.transform.Find("Skin").gameObject.SetActive(true);
+            skinEffectObj.transform.Find("Effect").gameObject.SetActive(false);
+        }
+            
         else
         {
             BuyIMG.SetActive(false);
             SkinScrollViewObj.SetActive(false);
+            skinEffectObj.SetActive(false);
         }
 
     }

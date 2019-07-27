@@ -261,7 +261,7 @@ Material:
     - _ASEOutlineColor: {r: 0, g: 0, b: 0, a: 0}
     - _BaseTint: {r: 1, g: 1, b: 1, a: 0}
     - _Color: {r: 1, g: 0, b: 0, a: 1}
-    - _Color0: {r: 0.81736827, g: 0.28773582, b: 1, a: 1}
+    - _Color0: {r: 0, g: 0, b: 0, a: 1}
     - _Color1: {r: 1, g: 0, b: 0, a: 1}
     - _Color2: {r: 1, g: 1, b: 1, a: 0}
     - _Edgecolor: {r: 1, g: 0.697198, b: 0, a: 0.666}
