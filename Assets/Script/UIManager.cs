@@ -64,7 +64,7 @@ public class UIManager : MonoSingleton<UIManager>
         resultGoldBtn.onClick.AddListener(ViewAD);
         crossBanner.GetComponent<Button>().onClick.AddListener(OpenPlayStore);
         VibrationOnOffCheck();
-        GameManager.Instance.skinADState = false;
+        //GameManager.Instance.skinADState = false;
 
 
         //GameManager.Instance.OpenSkinList = 231;
@@ -123,7 +123,7 @@ public class UIManager : MonoSingleton<UIManager>
 
     public void FreeSkin()
     {
-        GameManager.Instance.skinADState = true;
+        //GameManager.Instance.skinADState = true;
         ADManager.Instance.ShowInterstitialAd();
         
 
