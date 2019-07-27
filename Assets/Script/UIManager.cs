@@ -109,7 +109,7 @@ public class UIManager : MonoSingleton<UIManager>
 
         GameManager.Instance.Init();
 
-        StartCoroutine("cor_CrossBannerAnim");
+        StartCoroutine(cor_CrossBannerAnim());
     }
     string Num;
     // Update is called once per frame
@@ -282,7 +282,6 @@ public class UIManager : MonoSingleton<UIManager>
     // 게임시작
     public void StartGame()
     {
-        StopCoroutine("cor_CrossBannerAnim");
         LobbyUI.SetActive(false);
         InGameUI.SetActive(true);
         GameManager.Instance.isGamePlaying = true;
@@ -330,19 +329,19 @@ public class UIManager : MonoSingleton<UIManager>
     {
         while (true)
         {
-            crossBanner.rotation = Quaternion.Euler(0, 0, 4.5f);
+            crossBanner.rotation = Quaternion.Euler(0, 0, 4.0f);
             yield return new WaitForSeconds(0.1f);
             crossBanner.rotation = Quaternion.Euler(0, 0, 3.0f);
             yield return new WaitForSeconds(0.1f);
-            crossBanner.rotation = Quaternion.Euler(0, 0, 4.5f);
+            crossBanner.rotation = Quaternion.Euler(0, 0, 4.0f);
             yield return new WaitForSeconds(0.1f);
             crossBanner.rotation = Quaternion.Euler(0, 0, 3.0f);
             yield return new WaitForSeconds(0.1f);
-            crossBanner.rotation = Quaternion.Euler(0, 0, 4.5f);
+            crossBanner.rotation = Quaternion.Euler(0, 0, 4.0f);
             yield return new WaitForSeconds(0.1f);
             crossBanner.rotation = Quaternion.Euler(0, 0, 3.0f);
             yield return new WaitForSeconds(0.1f);
-            crossBanner.rotation = Quaternion.Euler(0, 0, 4.5f);
+            crossBanner.rotation = Quaternion.Euler(0, 0, 4.0f);
             yield return new WaitForSeconds(1.0f);
         }
     }
