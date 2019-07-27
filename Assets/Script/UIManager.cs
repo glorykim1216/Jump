@@ -12,7 +12,7 @@ public class UIManager : MonoSingleton<UIManager>
     public GameObject LobbyUI;
     public GameObject InGameUI;
     public GameObject ResultUI;
-   
+
     public Transform ArrowRot;
 
     public Text goldText;
@@ -48,18 +48,20 @@ public class UIManager : MonoSingleton<UIManager>
     public Texture renderTemp;
     public GameObject ObjTemp;
     public int SkinNumTemp;
-   
-    public override void Init(){}
+
+    public RectTransform crossBanner;
+
+    public override void Init() { }
 
     void Start()
     {
         //tween 시작시 2번클릭 방지
         //tween.PlayReverse();
-        
+
         SkinScrollViewObj.SetActive(true);
         vibrationBtn.onClick.AddListener(VibrationOption);
         resultGoldBtn.onClick.AddListener(ViewAD);
-
+        crossBanner.GetComponent<Button>().onClick.AddListener(OpenPlayStore);
         VibrationOnOffCheck();
 
 
@@ -69,13 +71,13 @@ public class UIManager : MonoSingleton<UIManager>
         string test;
         test = System.Convert.ToString(GameManager.Instance.OpenSkinList, 2).PadLeft(20, '0');
         Debug.Log(test);
-      
+
 
         CheckSkinData = this.gameObject.GetComponentsInChildren<CheckSkin>();
 
         foreach (CheckSkin k in CheckSkinData)
         {
-            
+
             k.CheckImg.SetActive(false);
 
         }
@@ -89,14 +91,14 @@ public class UIManager : MonoSingleton<UIManager>
                 CheckSkinData[i].moneyText.text = "OK        ";
                 CheckSkinData[i].moneyImg.enabled = false;
                 CheckSkinData[i].BuyCheck = true;
-              
+
             }
             else
             {
                 CheckSkinData[i].BuyCheck = false;
             }
-               
-            if(CheckSkinData[i].SkinNumber == GameManager.Instance.CurrSkin)
+
+            if (CheckSkinData[i].SkinNumber == GameManager.Instance.CurrSkin)
                 CheckSkinData[i].CheckImg.SetActive(true);
         }
 
@@ -105,6 +107,8 @@ public class UIManager : MonoSingleton<UIManager>
         GameObject.Find("Player").GetComponentInChildren<SkinnedMeshRenderer>().material = Resources.Load("Material/Icem" + GameManager.Instance.CurrSkin.ToString()) as Material;
 
         GameManager.Instance.Init();
+
+        StartCoroutine(cor_CrossBannerAnim());
     }
     string Num;
     // Update is called once per frame
@@ -114,23 +118,22 @@ public class UIManager : MonoSingleton<UIManager>
         {
             Debug.Log(GameManager.Instance.CurrSkin);
         }
-        
     }
-   
+
     public void CheckSkin(int CurrentSkin)
     {
-        if(EventSystem.current.currentSelectedGameObject.GetComponent<CheckSkin>().BuyCheck)
+        if (EventSystem.current.currentSelectedGameObject.GetComponent<CheckSkin>().BuyCheck)
         {
             foreach (CheckSkin k in CheckSkinData)
             {
                 k.CheckImg.SetActive(false);
             }
             GameManager.Instance.CurrSkin = CurrentSkin;
-           
+
             EventSystem.current.currentSelectedGameObject.GetComponent<CheckSkin>().CheckImg.SetActive(true);
 
             //구입후 이미지 변환 작성해야됨;
-            
+
             GameObject.Find("Player").GetComponentInChildren<SkinnedMeshRenderer>().material = Resources.Load("Material/Icem" + GameManager.Instance.CurrSkin.ToString()) as Material;
             //            GameObject.Find("Player").GetComponentInChildren<SkinnedMeshRenderer>().material = 
 
@@ -144,7 +147,7 @@ public class UIManager : MonoSingleton<UIManager>
             BuyIMG.SetActive(true);
             //BuyIMG.transform.Find("price").GetComponent<Text>().text = EventSystem.current.currentSelectedGameObject.GetComponent<CheckSkin>().needMoney.ToString();
 
-         
+
         }
         Debug.Log("CurrentSkin : " + GameManager.Instance.CurrSkin);
         Debug.Log("priceTemp : " + priceTemp);
@@ -153,7 +156,7 @@ public class UIManager : MonoSingleton<UIManager>
 
     public void Purchase()
     {
-        if( GameManager.Instance.Gold > ObjTemp.GetComponent<CheckSkin>().needMoney)
+        if (GameManager.Instance.Gold > ObjTemp.GetComponent<CheckSkin>().needMoney)
         {
             GameManager.Instance.Gold -= ObjTemp.GetComponent<CheckSkin>().needMoney;
 
@@ -221,14 +224,14 @@ public class UIManager : MonoSingleton<UIManager>
 
     public void SkinButton()
     {
-        if(!SkinScrollViewObj.activeSelf)
+        if (!SkinScrollViewObj.activeSelf)
             SkinScrollViewObj.SetActive(true);
         else
         {
             BuyIMG.SetActive(false);
             SkinScrollViewObj.SetActive(false);
         }
-            
+
     }
     public void BackButton()
     {
@@ -272,12 +275,12 @@ public class UIManager : MonoSingleton<UIManager>
     // 진동 On/Off 체크
     public void VibrationOnOffCheck()
     {
-        if(GameManager.Instance.isVibration==true)
+        if (GameManager.Instance.isVibration == true)
         {
             vibrationBtn.GetComponent<Image>().sprite = vibOn;
         }
         else
-        { 
+        {
             vibrationBtn.GetComponent<Image>().sprite = vibOff;
         }
     }
@@ -301,10 +304,29 @@ public class UIManager : MonoSingleton<UIManager>
     {
         GameManager.Instance.Gold += rewardGold;
         GameManager.Instance.ReStart();
-        //StartCoroutine(test());
     }
-    IEnumerator test()
+    IEnumerator cor_CrossBannerAnim()
     {
-        yield return new WaitForSeconds(5);
+        while (true)
+        {
+            crossBanner.rotation = Quaternion.Euler(0, 0, 4.0f);
+            yield return new WaitForSeconds(0.1f);
+            crossBanner.rotation = Quaternion.Euler(0, 0, 3.0f);
+            yield return new WaitForSeconds(0.1f);
+            crossBanner.rotation = Quaternion.Euler(0, 0, 4.0f);
+            yield return new WaitForSeconds(0.1f);
+            crossBanner.rotation = Quaternion.Euler(0, 0, 3.0f);
+            yield return new WaitForSeconds(0.1f);
+            crossBanner.rotation = Quaternion.Euler(0, 0, 4.0f);
+            yield return new WaitForSeconds(0.1f);
+            crossBanner.rotation = Quaternion.Euler(0, 0, 3.0f);
+            yield return new WaitForSeconds(0.1f);
+            crossBanner.rotation = Quaternion.Euler(0, 0, 4.0f);
+            yield return new WaitForSeconds(1.0f);
+        }
+    }
+    public void OpenPlayStore()
+    {
+        Application.OpenURL("market://details?id=com.FakeWorld.Square");
     }
 }

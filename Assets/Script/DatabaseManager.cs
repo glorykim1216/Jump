@@ -109,13 +109,11 @@ public class DatabaseManager : MonoSingleton<DatabaseManager>
         if (isTable == false)
         {
             CreateTable_Item();
-
             Debug.Log("테이블 생성!");
+            InsertItemTable();
+
         }
-        else
-        {
-            SelectItemTable();
-        }
+        SelectItemTable();
     }
 
     // 테이블 생성
@@ -133,7 +131,7 @@ public class DatabaseManager : MonoSingleton<DatabaseManager>
 
                 // 테이블을 생성하는 SQL 쿼리문
                 string sqlQuery = "CREATE TABLE `" + Test_DB_Table.DatabaseTable.ToString() +
-                    "`( `Gold` INTEGER NOT NULL, `BestScore` INTEGER NOT NULL, `OpenSkinList` INTEGER NOT NULL, `CurrSkin` INTEGER NOT NULL, `UpPower` INTEGER NOT NULL, `FowardPower` INTEGER NOT NULL)";
+                    "`( `Gold` INTEGER NOT NULL, `BestScore` INTEGER NOT NULL, `OpenSkinList` INTEGER NOT NULL, `CurrSkin` INTEGER NOT NULL, `UpPower` INTEGER NOT NULL, `ForwardPower` INTEGER NOT NULL)";
                 dbCmd.CommandText = sqlQuery;
 
                 using (IDataReader reader = dbCmd.ExecuteReader()) // 테이블에 있는 데이터들이 들어간다. 
@@ -205,6 +203,32 @@ public class DatabaseManager : MonoSingleton<DatabaseManager>
         for (int i = 0; i < ItemList.Count; i++)
         {
             Debug.Log(ItemList[i].gold + "::" + ItemList[i].bestScore + "::" + ItemList[i].openSkinList);
+        }
+    }
+
+    // 테이블에 새로운 투플 삽입
+    public void InsertItemTable()
+    {
+        string connectionString = "URI=file:" + Filepath;
+
+        ItemList.Clear();
+
+        using (IDbConnection dbConnection = new SqliteConnection(connectionString))
+        {
+            dbConnection.Open();
+            using (IDbCommand dbCmd = dbConnection.CreateCommand())  // EnterSqL에 명령 할 수 있다. 
+            {
+                string sqlQuery = "INSERT INTO " + Test_DB_Table.DatabaseTable.ToString() +
+                    " (Gold, BestScore, OpenSkinList, CurrSkin, UpPower, ForwardPower) VALUES (0, 0, 0, 0, 1, 1)";
+                dbCmd.CommandText = sqlQuery;
+
+                using (IDataReader reader = dbCmd.ExecuteReader()) // 테이블에 있는 데이터들이 들어간다. 
+                {
+                    reader.Close();
+                    dbCmd.Dispose();
+                    dbConnection.Close();
+                }
+            }
         }
     }
 
