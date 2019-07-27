@@ -98,16 +98,36 @@ public class GameManager : MonoSingleton<GameManager>
         }
     }
 
+    private int rewardGold;
+    public int RewardGold
+    {
+        get { return rewardGold; }
+        set
+        {
+            rewardGold = value;
+        }
+    }
 
-    //private bool SkinADState;
-    //public bool skinADState
-    //{
-    //    get { return skinADState; }
-    //    set
-    //    {
-    //        skinADState = value;
-    //    }
-    //}
+
+    private bool skinADState;
+    public bool SkinADState
+    {
+        get { return skinADState; }
+        set
+        {
+            skinADState = value;
+        }
+    }
+
+    private bool goldADState;
+    public bool GoldADState
+    {
+        get { return goldADState; }
+        set
+        {
+            goldADState = value;
+        }
+    }
 
     public int distance;
     public bool isGamePlaying = false;
@@ -119,7 +139,7 @@ public class GameManager : MonoSingleton<GameManager>
     private void Awake()
     {
         Screen.SetResolution(720, 1280, true);
-
+    
         DatabaseManager.Instance.Load();
         ADManager.Instance.init();
         Init();

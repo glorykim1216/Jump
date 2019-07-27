@@ -6,8 +6,7 @@ using Lofle.Tween;
 using UnityEngine.EventSystems;
 public class UIManager : MonoSingleton<UIManager>
 {
-    private int rewardGold = 50;
-
+   
     public GameObject OptionPopup;
     public GameObject LobbyUI;
     public GameObject InGameUI;
@@ -56,6 +55,7 @@ public class UIManager : MonoSingleton<UIManager>
 
     void Start()
     {
+        GameManager.Instance.RewardGold = 50;
         //tween 시작시 2번클릭 방지
         //tween.PlayReverse();
         skinEffectObj.SetActive(false);
@@ -64,7 +64,7 @@ public class UIManager : MonoSingleton<UIManager>
         resultGoldBtn.onClick.AddListener(ViewAD);
         crossBanner.GetComponent<Button>().onClick.AddListener(OpenPlayStore);
         VibrationOnOffCheck();
-        //GameManager.Instance.skinADState = false;
+       
 
 
         //GameManager.Instance.OpenSkinList = 231;
@@ -123,12 +123,19 @@ public class UIManager : MonoSingleton<UIManager>
 
     public void FreeSkin()
     {
-        //GameManager.Instance.skinADState = true;
+        GameManager.Instance.SkinADState = true;
         ADManager.Instance.ShowInterstitialAd();
         
 
         BuyIMG.SetActive(false);
         SkinScrollViewObj.SetActive(false);
+    }
+
+    public void GoldViewAD()
+    {
+        GameManager.Instance.GoldADState = true;
+        ADManager.Instance.ShowInterstitialAd();        
+        GameManager.Instance.ReStart();
     }
 
     public void CheckSkin(int CurrentSkin)
@@ -315,7 +322,7 @@ public class UIManager : MonoSingleton<UIManager>
         }
         resultScoreText.text = currScoreText.text;
 
-        resultGoldText.text = string.Format("{0:#,##0}", rewardGold);
+        resultGoldText.text = string.Format("{0:#,##0}", GameManager.Instance.RewardGold);
         resultGoldBtnText.text = resultGoldText.text;
 
         ResultUI.SetActive(true);
@@ -323,9 +330,12 @@ public class UIManager : MonoSingleton<UIManager>
 
     public void ViewAD()
     {
-        GameManager.Instance.Gold += rewardGold;
+        GameManager.Instance.Gold += GameManager.Instance.RewardGold;
         GameManager.Instance.ReStart();
     }
+
+   
+
     IEnumerator cor_CrossBannerAnim()
     {
         while (true)

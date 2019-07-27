@@ -65,11 +65,7 @@ public class player : MonoBehaviour
         if (GameManager.Instance.isGamePlaying == false)
             return;
 
-        if (rigid.velocity.magnitude <= 1f)
-        {
-            psMain.loop = false;
-            waterPs.Stop();
-        }
+        
 
         // wall 이동
         if (tr.position.z > loopPosition)
@@ -128,6 +124,14 @@ public class player : MonoBehaviour
         else
             stayEnd = false;
 
+        if (rigid.velocity.magnitude <= 1f)
+        {
+            
+            stayEnd = true;
+            psMain.loop = false;
+            waterPs.Stop();
+        }
+
         if (isFever == false)
             Jump();
     }
@@ -148,6 +152,7 @@ public class player : MonoBehaviour
         {
             psMain.loop = true;
             waterPs.Play();
+            
         }
     }
     void OnTriggerExit(Collider collision) // 충돌한 대상의 collision을 얻는다.
