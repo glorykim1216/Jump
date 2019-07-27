@@ -18,7 +18,8 @@ public class ADManager : MonoSingleton<ADManager>
     public AdSize size;
     public AdPosition position;
     bool active;
-
+    private InterstitialAd interstitialAd;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -45,7 +46,8 @@ public class ADManager : MonoSingleton<ADManager>
         //광고 클릭으로 인해 사용자가 애플리케이션을 종료한 경우 호출됩니다.
         ad.OnAdLeavingApplication += OnAdLeavingApplication;
 
-        LoadAd();
+        //LoadAd();
+        RequestInterstitialAd();
         InitAd();
         banner.Show();
     }
@@ -84,29 +86,74 @@ public class ADManager : MonoSingleton<ADManager>
     void InitAd()
     {
         string id = "ca-app-pub-3940256099942544/6300978111";
-        banner = new BannerView(id, AdSize.SmartBanner, position);
+        
+        //나중에 바꿔야됨
+        //#if UNITY_ANDROID
+        //        id = android_banner_id;
+        //#elif UNITY_IOS
+        //        id = ios_bannerAdUnitId;
+        //#endif
 
+        banner = new BannerView(id, AdSize.SmartBanner, position);
         AdRequest request = new AdRequest.Builder().AddTestDevice(AdRequest.TestDeviceSimulator).AddTestDevice(deviceId).Build();
+        //나중에 바꿔야됨
+        //AdRequest request = new AdRequest.Builder().Build();
+
 
         banner.LoadAd(request);
 
         //banner.Show();
     }
 
-    public void ToggleAd()
+
+    private void RequestInterstitialAd()
     {
-        if (active)
+        interstitialAd = new InterstitialAd(unitId);
+        AdRequest request = new AdRequest.Builder().Build();
+
+        interstitialAd.LoadAd(request);
+
+        interstitialAd.OnAdClosed += HandleOnInterstitialAdClosed;
+    }
+
+    public void HandleOnInterstitialAdClosed(object sender, EventArgs args)
+    {
+        print("HandleOnInterstitialAdClosed event received.");
+
+        if(GameManager.Instance.skinADState)
+            GameObject.Find("Player").GetComponentInChildren<SkinnedMeshRenderer>().material = GameManager.Instance.TempMat;
+
+
+        interstitialAd.Destroy();
+
+        RequestInterstitialAd();
+    }
+
+    public void ShowInterstitialAd()
+    {
+        if (!interstitialAd.IsLoaded())
         {
-            banner.Show();
-            active = false;
-        }
-        else
-        {
-            banner.Hide();
-            active = true;
+            RequestInterstitialAd();
+            return;
         }
 
+        interstitialAd.Show();
     }
+
+    //public void ToggleAd()
+    //{
+    //    if (active)
+    //    {
+    //        banner.Show();
+    //        active = false;
+    //    }
+    //    else
+    //    {
+    //        banner.Hide();
+    //        active = true;
+    //    }
+
+    //}
 
     void LoadAd()
     {

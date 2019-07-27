@@ -87,6 +87,28 @@ public class GameManager : MonoSingleton<GameManager>
         }
     }
 
+
+    private Material tempMat;
+    public Material TempMat
+    {
+        get { return tempMat; }
+        set
+        {
+            tempMat = value;
+        }
+    }
+
+
+    private bool SkinADState;
+    public bool skinADState
+    {
+        get { return skinADState; }
+        set
+        {
+            skinADState = value;
+        }
+    }
+
     public int distance;
     public bool isGamePlaying = false;
 
