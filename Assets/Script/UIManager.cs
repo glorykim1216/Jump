@@ -50,6 +50,9 @@ public class UIManager : MonoSingleton<UIManager>
 
     public RectTransform crossBanner;
     public GameObject skinEffectObj;
+    public Scrollbar skinScrollBar;
+
+    GameObject SkinObj;
 
     public override void Init() { }
 
@@ -64,8 +67,8 @@ public class UIManager : MonoSingleton<UIManager>
         resultGoldBtn.onClick.AddListener(ViewAD);
         crossBanner.GetComponent<Button>().onClick.AddListener(OpenPlayStore);
         VibrationOnOffCheck();
-       
 
+        SkinObj = skinEffectObj.transform.Find("Skin").gameObject;
 
         //GameManager.Instance.OpenSkinList = 231;
         Debug.Log("GameManager.Instance.OpenSkinList" + GameManager.Instance.OpenSkinList);
@@ -117,7 +120,30 @@ public class UIManager : MonoSingleton<UIManager>
     {
         if (Input.GetKeyDown(KeyCode.A))
         {
-            Debug.Log(GameManager.Instance.CurrSkin);
+            //SkinObj.transform.GetChild(1).gameObject.SetActive(false);
+            //Debug.Log(SkinObj.transform.GetChild(1).gameObject.SetActive(false));
+        }
+    }
+
+    public void OptimizeSkin()
+    {
+        for (int i = 0; i < 5; i++)
+        {
+            if(skinScrollBar.value <=1-(0.2f*i) && skinScrollBar.value>1-(0.2f *(i+1)))
+            {
+
+                for (int j = 0; j < 20; j++)
+                {
+                    SkinObj.transform.GetChild( j).gameObject.SetActive(false);
+
+                }
+                for (int j=0; j<9; j++)
+                {
+                    SkinObj.transform.GetChild((i*3) +j).gameObject.SetActive(true);
+                   
+                    // SkinObj.transform.GetChild(1).name
+                }
+            }
         }
     }
 
@@ -250,6 +276,27 @@ public class UIManager : MonoSingleton<UIManager>
             SkinScrollViewObj.SetActive(true);
             skinEffectObj.transform.Find("Skin").gameObject.SetActive(true);
             skinEffectObj.transform.Find("Effect").gameObject.SetActive(false);
+
+            skinScrollBar.value = 1;
+            for (int i = 0; i < 5; i++)
+            {
+                if (skinScrollBar.value <= 1 - (0.2f * i) && skinScrollBar.value > 1 - (0.2f * (i + 1)))
+                {
+
+                    for (int j = 0; j < 20; j++)
+                    {
+                        SkinObj.transform.GetChild(j).gameObject.SetActive(false);
+
+                    }
+                    for (int j = 0; j < 9; j++)
+                    {
+                        SkinObj.transform.GetChild((i * 3) + j).gameObject.SetActive(true);
+
+                        // SkinObj.transform.GetChild(1).name
+                    }
+                }
+            }
+
         }
             
         else

@@ -77,11 +77,7 @@ public class ADManager : MonoSingleton<ADManager>
     //    banner.Show();
     //}
 
-    private void OnDisable()
-    {
-        banner.Hide();
-        active = true;
-    }
+   
 
     void InitAd()
     {

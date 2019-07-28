@@ -42,4 +42,4 @@ Material:
     - __dirty: 0
     m_Colors:
     - <noninit>: {r: 0, g: 1.4480232e-33, b: 0, a: 1.4480173e-33}
-    - _TintColor: {r: 1.064, g: 0.41725487, b: 0, a: 1}
+    - _TintColor: {r: 0.7882045, g: 1.4205235, b: 0, a: 1}
