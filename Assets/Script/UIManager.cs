@@ -53,7 +53,7 @@ public class UIManager : MonoSingleton<UIManager>
     public Scrollbar skinScrollBar;
 
     GameObject SkinObj;
-
+    GameObject EffectObj;
     public override void Init() { }
 
     void Start()
@@ -63,13 +63,14 @@ public class UIManager : MonoSingleton<UIManager>
         //tween.PlayReverse();
         skinEffectObj.SetActive(false);
         SkinScrollViewObj.SetActive(true);
+        EffectScrollViewObj.SetActive(true);
         vibrationBtn.onClick.AddListener(VibrationOption);
         resultGoldBtn.onClick.AddListener(ViewAD);
         crossBanner.GetComponent<Button>().onClick.AddListener(OpenPlayStore);
         VibrationOnOffCheck();
 
         SkinObj = skinEffectObj.transform.Find("Skin").gameObject;
-
+        EffectObj = skinEffectObj.transform.Find("Effect").gameObject;
         //GameManager.Instance.OpenSkinList = 231;
         Debug.Log("GameManager.Instance.OpenSkinList" + GameManager.Instance.OpenSkinList);
         string test;
@@ -108,6 +109,7 @@ public class UIManager : MonoSingleton<UIManager>
 
         BuyIMG.SetActive(false);
         SkinScrollViewObj.SetActive(false);
+        EffectScrollViewObj.SetActive(false);
         GameObject.Find("Player").GetComponentInChildren<SkinnedMeshRenderer>().material = Resources.Load("Material/Icem" + GameManager.Instance.CurrSkin.ToString()) as Material;
 
         GameManager.Instance.Init();
@@ -314,9 +316,20 @@ public class UIManager : MonoSingleton<UIManager>
     public void EffectButton()
     {
         if (!EffectScrollViewObj.activeSelf)
+        {
+            
+
+            skinEffectObj.SetActive(true);
             EffectScrollViewObj.SetActive(true);
+            skinEffectObj.transform.Find("Skin").gameObject.SetActive(false);
+            skinEffectObj.transform.Find("Effect").gameObject.SetActive(true);
+        }     
         else
+        {
             EffectScrollViewObj.SetActive(false);
+            skinEffectObj.SetActive(false);
+        }
+          
     }
 
     public void SkinSelectedValue()

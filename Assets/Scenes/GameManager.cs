@@ -76,7 +76,28 @@ public class GameManager : MonoSingleton<GameManager>
         }
     }
 
+    private int openEffectList;
+    public int OpenEffectList
+    {
+        get { return openEffectList; }
+        set
+        {
+            openEffectList = value;
+            //skin 배열 관련함수 필요
+            DatabaseSave(isDBLoad);
+        }
+    }
+    private int currEffect;
+    public int CurrEffect
+    {
+        get { return currEffect; }
+        set
+        {
+            currEffect = value;
+            DatabaseSave(isDBLoad);
 
+        }
+    }
     private Material playerMat;
     public Material PlayerMat
     {
@@ -167,7 +188,7 @@ public class GameManager : MonoSingleton<GameManager>
     public void DatabaseSave(bool _value)
     {
         if (_value)
-            DatabaseManager.Instance.UpdateItemTable(gold, bestScore, openSkinList, currSkin, upPower, forwardPower);
+            DatabaseManager.Instance.UpdateItemTable(gold, bestScore, openSkinList, currSkin, upPower, forwardPower,openEffectList,currEffect);
     }
     void Update()
     {

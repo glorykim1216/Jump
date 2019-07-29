@@ -7,14 +7,15 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Ground_Plane
-  m_Shader: {fileID: 4800000, guid: 3beb92be39dd4b146a37ed79eba96c07, type: 3}
-  m_ShaderKeywords: _COLOR_ON _TEX_ON _VCOLOR_ON
-  m_LightmapFlags: 0
+  m_Name: Ground_Plane_green 1
+  m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
+  m_ShaderKeywords: _ALPHAPREMULTIPLY_ON _COLOR_ON _NORMALMAP _TEX_ON _VCOLOR_ON
+  m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
+  m_CustomRenderQueue: 3000
+  stringTagMap:
+    RenderType: Transparent
   disabledShaderPasses: []
   m_SavedProperties:
     serializedVersion: 3
@@ -72,8 +73,8 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Diffuse:
-        m_Texture: {fileID: 2800000, guid: 5798ded558355430c8a9b13ee12a847c, type: 3}
-        m_Scale: {x: 1, y: 100}
+        m_Texture: {fileID: 2800000, guid: c68296334e691ed45b62266cbc716628, type: 3}
+        m_Scale: {x: 100, y: 100}
         m_Offset: {x: 0, y: 0}
     - _EmissionMap:
         m_Texture: {fileID: 0}
@@ -104,7 +105,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 750b1bd7ba8bd28489650de6d0a95cc5, type: 3}
+        m_Texture: {fileID: 2800000, guid: 120ede8c4897abf488ebbcd0d0b46ede, type: 3}
         m_Scale: {x: 1, y: 100}
         m_Offset: {x: 0, y: 0}
     - _Maintexture:
@@ -209,21 +210,21 @@ Material:
     - _Brightness: 2.16
     - _BumpScale: 1
     - _CoatAmount: 1
-    - _CoatBump: 1
-    - _CoatSmoothness: 0.39
+    - _CoatBump: 0.975
+    - _CoatSmoothness: 0.11
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
     - _DetailTex: 1
-    - _DstBlend: 0
+    - _DstBlend: 10
     - _EnableExternalAlpha: 0
     - _Enablepulsation: 0
-    - _FlakeColorVariationAmount: 0.777
+    - _FlakeColorVariationAmount: 0.574
     - _FlakesBump: 1
     - _FlakesMetallic: 0.097
-    - _FlakesSmoothness: 0.648
+    - _FlakesSmoothness: 1
     - _Globalopacity: 0.881
     - _GlossMapScale: 1
-    - _Glossiness: 0.5
+    - _Glossiness: 0
     - _GlossyReflections: 1
     - _HazeHAmp: 0
     - _HazeHFreq: 0
@@ -231,13 +232,13 @@ Material:
     - _HazeVSpeed: 0
     - _Innerfresnelintensity: 0
     - _Intensity: 1
-    - _InvFade: 1
+    - _InvFade: 1.23
     - _Invertmaintexture: 0
     - _Invertsecondarytexture: 0
     - _Maintextureintensity: 1
     - _MaskClipValue: 0.5
-    - _Metallic: 0
-    - _Mode: 0
+    - _Metallic: 1
+    - _Mode: 3
     - _NoiseHeightScale: 0
     - _NoiseInfluence: 0.5
     - _NoiseMapStrength: 0
@@ -275,15 +276,15 @@ Material:
     - _Translucency: 1
     - _UVSec: 0
     - _VertexColor: 1
-    - _ZWrite: 1
+    - _ZWrite: 0
     - __dirty: 0
     m_Colors:
     - _ASEOutlineColor: {r: 0, g: 0, b: 0, a: 0}
     - _BackColor: {r: 0, g: 0, b: 1, a: 0}
-    - _BaseColor1: {r: 1, g: 0.326087, b: 0, a: 0}
-    - _BaseColor2: {r: 1, g: 0.28488377, b: 0, a: 0}
+    - _BaseColor1: {r: 1, g: 0.5153554, b: 0.2783019, a: 0}
+    - _BaseColor2: {r: 1, g: 0.5191942, b: 0.3254717, a: 0}
     - _Bottom: {r: 0, g: 0, b: 0, a: 0}
-    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _Color: {r: 0.25882354, g: 0.3921569, b: 0.77647066, a: 0}
     - _Color0: {r: 1, g: 0.5990566, b: 0.5990566, a: 0}
     - _Edgecolor: {r: 0.7941176, g: 0.1284602, b: 0.1284602, a: 0.666}
     - _Emission: {r: 0, g: 0, b: 0, a: 0}
@@ -304,7 +305,7 @@ Material:
     - _Secondarypanningspeed: {r: 0, g: 0, b: 0, a: 0}
     - _SpecColor: {r: 1, g: 1, b: 1, a: 1}
     - _Tint: {r: 0, g: 0, b: 0, a: 0}
-    - _TintColor: {r: 0.5, g: 0.5, b: 0.5, a: 0.5}
+    - _TintColor: {r: 0.7117813, g: 1, b: 0.514151, a: 0.5}
     - _Top: {r: 1, g: 0, b: 0, a: 0}
     - _UVOffset0: {r: 0.07, g: 0.1, b: 0.1, a: 0}
     - _UVOffset1: {r: -0.1, g: -0.1, b: -0.1, a: 0}

@@ -13,8 +13,9 @@ public class DataTable
     public int currSkin;
     public int upPower;
     public int forwardPower;
-
-    public DataTable(int _gold, int _bestScore, int _openSkinList, int _currSkin, int _upPower, int _forwardPower)
+    public int openEffectList;
+    public int currEffect;
+    public DataTable(int _gold, int _bestScore, int _openSkinList, int _currSkin, int _upPower, int _forwardPower, int _openEffectList, int _currEffect)
     {
         gold = _gold;
         bestScore = _bestScore;
@@ -22,6 +23,8 @@ public class DataTable
         currSkin = _currSkin;
         upPower = _upPower;
         forwardPower = _forwardPower;
+        openEffectList = _openEffectList;
+        currEffect = _currEffect;
     }
 }
 
@@ -131,7 +134,7 @@ public class DatabaseManager : MonoSingleton<DatabaseManager>
 
                 // 테이블을 생성하는 SQL 쿼리문
                 string sqlQuery = "CREATE TABLE `" + Test_DB_Table.DatabaseTable.ToString() +
-                    "`( `Gold` INTEGER NOT NULL, `BestScore` INTEGER NOT NULL, `OpenSkinList` INTEGER NOT NULL, `CurrSkin` INTEGER NOT NULL, `UpPower` INTEGER NOT NULL, `ForwardPower` INTEGER NOT NULL)";
+                    "`( `Gold` INTEGER NOT NULL, `BestScore` INTEGER NOT NULL, `OpenSkinList` INTEGER NOT NULL, `CurrSkin` INTEGER NOT NULL, `UpPower` INTEGER NOT NULL, `ForwardPower` INTEGER NOT NULL, `OpenEffectList` INTEGER NOT NULL, `CurrEffect` INTEGER NOT NULL)";
                 dbCmd.CommandText = sqlQuery;
 
                 using (IDataReader reader = dbCmd.ExecuteReader()) // 테이블에 있는 데이터들이 들어간다. 
@@ -188,7 +191,7 @@ public class DatabaseManager : MonoSingleton<DatabaseManager>
                     while (reader.Read())
                     {
                         // Debug.Log(reader.GetString(1));  //  타입명 . (몇 열에있는것을 부를것인가)
-                        ItemList.Add(new DataTable(reader.GetInt32(0), reader.GetInt32(1), reader.GetInt32(2), reader.GetInt32(3), reader.GetInt32(4), reader.GetInt32(5)));
+                        ItemList.Add(new DataTable(reader.GetInt32(0), reader.GetInt32(1), reader.GetInt32(2), reader.GetInt32(3), reader.GetInt32(4), reader.GetInt32(5), reader.GetInt32(6), reader.GetInt32(7)));
                     }
 
                     reader.Close();
@@ -219,7 +222,7 @@ public class DatabaseManager : MonoSingleton<DatabaseManager>
             using (IDbCommand dbCmd = dbConnection.CreateCommand())  // EnterSqL에 명령 할 수 있다. 
             {
                 string sqlQuery = "INSERT INTO " + Test_DB_Table.DatabaseTable.ToString() +
-                    " (Gold, BestScore, OpenSkinList, CurrSkin, UpPower, ForwardPower) VALUES (0, 0, 0, 0, 1, 1)";
+                    " (Gold, BestScore, OpenSkinList, CurrSkin, UpPower, ForwardPower) VALUES (0, 0, 0, 0, 1, 1,0,0)";
                 dbCmd.CommandText = sqlQuery;
 
                 using (IDataReader reader = dbCmd.ExecuteReader()) // 테이블에 있는 데이터들이 들어간다. 
@@ -233,7 +236,7 @@ public class DatabaseManager : MonoSingleton<DatabaseManager>
     }
 
     // 속성값 수정
-    public void UpdateItemTable(int _gold, int _bestScore, int _openSkinList, int _currSkin, int _upPower, int _forwardPower)
+    public void UpdateItemTable(int _gold, int _bestScore, int _openSkinList, int _currSkin, int _upPower, int _forwardPower, int _openEffectList, int _currEffect)
     {
         string connectionString = "URI=file:" + Filepath;
 
@@ -245,7 +248,7 @@ public class DatabaseManager : MonoSingleton<DatabaseManager>
             using (IDbCommand dbCmd = dbConnection.CreateCommand())  // EnterSqL에 명령 할 수 있다. 
             {
                 string sqlQuery = "UPDATE " + Test_DB_Table.DatabaseTable.ToString() +
-                    " SET Gold='" + _gold + "', BestScore='" + _bestScore + "', OpenSkinList='" + _openSkinList + "', CurrSkin='" + _currSkin + "', UpPower='" + _upPower + "', ForwardPower='" + _forwardPower + "'";
+                    " SET Gold='" + _gold + "', BestScore='" + _bestScore + "', OpenSkinList='" + _openSkinList + "', CurrSkin='" + _currSkin + "', UpPower='" + _upPower + "', ForwardPower='" + _forwardPower + "', OpenEffectList='" + _openEffectList + "', CurrEffect='" + _currEffect + "'" ;
 
                 dbCmd.CommandText = sqlQuery;
 
@@ -270,7 +273,7 @@ public class DatabaseManager : MonoSingleton<DatabaseManager>
     public void test()
     {
         SelectItemTable();
-        UpdateItemTable(0, 1, 2,1,1,1);
+        //UpdateItemTable(0, 1, 2,1,1,1);
         SelectItemTable();
 
 
