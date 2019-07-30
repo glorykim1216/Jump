@@ -129,6 +129,7 @@ public class GameManager : MonoSingleton<GameManager>
         }
     }
 
+    public float rewardGoldRate = 0.5f;
 
     private bool skinADState;
     public bool SkinADState
@@ -256,6 +257,8 @@ public class GameManager : MonoSingleton<GameManager>
         isGamePlaying = false;
 
         yield return new WaitForSeconds(1f);
+
+        RewardGold = (int)(distance * rewardGoldRate);
 
         UIManager.Instance.Result();
     }

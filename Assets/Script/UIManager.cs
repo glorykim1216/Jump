@@ -58,7 +58,6 @@ public class UIManager : MonoSingleton<UIManager>
 
     void Start()
     {
-        GameManager.Instance.RewardGold = 50;
         //tween 시작시 2번클릭 방지
         //tween.PlayReverse();
         skinEffectObj.SetActive(false);
@@ -381,7 +380,7 @@ public class UIManager : MonoSingleton<UIManager>
             resultNewBestScoreImage.SetActive(true);
         }
         resultScoreText.text = currScoreText.text;
-
+ 
         resultGoldText.text = string.Format("{0:#,##0}", GameManager.Instance.RewardGold);
         resultGoldBtnText.text = resultGoldText.text;
 

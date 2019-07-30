@@ -8,50 +8,40 @@ public class UI_PowerSetting : MonoBehaviour
 {
     public player player;
     public GameObject powerSetting;
+    public InputField halfLite;
     public InputField jump;
-    public InputField up;
     public InputField forward;
-    // Start is called before the first frame update
+    public InputField mass;
+    public InputField gold;
+
     void Start()
-    {
-        
-
-
-        player.upValue = StaticData.jumpPower;
-        player.upPower = StaticData.upPower;
-        player.forwardPower = StaticData.forwardPower;
-
-        jump.text = player.upValue.ToString();
-        up.text = player.upPower.ToString();
+    {  
+        halfLite.text = player.halfLife.ToString();
+        jump.text = player.jumpPower.ToString();
         forward.text = player.forwardPower.ToString();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-  
+        mass.text = player.mass.ToString();
+        gold.text = GameManager.Instance.rewardGoldRate.ToString();
     }
 
     public void ReStart()
     {
-        //SceneManager.LoadScene("SampleScene");
-        StaticData.jumpPower = float.Parse(jump.text);
-        StaticData.upPower = float.Parse(up.text);
-        StaticData.forwardPower = float.Parse(forward.text);
-        //SceneManager.LoadScene("SampleScene");
+        player.halfLife = float.Parse(halfLite.text);
+        player.jumpPower = float.Parse(jump.text);
+        player.forwardPower = float.Parse(forward.text);
+        player.mass = float.Parse(mass.text);
+        GameManager.Instance.rewardGoldRate = float.Parse(gold.text);
 
-        StartCoroutine(SceneLoad());
-       
+        Setting();
     }
 
-    IEnumerator SceneLoad()
-    {
-        var oper = SceneManager.LoadSceneAsync("SampleScene");
+    //IEnumerator SceneLoad()
+    //{
+    //    var oper = SceneManager.LoadSceneAsync("SampleScene");
 
-        yield return new WaitUntil(() => oper.isDone);
+    //    yield return new WaitUntil(() => oper.isDone);
 
 
-    }
+    //}
 
     public void Setting()
     {

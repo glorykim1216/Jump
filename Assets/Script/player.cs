@@ -6,17 +6,16 @@ using UnityEngine.EventSystems;
 public class player : MonoBehaviour
 {
     public eMode gameMode = eMode.FirstWeak;
-    public float speed = 5;
     public float upPower = 1;
-    public float forwardPower = 1;
-    public float jumpPower = 15;
+    public float forwardPower = 2;
+    public float jumpPower = 10;
     public float currJumpPower;
     public bool isJumping = false;
     public Transform tr;
     public Rigidbody rigid;
     public Transform cube;
     public bool firstJump = true;
-    public float upValue = 0.5f;
+    public float halfLife = 0.5f;
     public float speedIncreaseValue = 1;
     private ParticleSystem waterPs;
     ParticleSystem.MainModule psMain;
@@ -38,6 +37,8 @@ public class player : MonoBehaviour
 
     public float gage = 100;
 
+    public float mass = 1;
+
     void Start()
     {
         splashPrefab = Resources.Load("Prefabs/Splash") as GameObject;
@@ -58,6 +59,8 @@ public class player : MonoBehaviour
         bestScoreWall = GameObject.Find("BestScoreWall").transform;
         bestScoreWall.gameObject.SetActive(false);
         bestScoreWall.position = new Vector3(bestScoreWall.position.x, bestScoreWall.position.y, GameManager.Instance.BestScore);
+
+        rigid.mass = mass;
     }
 
     void Update()
@@ -218,7 +221,7 @@ public class player : MonoBehaviour
                 forwardPower += speedIncreaseValue;
 
             if (gage < 30)
-                upPower *= upValue;
+                upPower *= halfLife;
 
             if (gage <= 0)
             {
