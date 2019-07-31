@@ -145,7 +145,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     - _TextureSample0:
         m_Texture: {fileID: 2800000, guid: 80ee511a5808d8d499a8ca850b8a2129, type: 3}
-        m_Scale: {x: 1, y: 1}
+        m_Scale: {x: 1, y: 1.85}
         m_Offset: {x: 0, y: 0}
     - _TextureSample1:
         m_Texture: {fileID: 2800000, guid: 68238187342e117439ce4507180c5a9f, type: 3}
