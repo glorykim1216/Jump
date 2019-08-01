@@ -202,6 +202,12 @@ public class GameManager : MonoSingleton<GameManager>
         // 신기록
         if (distance >= bestScore)
             NewBestScore();
+
+        //if(distance % 1000 == 0)
+        //{
+        //    2/100
+        //        //거리에 따라서 H값이 증가되어야함
+        //}
     }
 
     // 게이지 출력

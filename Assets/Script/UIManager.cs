@@ -51,7 +51,7 @@ public class UIManager : MonoSingleton<UIManager>
     public RectTransform crossBanner;
     public GameObject skinEffectObj;
     public Scrollbar skinScrollBar;
-
+    public Scrollbar effectScrollBar;
     GameObject SkinObj;
     GameObject EffectObj;
     public override void Init() { }
@@ -142,6 +142,28 @@ public class UIManager : MonoSingleton<UIManager>
                 {
                     SkinObj.transform.GetChild((i*3) +j).gameObject.SetActive(true);
                    
+                    // SkinObj.transform.GetChild(1).name
+                }
+            }
+        }
+    }
+
+    public void OptimizeEffect()
+    {
+        for (int i = 0; i < 5; i++)
+        {
+            if (effectScrollBar.value <= 1 - (0.2f * i) && effectScrollBar.value > 1 - (0.2f * (i + 1)))
+            {
+
+                for (int j = 0; j < 20; j++)
+                {
+                    EffectObj.transform.GetChild(j).gameObject.SetActive(false);
+
+                }
+                for (int j = 0; j < 9; j++)
+                {
+                    EffectObj.transform.GetChild((i * 3) + j).gameObject.SetActive(true);
+
                     // SkinObj.transform.GetChild(1).name
                 }
             }
