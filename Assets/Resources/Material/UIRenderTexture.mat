@@ -8,11 +8,11 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: UIRenderTexture
-  m_Shader: {fileID: 4800000, guid: c734ccde64c65f74a995a96a68587b1f, type: 3}
-  m_ShaderKeywords: UNITY_UI_ALPHACLIP _ALPHAPREMULTIPLY_ON _EMISSION
-  m_LightmapFlags: 0
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 1
+  m_Shader: {fileID: 4800000, guid: 9da560e0c98a60142b94e7b1af37a025, type: 3}
+  m_ShaderKeywords: _ALPHAMODULATE_ON
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 1
+  m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
   stringTagMap: {}
   disabledShaderPasses: []
@@ -47,6 +47,10 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _Maintexture:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -59,8 +63,37 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _Secondarytexture:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SpecGlossMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _TextureSample0:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _ToonRamp:
+        m_Texture: {fileID: 2800000, guid: 52e66a9243cdfed44b5e906f5910d35b, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _XTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _texcoord:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     m_Floats:
+    - PixelSnap: 0
+    - _ASEOutlineWidth: -0.84
+    - _Bias: 0
+    - _BlendDst: 1
     - _BlendOp: 0
+    - _BlendSrc: 1
     - _BumpScale: 1
     - _CameraFadingEnabled: 0
     - _CameraFarFadeDistance: 2
@@ -75,32 +108,64 @@ Material:
     - _DistortionStrengthScaled: 0.1
     - _DstBlend: 10
     - _EmissionEnabled: 0
+    - _Enablepulsation: 0
     - _FlipbookMode: 0
+    - _Globalopacity: 1
     - _GlossMapScale: 1
-    - _Glossiness: 0.5
+    - _Glossiness: 0.253
     - _GlossyReflections: 1
+    - _Innerfresnelintensity: 0
+    - _InvFade: 0.81
+    - _Invertmaintexture: 0
+    - _Invertsecondarytexture: 0
     - _LightingEnabled: 1
-    - _Metallic: 0
-    - _Mode: 3
+    - _Maintextureintensity: 1
+    - _Metallic: 0.578
+    - _Mode: 6
     - _OcclusionStrength: 1
+    - _Outerfresnelintensity: 1
     - _Parallax: 0.02
+    - _Power: 2
+    - _PulsationAmplitude: 1
+    - _PulsationSpeed: 5
+    - _RimOffset: 0.24
+    - _RimPower: 0.5
+    - _Scale: 1
+    - _Secondarytextureintensity: 1
     - _SmoothnessTextureChannel: 0
     - _SoftParticlesEnabled: 0
     - _SoftParticlesFarFadeDistance: 1
     - _SoftParticlesNearFadeDistance: 0
     - _SpecularHighlights: 1
-    - _SrcBlend: 1
+    - _SrcBlend: 2
     - _Stencil: 1
     - _StencilComp: 3
-    - _StencilOp: 11.05
+    - _StencilOp: 0
     - _StencilReadMask: 1
-    - _StencilWriteMask: 7.38
+    - _StencilWriteMask: 0
     - _UVSec: 0
-    - _UseUIAlphaClip: 1
+    - _UseUIAlphaClip: 0
+    - _XRayBias: 0
+    - _XRayIntensity: 0
+    - _XRayPower: 0
+    - _XRayScale: 0
     - _ZWrite: 0
+    - __dirty: 0
     m_Colors:
+    - _ASEOutlineColor: {r: 0, g: 0, b: 0, a: 0}
     - _CameraFadeParams: {r: 0, g: Infinity, b: 0, a: 0}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _Color0: {r: 1, g: 1, b: 1, a: 0}
+    - _Edgecolor: {r: 0.7941176, g: 0.1284602, b: 0.1284602, a: 0.666}
+    - _EmisColor: {r: 1, g: 1, b: 1, a: 0}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
+    - _Maincolor: {r: 0.7941176, g: 0.1284602, b: 0.1284602, a: 0.666}
+    - _Mainpanningspeed: {r: 0, g: 0, b: 0, a: 0}
+    - _RimColor: {r: 0, g: 1, b: 0.8758622, a: 0}
+    - _Secondarycolor: {r: 0, g: 0, b: 0, a: 0}
+    - _Secondarypanningspeed: {r: 0, g: 0, b: 0, a: 0}
     - _SoftParticleFadeParams: {r: 0, g: 0, b: 0, a: 0}
-    - _Specular: {r: 0, g: 0, b: 0, a: 0}
+    - _Specular: {r: 0, g: 0, b: 0, a: 1}
+    - _TintColor: {r: 0.5, g: 0.5, b: 0.5, a: 0.5}
+    - _XColor: {r: 1, g: 1, b: 1, a: 1}
+    - _XRayColor: {r: 1, g: 1, b: 1, a: 0}
