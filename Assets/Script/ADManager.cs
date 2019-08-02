@@ -52,33 +52,6 @@ public class ADManager : MonoSingleton<ADManager>
         banner.Show();
     }
 
-    //private void OnEnable()
-    //{
-    //    MobileAds.Initialize(appId);
-    //    ad = RewardBasedVideoAd.Instance;
-
-    //    //광고 요청이 성공적으로 로드되면 호출됩니다.
-    //    ad.OnAdLoaded += OnAdLoaded;
-    //    //광고 요청을 로드하지 못했을 때 호출됩니다.
-    //    ad.OnAdFailedToLoad += OnAdFailedToLoad;
-    //    //광고가 표시될 때 호출됩니다.
-    //    ad.OnAdOpening += OnAdOpening;
-    //    //광고가 재생되기 시작하면 호출됩니다.
-    //    ad.OnAdStarted += OnAdStarted;
-    //    //사용자가 비디오 시청을 통해 보상을 받을 때 호출됩니다.
-    //    ad.OnAdRewarded += OnAdRewarded;
-    //    //광고가 닫힐 때 호출됩니다.
-    //    ad.OnAdClosed += OnAdClosed;
-    //    //광고 클릭으로 인해 사용자가 애플리케이션을 종료한 경우 호출됩니다.
-    //    ad.OnAdLeavingApplication += OnAdLeavingApplication;
-
-    //    LoadAd();
-    //    InitAd();
-    //    banner.Show();
-    //}
-
-   
-
     void InitAd()
     {
         string id = "ca-app-pub-3940256099942544/6300978111";
@@ -110,6 +83,7 @@ public class ADManager : MonoSingleton<ADManager>
         interstitialAd.LoadAd(request);
 
         interstitialAd.OnAdClosed += HandleOnInterstitialAdClosed;
+
     }
 
     public void HandleOnInterstitialAdClosed(object sender, EventArgs args)
@@ -122,8 +96,18 @@ public class ADManager : MonoSingleton<ADManager>
             GameObject.Find("Player").GetComponentInChildren<SkinnedMeshRenderer>().material = GameManager.Instance.TempMat;
             GameManager.Instance.SkinADState = false;
         }
-            
-        if(GameManager.Instance.GoldADState)
+        if (GameManager.Instance.EffectADState)
+        {
+            //이미지 변환작업해야됨
+            MeshRenderer[] rs = GameObject.Find("PlayerWing").GetComponentsInChildren<MeshRenderer>();
+            foreach (MeshRenderer r in rs)
+            {
+                r.material = Resources.Load("Material/Wing_Sub " + GameManager.Instance.CurrEffect.ToString()) as Material;
+            }
+            GameManager.Instance.EffectADState = false;
+        }
+
+        if (GameManager.Instance.GoldADState)
         {
             GameManager.Instance.Gold += (GameManager.Instance.RewardGold * 2);
             GameManager.Instance.GoldADState = false;

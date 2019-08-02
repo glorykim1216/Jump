@@ -141,6 +141,16 @@ public class GameManager : MonoSingleton<GameManager>
         }
     }
 
+    private bool effectADState;
+    public bool EffectADState
+    {
+        get { return effectADState; }
+        set
+        {
+            effectADState = value;
+        }
+    }
+
     private bool goldADState;
     public bool GoldADState
     {
@@ -182,7 +192,8 @@ public class GameManager : MonoSingleton<GameManager>
         CurrSkin = DatabaseManager.Instance.ItemList[0].currSkin;
         UpPower = DatabaseManager.Instance.ItemList[0].upPower;
         ForwardPower = DatabaseManager.Instance.ItemList[0].forwardPower;
-
+        OpenEffectList = DatabaseManager.Instance.ItemList[0].openEffectList;
+        CurrEffect = DatabaseManager.Instance.ItemList[0].currEffect;
         isDBLoad = true;
     }
     // DB 저장
@@ -203,11 +214,6 @@ public class GameManager : MonoSingleton<GameManager>
         if (distance >= bestScore)
             NewBestScore();
 
-        //if(distance % 1000 == 0)
-        //{
-        //    2/100
-        //        //거리에 따라서 H값이 증가되어야함
-        //}
     }
 
     // 게이지 출력

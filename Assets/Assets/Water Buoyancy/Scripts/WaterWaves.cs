@@ -19,12 +19,19 @@ namespace WaterBuoyancy
         private Mesh mesh;
         private Vector3[] baseVertices;
         private Vector3[] vertices;
-
+        MeshRenderer meshRenderer;
+        Color WaterColor;
+        float ColorSum;
+        float ColorH;
+        bool initColor;
         protected virtual void Awake()
         {
             this.mesh = this.GetComponent<MeshFilter>().mesh;
             this.baseVertices = this.mesh.vertices;
             this.vertices = new Vector3[this.baseVertices.Length];
+            this.meshRenderer = this.GetComponent<MeshRenderer>();
+            WaterColor = new Color();
+            ColorSum = 219;
         }
 
         protected virtual void Start()
@@ -34,6 +41,21 @@ namespace WaterBuoyancy
 
         protected virtual void Update()
         {
+            //Debug.Log(meshRenderer.material.GetColor("_DepthGradientDeep"));
+            //물색상 변경
+            ColorH = 18f / 1000f * GameManager.Instance.distance;
+            if (ColorH >= 141f)
+                ColorH -= 360f;
+
+            WaterColor =Color.HSVToRGB((219f+ColorH) / 360f, 91f/100f, 100f/100f,true);
+
+            //Debug.Log("GameManager.Instance.distance" + GameManager.Instance.distance);
+
+            //Debug.Log("ColorSum" +ColorSum);
+
+            //Debug.Log("ColorH" +ColorH);
+            WaterColor = new Color(WaterColor.r, WaterColor.g, WaterColor.b, 0.75f);
+            meshRenderer.material.SetColor("_DepthGradientDeep", WaterColor);
             for (var i = 0; i < this.vertices.Length; i++)
             {
                 var vertex = this.baseVertices[i];
