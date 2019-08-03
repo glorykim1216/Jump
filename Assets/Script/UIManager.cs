@@ -38,6 +38,7 @@ public class UIManager : MonoSingleton<UIManager>
     public GameObject judgementExceImage;
     public GameObject newBestScoreImage;
     public GameObject resultNewBestScoreImage;
+    public Text gold2CountDown;
 
     public List<int> skinBuyList;
     CheckSkin[] CheckSkinData;
@@ -56,6 +57,7 @@ public class UIManager : MonoSingleton<UIManager>
     public Scrollbar effectScrollBar;
     GameObject SkinObj;
     GameObject EffectObj;
+
     public override void Init() { }
 
     void Start()
@@ -594,6 +596,7 @@ public class UIManager : MonoSingleton<UIManager>
         resultGoldBtnText.text = resultGoldText.text;
 
         ResultUI.SetActive(true);
+        StartCoroutine(cor_Gold2CountDown());
     }
 
     public void ViewAD()
@@ -602,7 +605,24 @@ public class UIManager : MonoSingleton<UIManager>
         GameManager.Instance.ReStart();
     }
 
-   
+    IEnumerator cor_Gold2CountDown()
+    {
+        float time = 4.0f;
+        bool isCountDown = true;
+        while (isCountDown)
+        {
+            time -= Time.deltaTime;
+            gold2CountDown.text = ((int)time).ToString();
+            if (time < 1)
+            {
+                resultGoldDoubleBtn.gameObject.SetActive(false);
+                isCountDown = false;
+            }
+
+            yield return null;
+        }
+      
+    }
 
     IEnumerator cor_CrossBannerAnim()
     {
