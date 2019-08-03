@@ -13,6 +13,7 @@ public class UI_PowerSetting : MonoBehaviour
     public InputField forward;
     public InputField mass;
     public InputField gold;
+    public InputField vibration;
 
     void Start()
     {  
@@ -21,6 +22,7 @@ public class UI_PowerSetting : MonoBehaviour
         forward.text = player.forwardPower.ToString();
         mass.text = player.mass.ToString();
         gold.text = GameManager.Instance.rewardGoldRate.ToString();
+        vibration.text = GameManager.Instance.vibrationValue.ToString();
     }
 
     public void ReStart()
@@ -30,6 +32,7 @@ public class UI_PowerSetting : MonoBehaviour
         player.forwardPower = float.Parse(forward.text);
         player.mass = float.Parse(mass.text);
         GameManager.Instance.rewardGoldRate = float.Parse(gold.text);
+        GameManager.Instance.vibrationValue = int.Parse(vibration.text);
 
         Setting();
     }
