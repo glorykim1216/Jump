@@ -59,7 +59,12 @@ public class player : MonoBehaviour
         bestScoreWall = GameObject.Find("BestScoreWall").transform;
         bestScoreWall.gameObject.SetActive(false);
         bestScoreWall.position = new Vector3(bestScoreWall.position.x, bestScoreWall.position.y, GameManager.Instance.BestScore);
-
+    }
+    public void Init()
+    {
+        forwardPower = GameManager.Instance.forwardPower;
+        jumpPower = GameManager.Instance.jumpPower;
+        halfLife = GameManager.Instance.halfLife;
         rigid.mass = mass;
     }
 

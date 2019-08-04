@@ -58,6 +58,7 @@ public class UIManager : MonoSingleton<UIManager>
     GameObject SkinObj;
     GameObject EffectObj;
 
+    public player Player;
     public override void Init() { }
 
     void Start()
@@ -563,6 +564,7 @@ public class UIManager : MonoSingleton<UIManager>
         LobbyUI.SetActive(false);
         InGameUI.SetActive(true);
         GameManager.Instance.isGamePlaying = true;
+        Player.Init();
     }
     // 진동 옵션
     public void VibrationOption()

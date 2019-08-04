@@ -17,9 +17,9 @@ public class UI_PowerSetting : MonoBehaviour
 
     void Start()
     {  
-        halfLite.text = player.halfLife.ToString();
-        jump.text = player.jumpPower.ToString();
-        forward.text = player.forwardPower.ToString();
+        halfLite.text = GameManager.Instance.halfLife.ToString();
+        jump.text = GameManager.Instance.jumpPower.ToString();
+        forward.text = GameManager.Instance.forwardPower.ToString();
         mass.text = player.mass.ToString();
         gold.text = GameManager.Instance.rewardGoldRate.ToString();
         vibration.text = GameManager.Instance.vibrationValue.ToString();
@@ -27,9 +27,9 @@ public class UI_PowerSetting : MonoBehaviour
 
     public void ReStart()
     {
-        player.halfLife = float.Parse(halfLite.text);
-        player.jumpPower = float.Parse(jump.text);
-        player.forwardPower = float.Parse(forward.text);
+        GameManager.Instance.halfLife = float.Parse(halfLite.text);
+        GameManager.Instance.jumpPower = float.Parse(jump.text);
+        GameManager.Instance.forwardPower = float.Parse(forward.text);
         player.mass = float.Parse(mass.text);
         GameManager.Instance.rewardGoldRate = float.Parse(gold.text);
         GameManager.Instance.vibrationValue = int.Parse(vibration.text);

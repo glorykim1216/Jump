@@ -53,24 +53,24 @@ public class GameManager : MonoSingleton<GameManager>
 
         }
     }
-    private int upPower;
-    public int UpPower
+    private int upPowerLevel;
+    public int UpPowerLevel
     {
-        get { return upPower; }
+        get { return upPowerLevel; }
         set
         {
-            upPower = value;
+            upPowerLevel = value;
             DatabaseSave(isDBLoad);
 
         }
     }
-    private int forwardPower;
-    public int ForwardPower
+    private int forwardPowerLevel;
+    public int ForwardPowerLevel
     {
-        get { return forwardPower; }
+        get { return forwardPowerLevel; }
         set
         {
-            forwardPower = value;
+            forwardPowerLevel = value;
             DatabaseSave(isDBLoad);
 
         }
@@ -167,6 +167,9 @@ public class GameManager : MonoSingleton<GameManager>
     public int vibrationValue = 800;
     public bool isVibration = true;
 
+    public float forwardPower = 2;
+    public float jumpPower = 10;
+    public float halfLife = 0.5f;
 
     private void Awake()
     {
@@ -190,8 +193,8 @@ public class GameManager : MonoSingleton<GameManager>
         BestScore = DatabaseManager.Instance.ItemList[0].bestScore;
         OpenSkinList = DatabaseManager.Instance.ItemList[0].openSkinList;
         CurrSkin = DatabaseManager.Instance.ItemList[0].currSkin;
-        UpPower = DatabaseManager.Instance.ItemList[0].upPower;
-        ForwardPower = DatabaseManager.Instance.ItemList[0].forwardPower;
+        UpPowerLevel = DatabaseManager.Instance.ItemList[0].upPower;
+        ForwardPowerLevel = DatabaseManager.Instance.ItemList[0].forwardPower;
         OpenEffectList = DatabaseManager.Instance.ItemList[0].openEffectList;
         CurrEffect = DatabaseManager.Instance.ItemList[0].currEffect;
         isDBLoad = true;
@@ -200,7 +203,7 @@ public class GameManager : MonoSingleton<GameManager>
     public void DatabaseSave(bool _value)
     {
         if (_value)
-            DatabaseManager.Instance.UpdateItemTable(gold, bestScore, openSkinList, currSkin, upPower, forwardPower,openEffectList,currEffect);
+            DatabaseManager.Instance.UpdateItemTable(gold, bestScore, openSkinList, currSkin, upPowerLevel, forwardPowerLevel,openEffectList,currEffect);
     }
     void Update()
     {
