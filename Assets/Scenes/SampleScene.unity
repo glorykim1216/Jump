@@ -49776,6 +49776,7 @@ MonoBehaviour:
   skinEffectObj: {fileID: 1754132259}
   skinScrollBar: {fileID: 191050204}
   effectScrollBar: {fileID: 756362654}
+  Player: {fileID: 1937125052}
 --- !u!1 &1788105917
 GameObject:
   m_ObjectHideFlags: 0
