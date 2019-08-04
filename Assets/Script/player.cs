@@ -39,6 +39,9 @@ public class player : MonoBehaviour
 
     public float mass = 1;
 
+    public Animator leftWing;
+    public Animator rightWing;
+    
     void Start()
     {
         splashPrefab = Resources.Load("Prefabs/Splash") as GameObject;
@@ -149,6 +152,13 @@ public class player : MonoBehaviour
         // 실제 인스턴스 생성. GameObject name의 기본값은 Bullet (clone)
         Splash.name = "bullet"; // name을 변경
         Splash.transform.position = this.transform.position;
+        
+        leftWing.SetBool("jumpMotion", true);
+        leftWing.SetBool("standMotion", false);
+       
+        rightWing.SetBool("jumpMotion", true);
+        rightWing.SetBool("standMotion", false);
+       
     }
     void OnTriggerStay(Collider collision) // 충돌한 대상의 collision을 얻는다.
     {
@@ -254,6 +264,12 @@ public class player : MonoBehaviour
             isFever = false;
             StartCoroutine("GameOver");
         }
+
+        leftWing.SetBool("jumpMotion", false);
+        leftWing.SetBool("standMotion", true);
+
+        rightWing.SetBool("jumpMotion", false);
+        rightWing.SetBool("standMotion", true);
     }
     IEnumerator GameOver()
     {
