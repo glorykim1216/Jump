@@ -152,7 +152,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _ToonRamp:
-        m_Texture: {fileID: 2800000, guid: 52e66a9243cdfed44b5e906f5910d35b, type: 3}
+        m_Texture: {fileID: 2800000, guid: a8de9c9c15d9c7e4eaa883c727391bee, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _char_woodman_normals:
@@ -261,7 +261,7 @@ Material:
     - _ASEOutlineColor: {r: 0, g: 0, b: 0, a: 0}
     - _BaseTint: {r: 1, g: 1, b: 1, a: 0}
     - _Color: {r: 1, g: 0, b: 0, a: 1}
-    - _Color0: {r: 0, g: 0.71642184, b: 1, a: 1}
+    - _Color0: {r: 0, g: 0.7176471, b: 1, a: 1}
     - _Color1: {r: 1, g: 0, b: 0, a: 1}
     - _Color2: {r: 1, g: 1, b: 1, a: 0}
     - _Edgecolor: {r: 1, g: 0.697198, b: 0, a: 0.666}
@@ -271,7 +271,7 @@ Material:
     - _Maincolor: {r: 1, g: 1, b: 1, a: 0.666}
     - _Mainpanningspeed: {r: 0, g: 0, b: 0, a: 0}
     - _OutlineTint: {r: 0.5294118, g: 0.5294118, b: 0.5294118, a: 0}
-    - _RimColor: {r: 1, g: 1, b: 1, a: 0}
+    - _RimColor: {r: 0.1462264, g: 0.91697377, b: 1, a: 0}
     - _Secondarycolor: {r: 0, g: 0, b: 0, a: 0}
     - _Secondarypanningspeed: {r: 0, g: 0, b: 0, a: 0}
     - _SpecColor: {r: 1, g: 1, b: 1, a: 0}

@@ -108,6 +108,7 @@ public class UIManager : MonoSingleton<UIManager>
             if (test[i].ToString() == "1")
             {
                 Debug.Log("!!!!");
+                CheckSkinData[i].moneyText.color = Color.yellow;
                 CheckSkinData[i].moneyText.text = "OK        ";
                 CheckSkinData[i].moneyImg.enabled = false;
                 CheckSkinData[i].BuyCheck = true;
@@ -143,6 +144,7 @@ public class UIManager : MonoSingleton<UIManager>
             if (test[i].ToString() == "1")
             {
                 Debug.Log("!!!!");
+                CheckEffectData[i].moneyText.color = Color.yellow;
                 CheckEffectData[i].moneyText.text = "OK        ";
                 CheckEffectData[i].moneyImg.enabled = false;
                 CheckEffectData[i].BuyCheck = true;
@@ -183,13 +185,13 @@ public class UIManager : MonoSingleton<UIManager>
 
                 for (int j = 0; j < 20; j++)
                 {
-                    SkinObj.transform.GetChild( j).gameObject.SetActive(false);
-
+                    //.transform.GetChild( j).gameObject.SetActive(false);
+                    SkinObj.transform.GetChild(j).GetComponent<Camera>().enabled = false;
                 }
                 for (int j=0; j<9; j++)
                 {
-                    SkinObj.transform.GetChild((i*3) +j).gameObject.SetActive(true);
-                   
+                    //SkinObj.transform.GetChild((i*3) +j).gameObject.SetActive(true);
+                    SkinObj.transform.GetChild((i * 3) + j).GetComponent<Camera>().enabled = true;
                     // SkinObj.transform.GetChild(1).name
                 }
             }
@@ -205,13 +207,13 @@ public class UIManager : MonoSingleton<UIManager>
 
                 for (int j = 0; j < 20; j++)
                 {
-                    EffectObj.transform.GetChild(j).gameObject.SetActive(false);
-
+                    //EffectObj.transform.GetChild(j).gameObject.SetActive(false);
+                    EffectObj.transform.GetChild(j).GetComponent<Camera>().enabled = false;
                 }
                 for (int j = 0; j < 9; j++)
                 {
-                    EffectObj.transform.GetChild((i * 3) + j).gameObject.SetActive(true);
-
+                    //EffectObj.transform.GetChild((i * 3) + j).gameObject.SetActive(true);
+                    EffectObj.transform.GetChild((i * 3) + j).GetComponent<Camera>().enabled = true;
                     // SkinObj.transform.GetChild(1).name
                 }
             }
@@ -221,7 +223,7 @@ public class UIManager : MonoSingleton<UIManager>
     public void FreeSkin()
     {
         GameManager.Instance.SkinADState = true;
-        ADManager.Instance.ShowInterstitialAd();
+        ADManager.Instance.ShowRewardAd();
         
 
         BuyIMG.SetActive(false);
@@ -231,7 +233,7 @@ public class UIManager : MonoSingleton<UIManager>
     public void FreeEffect()
     {
         GameManager.Instance.EffectADState = true;
-        ADManager.Instance.ShowInterstitialAd();
+        ADManager.Instance.ShowRewardAd();
 
 
         BuyEffectIMG.SetActive(false);
@@ -241,7 +243,7 @@ public class UIManager : MonoSingleton<UIManager>
     public void GoldViewAD()
     {
         GameManager.Instance.GoldADState = true;
-        ADManager.Instance.ShowInterstitialAd();        
+        ADManager.Instance.ShowRewardAd();        
         GameManager.Instance.ReStart();
     }
 
@@ -357,6 +359,7 @@ public class UIManager : MonoSingleton<UIManager>
                 if (test[i].ToString() == "1")
                 {
                     Debug.Log("!!!!");
+                    CheckSkinData[i].moneyText.color = Color.yellow;
                     CheckSkinData[i].moneyText.text = "OK        ";
                     CheckSkinData[i].moneyImg.enabled = false;
                     CheckSkinData[i].BuyCheck = true;
@@ -424,6 +427,7 @@ public class UIManager : MonoSingleton<UIManager>
                 if (test[i].ToString() == "1")
                 {
                     Debug.Log("!!!!");
+                    CheckEffectData[i].moneyText.color = Color.yellow;
                     CheckEffectData[i].moneyText.text = "OK        ";
                     CheckEffectData[i].moneyImg.enabled = false;
                     CheckEffectData[i].BuyCheck = true;
@@ -478,13 +482,13 @@ public class UIManager : MonoSingleton<UIManager>
 
                     for (int j = 0; j < 20; j++)
                     {
-                        SkinObj.transform.GetChild(j).gameObject.SetActive(false);
-
+                        //SkinObj.transform.GetChild(j).gameObject.SetActive(false);
+                        SkinObj.transform.GetChild(j).GetComponent<Camera>().enabled = false;
                     }
                     for (int j = 0; j < 9; j++)
                     {
-                        SkinObj.transform.GetChild((i * 3) + j).gameObject.SetActive(true);
-
+                        //SkinObj.transform.GetChild((i * 3) + j).gameObject.SetActive(true);
+                        SkinObj.transform.GetChild((i * 3) + j).GetComponent<Camera>().enabled = true;
                         // SkinObj.transform.GetChild(1).name
                     }
                 }
@@ -523,13 +527,13 @@ public class UIManager : MonoSingleton<UIManager>
 
                     for (int j = 0; j < 20; j++)
                     {
-                        EffectObj.transform.GetChild(j).gameObject.SetActive(false);
-
+                        //EffectObj.transform.GetChild(j).gameObject.SetActive(false);
+                        EffectObj.transform.GetChild(j).GetComponent<Camera>().enabled = false;
                     }
                     for (int j = 0; j < 9; j++)
                     {
-                        EffectObj.transform.GetChild((i * 3) + j).gameObject.SetActive(true);
-
+                        //EffectObj.transform.GetChild((i * 3) + j).gameObject.SetActive(true);
+                        EffectObj.transform.GetChild((i * 3) + j).GetComponent<Camera>().enabled = true;
                         // SkinObj.transform.GetChild(1).name
                     }
                 }
@@ -606,7 +610,23 @@ public class UIManager : MonoSingleton<UIManager>
     public void ViewAD()
     {
         GameManager.Instance.Gold += GameManager.Instance.RewardGold;
+        GameManager.Instance.ADVideoCount++;
+        if (GameManager.Instance.ADVideoCount%2==0)
+        {
+            //ADManager.Instance.ShowInterstitialAd();
+            ADManager.Instance.ShowRewardAd();
+            
+        } 
+        else if (GameManager.Instance.ADVideoCount % 2 == 1)
+        {
+            Debug.Log("adsf");
+            ADManager.Instance.ShowRewardedAd();
+
+          
+        }
         GameManager.Instance.ReStart();
+        Debug.Log("GameManager.Instance.ShowRewardedAd" + GameManager.Instance.ADVideoCount);
+
     }
 
     IEnumerator cor_Gold2CountDown()

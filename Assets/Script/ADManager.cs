@@ -1,9 +1,12 @@
 ﻿using System;
 using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
 using GoogleMobileAds.Api;
-
+using UnityEngine.Advertisements;
 public class ADManager : MonoSingleton<ADManager>
 {
+    //애드몹 id
     RewardBasedVideoAd ad;
     [SerializeField]
     string appId;
@@ -19,11 +22,16 @@ public class ADManager : MonoSingleton<ADManager>
     public AdPosition position;
     bool active;
     private InterstitialAd interstitialAd;
-    
+
+    //유니티 ads id
+    private const string android_game_id = "xxxxxxx";
+    private const string ios_game_id = "xxxxxxx";
+    private const string rewarded_video_id = "rewardedVideo";
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        Initialize();
     }
 
     public void init()
@@ -31,25 +39,21 @@ public class ADManager : MonoSingleton<ADManager>
         MobileAds.Initialize(appId);
         ad = RewardBasedVideoAd.Instance;
 
-        //광고 요청이 성공적으로 로드되면 호출됩니다.
-        ad.OnAdLoaded += OnAdLoaded;
-        //광고 요청을 로드하지 못했을 때 호출됩니다.
-        ad.OnAdFailedToLoad += OnAdFailedToLoad;
-        //광고가 표시될 때 호출됩니다.
-        ad.OnAdOpening += OnAdOpening;
-        //광고가 재생되기 시작하면 호출됩니다.
-        ad.OnAdStarted += OnAdStarted;
-        //사용자가 비디오 시청을 통해 보상을 받을 때 호출됩니다.
-        ad.OnAdRewarded += OnAdRewarded;
-        //광고가 닫힐 때 호출됩니다.
-        ad.OnAdClosed += OnAdClosed;
-        //광고 클릭으로 인해 사용자가 애플리케이션을 종료한 경우 호출됩니다.
-        ad.OnAdLeavingApplication += OnAdLeavingApplication;
+      
 
-        //LoadAd();
+        LoadAd();
         RequestInterstitialAd();
         InitAd();
         banner.Show();
+    }
+
+    private void Initialize()
+    {
+#if UNITY_ANDROID
+        Advertisement.Initialize(android_game_id);
+#elif UNITY_IOS
+        Advertisement.Initialize(ios_game_id);
+#endif
     }
 
     void InitAd()
@@ -85,13 +89,74 @@ public class ADManager : MonoSingleton<ADManager>
         interstitialAd.OnAdClosed += HandleOnInterstitialAdClosed;
 
     }
+    void LoadAd()
+    {
+        AdRequest request = new AdRequest.Builder().Build();
+        if (isTest)
+        {
+            if (deviceId.Length > 0)
+                request = new AdRequest.Builder().AddTestDevice(AdRequest.TestDeviceSimulator).AddTestDevice(deviceId).Build();
+            else
+                unitId = "ca-app-pub-3940256099942544/5224354917"; //테스트 유닛 ID
+
+        }
+        ad.LoadAd(request, unitId);
+
+        //광고 요청이 성공적으로 로드되면 호출됩니다.
+        ad.OnAdLoaded += OnAdLoaded;
+        //광고 요청을 로드하지 못했을 때 호출됩니다.
+        ad.OnAdFailedToLoad += OnAdFailedToLoad;
+        //광고가 표시될 때 호출됩니다.
+        ad.OnAdOpening += OnAdOpening;
+        //광고가 재생되기 시작하면 호출됩니다.
+        ad.OnAdStarted += OnAdStarted;
+        //사용자가 비디오 시청을 통해 보상을 받을 때 호출됩니다.
+        ad.OnAdRewarded += OnAdRewarded;
+        //광고가 닫힐 때 호출됩니다.
+        ad.OnAdClosed += OnAdClosed;
+        //광고 클릭으로 인해 사용자가 애플리케이션을 종료한 경우 호출됩니다.
+        ad.OnAdLeavingApplication += OnAdLeavingApplication;
+    }
 
     public void HandleOnInterstitialAdClosed(object sender, EventArgs args)
     {
         print("HandleOnInterstitialAdClosed event received.");
 
-       
-        if(GameManager.Instance.SkinADState)
+        //if(GameManager.Instance.SkinADState)
+        //{
+        //    GameObject.Find("Player").GetComponentInChildren<SkinnedMeshRenderer>().material = GameManager.Instance.TempMat;
+        //    GameManager.Instance.SkinADState = false;
+        //}
+        //if (GameManager.Instance.EffectADState)
+        //{
+        //    //이미지 변환작업해야됨
+        //    MeshRenderer[] rs = GameObject.Find("PlayerWing").GetComponentsInChildren<MeshRenderer>();
+        //    foreach (MeshRenderer r in rs)
+        //    {
+        //        r.material = Resources.Load("Material/Wing_Sub " + GameManager.Instance.CurrEffect.ToString()) as Material;
+        //    }
+        //    GameManager.Instance.EffectADState = false;
+        //}
+
+        //if (GameManager.Instance.GoldADState)
+        //{
+        //    GameManager.Instance.Gold += (GameManager.Instance.RewardGold * 2);
+        //    GameManager.Instance.GoldADState = false;
+        //}
+
+        interstitialAd.Destroy();
+
+        RequestInterstitialAd();
+    }
+
+    void OnAdLoaded(object sender, EventArgs args) { Debug.Log("OnAdLoaded"); }
+    void OnAdFailedToLoad(object sender, AdFailedToLoadEventArgs e) { Debug.Log("OnAdFailedToLoad"); }
+    void OnAdOpening(object sender, EventArgs e) { Debug.Log("OnAdOpening"); }
+    void OnAdStarted(object sender, EventArgs e) { Debug.Log("OnAdStarted"); }
+    void OnAdRewarded(object sender, Reward e) { Debug.Log("OnAdRewarded");
+        print("HandleOnInterstitialAdClosed event received.");
+
+        if (GameManager.Instance.SkinADState)
         {
             GameObject.Find("Player").GetComponentInChildren<SkinnedMeshRenderer>().material = GameManager.Instance.TempMat;
             GameManager.Instance.SkinADState = false;
@@ -112,11 +177,14 @@ public class ADManager : MonoSingleton<ADManager>
             GameManager.Instance.Gold += (GameManager.Instance.RewardGold * 2);
             GameManager.Instance.GoldADState = false;
         }
-
-        interstitialAd.Destroy();
-
-        RequestInterstitialAd();
+        LoadAd();
     }
+    void OnAdClosed(object sender, EventArgs e)
+    {
+        Debug.Log("OnAdClosed");
+        LoadAd();
+    }
+    void OnAdLeavingApplication(object sender, EventArgs e) { Debug.Log("OnAdLeavingApplication"); }
 
     public void ShowInterstitialAd()
     {
@@ -127,6 +195,17 @@ public class ADManager : MonoSingleton<ADManager>
         }
 
         interstitialAd.Show();
+    }
+
+
+    public void ShowRewardAd()
+    {
+        if (!ad.IsLoaded())
+        {
+            LoadAd();
+            return;
+        }
+        ad.Show();
     }
 
     //public void ToggleAd()
@@ -143,44 +222,71 @@ public class ADManager : MonoSingleton<ADManager>
     //    }
 
     //}
-
-    void LoadAd()
+    //유니티 ads 부분
+    public void ShowRewardedAd()
     {
-        AdRequest request = new AdRequest.Builder().Build();
-        if (isTest)
+        if (Advertisement.IsReady(rewarded_video_id))
         {
-            if (deviceId.Length > 0)
-                request = new AdRequest.Builder().AddTestDevice(AdRequest.TestDeviceSimulator).AddTestDevice(deviceId).Build();
-            else
-                unitId = "ca-app-pub-3940256099942544/5224354917"; //테스트 유닛 ID
+            var options = new ShowOptions { resultCallback = HandleShowResult };
 
-        }
-        ad.LoadAd(request, unitId);
-    }
-
-    public void OnBtnViewAdClicked()
-    {
-        if (ad.IsLoaded())
-        {
-            Debug.Log("View Ad");
-            ad.Show();
-        }
-        else
-        {
-            Debug.Log("Ad is Not Loaded");
-            LoadAd();
+            Advertisement.Show(rewarded_video_id, options);
         }
     }
 
-    void OnAdLoaded(object sender, EventArgs args) { Debug.Log("OnAdLoaded"); }
-    void OnAdFailedToLoad(object sender, AdFailedToLoadEventArgs e) { Debug.Log("OnAdFailedToLoad"); }
-    void OnAdOpening(object sender, EventArgs e) { Debug.Log("OnAdOpening"); }
-    void OnAdStarted(object sender, EventArgs e) { Debug.Log("OnAdStarted"); }
-    void OnAdRewarded(object sender, Reward e) { Debug.Log("OnAdRewarded"); }
-    void OnAdClosed(object sender, EventArgs e)
+    private void HandleShowResult(ShowResult result)
     {
-        Debug.Log("OnAdClosed");
-        LoadAd();
+        switch (result)
+        {
+            case ShowResult.Finished:
+                {
+                    Debug.Log("The ad was successfully shown.");
+
+                    // to do ...
+                    // 광고 시청이 완료되었을 때 처리
+                    if (GameManager.Instance.SkinADState)
+                    {
+                        GameObject.Find("Player").GetComponentInChildren<SkinnedMeshRenderer>().material = GameManager.Instance.TempMat;
+                        GameManager.Instance.SkinADState = false;
+                    }
+                    if (GameManager.Instance.EffectADState)
+                    {
+                        //이미지 변환작업해야됨
+                        MeshRenderer[] rs = GameObject.Find("PlayerWing").GetComponentsInChildren<MeshRenderer>();
+                        foreach (MeshRenderer r in rs)
+                        {
+                            r.material = Resources.Load("Material/Wing_Sub " + GameManager.Instance.CurrEffect.ToString()) as Material;
+                        }
+                        GameManager.Instance.EffectADState = false;
+                    }
+
+                    if (GameManager.Instance.GoldADState)
+                    {
+                        GameManager.Instance.Gold += (GameManager.Instance.RewardGold * 2);
+                        GameManager.Instance.GoldADState = false;
+                    }
+                    //GameManager.Instance.ReStart();
+                    break;
+                }
+            case ShowResult.Skipped:
+                {
+                    Debug.Log("The ad was skipped before reaching the end.");
+                    //GameManager.Instance.ReStart();
+                    // to do ...
+                    // 광고가 스킵되었을 때 처리
+
+                    break;
+                }
+            case ShowResult.Failed:
+                {
+                    Debug.LogError("The ad failed to be shown.");
+                    //GameManager.Instance.ReStart();
+                    // to do ...
+                    // 광고 시청에 실패했을 때 처리
+
+                    break;
+                }
+        }
     }
-    void OnAdLeavingApplication(object sender, EventArgs e) { Debug.Log("OnAdLeavingApplication"); }
+
+
 }

@@ -161,6 +161,17 @@ public class GameManager : MonoSingleton<GameManager>
         }
     }
 
+    private int aDVideoCount;
+    public int ADVideoCount
+    {
+        get { return aDVideoCount; }
+        set
+        {
+            aDVideoCount = value;
+        }
+    }
+
+
     public int distance;
     public bool isGamePlaying = false;
 
