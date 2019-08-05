@@ -204,6 +204,7 @@ public class player : MonoBehaviour
             if (tr.position.y >= 0.4f)
             {
                 currJumpPower = jumpPower * 0.9f;
+                upPower *= 0.97f;
                 GameManager.Instance.SetJudgement(eJudgement.Excellent);
                 // 진동
                 if (GameManager.Instance.isVibration == true)
@@ -212,6 +213,7 @@ public class player : MonoBehaviour
             else if (tr.position.y >= -0.1f)
             {
                 currJumpPower = jumpPower * 0.8f;
+                upPower *= 0.9f;
                 GameManager.Instance.SetJudgement(eJudgement.Good);
                 // 진동
                 if (GameManager.Instance.isVibration == true)
