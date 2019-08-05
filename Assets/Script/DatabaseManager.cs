@@ -4,6 +4,7 @@ using UnityEngine;
 using Mono.Data.Sqlite;
 using System.IO;
 using System.Data;
+using System;
 
 public class DataTable
 {
@@ -11,20 +12,24 @@ public class DataTable
     public int bestScore;
     public int openSkinList;
     public int currSkin;
-    public int upPower;
-    public int forwardPower;
+    public int upPowerLevel;
+    public int forwardPowerLevel;
+    public int offlineGoldLevel;
     public int openEffectList;
     public int currEffect;
-    public DataTable(int _gold, int _bestScore, int _openSkinList, int _currSkin, int _upPower, int _forwardPower, int _openEffectList, int _currEffect)
+    public string dateTime;
+    public DataTable(int _gold, int _bestScore, int _openSkinList, int _currSkin, int _upPowerLevel, int _forwardPower, int _offlineGoldLevel, int _openEffectList, int _currEffect, string _dateTime)
     {
         gold = _gold;
         bestScore = _bestScore;
         openSkinList = _openSkinList;
         currSkin = _currSkin;
-        upPower = _upPower;
-        forwardPower = _forwardPower;
+        upPowerLevel = _upPowerLevel;
+        forwardPowerLevel = _forwardPower;
+        offlineGoldLevel = _offlineGoldLevel;
         openEffectList = _openEffectList;
         currEffect = _currEffect;
+        dateTime = _dateTime;
     }
 }
 
@@ -191,7 +196,7 @@ public class DatabaseManager : MonoSingleton<DatabaseManager>
                     while (reader.Read())
                     {
                         // Debug.Log(reader.GetString(1));  //  타입명 . (몇 열에있는것을 부를것인가)
-                        ItemList.Add(new DataTable(reader.GetInt32(0), reader.GetInt32(1), reader.GetInt32(2), reader.GetInt32(3), reader.GetInt32(4), reader.GetInt32(5), reader.GetInt32(6), reader.GetInt32(7)));
+                        ItemList.Add(new DataTable(reader.GetInt32(0), reader.GetInt32(1), reader.GetInt32(2), reader.GetInt32(3), reader.GetInt32(4), reader.GetInt32(5), reader.GetInt32(6), reader.GetInt32(7), reader.GetInt32(8), reader.GetString(9)));
                     }
 
                     reader.Close();
@@ -222,7 +227,7 @@ public class DatabaseManager : MonoSingleton<DatabaseManager>
             using (IDbCommand dbCmd = dbConnection.CreateCommand())  // EnterSqL에 명령 할 수 있다. 
             {
                 string sqlQuery = "INSERT INTO " + Test_DB_Table.DatabaseTable.ToString() +
-                    " (Gold, BestScore, OpenSkinList, CurrSkin, UpPower, ForwardPower, OpenEffectList, CurrEffect) VALUES (0, 0, 0, 0, 1, 1, 0 ,0)";
+                    " (Gold, BestScore, OpenSkinList, CurrSkin, UpPowerLevel, ForwardPowerLevel, OpenEffectList, CurrEffect, DateTime) VALUES (0, 0, 0, 0, 1, 1, 0, 0 ,0, 0)";
                 dbCmd.CommandText = sqlQuery;
 
                 using (IDataReader reader = dbCmd.ExecuteReader()) // 테이블에 있는 데이터들이 들어간다. 
@@ -236,7 +241,7 @@ public class DatabaseManager : MonoSingleton<DatabaseManager>
     }
 
     // 속성값 수정
-    public void UpdateItemTable(int _gold, int _bestScore, int _openSkinList, int _currSkin, int _upPower, int _forwardPower, int _openEffectList, int _currEffect)
+    public void UpdateItemTable(int _gold, int _bestScore, int _openSkinList, int _currSkin, int _upPowerLevel, int _forwardPowerLevel, int _offlineGoldLevel, int _openEffectList, int _currEffect)
     {
         string connectionString = "URI=file:" + Filepath;
 
@@ -248,7 +253,40 @@ public class DatabaseManager : MonoSingleton<DatabaseManager>
             using (IDbCommand dbCmd = dbConnection.CreateCommand())  // EnterSqL에 명령 할 수 있다. 
             {
                 string sqlQuery = "UPDATE " + Test_DB_Table.DatabaseTable.ToString() +
-                    " SET Gold='" + _gold + "', BestScore='" + _bestScore + "', OpenSkinList='" + _openSkinList + "', CurrSkin='" + _currSkin + "', UpPower='" + _upPower + "', ForwardPower='" + _forwardPower + "', OpenEffectList='" + _openEffectList + "', CurrEffect='" + _currEffect + "'" ;
+                    " SET Gold='" + _gold + "', BestScore='" + _bestScore + "', OpenSkinList='" + _openSkinList + "', CurrSkin='" + _currSkin + "', UpPowerLevel='" + _upPowerLevel + "', ForwardPowerLevel='" + _forwardPowerLevel + "',OfflineGoldLevel='" + _offlineGoldLevel + "', OpenEffectList='" + _openEffectList + "', CurrEffect='" + _currEffect + "'";
+
+                dbCmd.CommandText = sqlQuery;
+
+                using (IDataReader reader = dbCmd.ExecuteReader()) // 테이블에 있는 데이터들이 들어간다. 
+                {
+                    //while (reader.Read())
+                    //{
+                    //    // Debug.Log(reader.GetString(1));  //  타입명 . (몇 열에있는것을 부를것인가)
+                    //    ItemList.Add(new DataTable(reader.GetInt32(0), reader.GetInt32(1), reader.GetInt32(2), reader.GetInt32(3), reader.GetInt32(4), reader.GetInt32(5)));
+                    //}
+
+                    reader.Close();
+                    dbCmd.Dispose();
+                    dbConnection.Close();
+                }
+            }
+        }
+        SelectItemTable();
+    }
+    // time값 수정
+    public void UpdateItemTable(string _dateTime)
+    {
+        string connectionString = "URI=file:" + Filepath;
+
+        //ItemList.Clear();
+
+        using (IDbConnection dbConnection = new SqliteConnection(connectionString))
+        {
+            dbConnection.Open();
+            using (IDbCommand dbCmd = dbConnection.CreateCommand())  // EnterSqL에 명령 할 수 있다. 
+            {
+                string sqlQuery = "UPDATE " + Test_DB_Table.DatabaseTable.ToString() +
+                    " SET DateTime='" + _dateTime + "'";
 
                 dbCmd.CommandText = sqlQuery;
 
@@ -300,4 +338,9 @@ public class DatabaseManager : MonoSingleton<DatabaseManager>
         }
         Debug.Log(re);
     }
+    private void OnApplicationQuit()
+    {
+        UpdateItemTable(DateTime.Now.ToString("yyyyMMddHHmmss"));
+    }
+
 }

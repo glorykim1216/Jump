@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System;
 
 public class GameManager : MonoSingleton<GameManager>
 {
@@ -73,6 +74,16 @@ public class GameManager : MonoSingleton<GameManager>
             forwardPowerLevel = value;
             DatabaseSave(isDBLoad);
 
+        }
+    }
+    private int offlineGoldLevel;
+    public int OfflineGoldLevel
+    {
+        get { return offlineGoldLevel; }
+        set
+        {
+            offlineGoldLevel = value;
+            DatabaseSave(isDBLoad);
         }
     }
 
@@ -171,6 +182,15 @@ public class GameManager : MonoSingleton<GameManager>
         }
     }
 
+    private string saveDateTime;
+    public string SaveDateTime
+    {
+        get { return SaveDateTime; }
+        set
+        {
+            saveDateTime = value;
+        }
+    }
 
     public int distance;
     public bool isGamePlaying = false;
@@ -185,12 +205,12 @@ public class GameManager : MonoSingleton<GameManager>
     private void Awake()
     {
         Screen.SetResolution(720, 1280, true);
-    
+
         DatabaseManager.Instance.Load();
         ADManager.Instance.init();
         Init();
         isDBLoad = true;
-
+        GetOfflineGold();
         //BestScore = 0;
         //Gold = Gold;
     }
@@ -204,17 +224,19 @@ public class GameManager : MonoSingleton<GameManager>
         BestScore = DatabaseManager.Instance.ItemList[0].bestScore;
         OpenSkinList = DatabaseManager.Instance.ItemList[0].openSkinList;
         CurrSkin = DatabaseManager.Instance.ItemList[0].currSkin;
-        UpPowerLevel = DatabaseManager.Instance.ItemList[0].upPower;
-        ForwardPowerLevel = DatabaseManager.Instance.ItemList[0].forwardPower;
+        UpPowerLevel = DatabaseManager.Instance.ItemList[0].upPowerLevel;
+        ForwardPowerLevel = DatabaseManager.Instance.ItemList[0].forwardPowerLevel;
+        OfflineGoldLevel = DatabaseManager.Instance.ItemList[0].offlineGoldLevel;
         OpenEffectList = DatabaseManager.Instance.ItemList[0].openEffectList;
         CurrEffect = DatabaseManager.Instance.ItemList[0].currEffect;
+        SaveDateTime = DatabaseManager.Instance.ItemList[0].dateTime;
         isDBLoad = true;
     }
     // DB 저장
     public void DatabaseSave(bool _value)
     {
         if (_value)
-            DatabaseManager.Instance.UpdateItemTable(gold, bestScore, openSkinList, currSkin, upPowerLevel, forwardPowerLevel,openEffectList,currEffect);
+            DatabaseManager.Instance.UpdateItemTable(gold, bestScore, openSkinList, currSkin, upPowerLevel, forwardPowerLevel, offlineGoldLevel, openEffectList, currEffect);
     }
     void Update()
     {
@@ -227,7 +249,6 @@ public class GameManager : MonoSingleton<GameManager>
         // 신기록
         if (distance >= bestScore)
             NewBestScore();
-
     }
 
     // 게이지 출력
@@ -291,5 +312,17 @@ public class GameManager : MonoSingleton<GameManager>
     public void ReStart()
     {
         SceneManager.LoadScene("SampleScene");
+    }
+
+    public void GetOfflineGold()
+    {
+        //TEST
+        DateTime oldTime = DateTime.ParseExact(saveDateTime, "yyyyMMddHHmmss", System.Globalization.CultureInfo.InstalledUICulture);
+        TimeSpan span = DateTime.Now - oldTime;
+
+        // 초 단위로 변경
+        Debug.Log(span.TotalSeconds);
+
+        // 아래 골드 값 반환 필요 return int
     }
 }
