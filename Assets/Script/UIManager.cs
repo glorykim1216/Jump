@@ -58,6 +58,7 @@ public class UIManager : MonoSingleton<UIManager>
     GameObject SkinObj;
     GameObject EffectObj;
 
+   
     public player Player;
     public override void Init() { }
 
@@ -598,6 +599,7 @@ public class UIManager : MonoSingleton<UIManager>
         resultGoldBtnText.text = resultGoldText.text;
 
         ResultUI.SetActive(true);
+        gold2CountDown.enabled = true;
         StartCoroutine(cor_Gold2CountDown());
     }
 
@@ -617,7 +619,8 @@ public class UIManager : MonoSingleton<UIManager>
             gold2CountDown.text = ((int)time).ToString();
             if (time < 1)
             {
-                resultGoldDoubleBtn.gameObject.SetActive(false);
+                gold2CountDown.enabled = false;
+                //resultGoldDoubleBtn.gameObject.SetActive(false);
                 isCountDown = false;
             }
 
