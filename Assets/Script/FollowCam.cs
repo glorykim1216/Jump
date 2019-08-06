@@ -11,10 +11,13 @@ public class FollowCam : MonoBehaviour
     public float speed = 5;
     private Transform tr;             // 카메라 
     Vector3 camPos;
-
+    Color CamColor;
     void Start()
     {
-        tr = this.transform;        
+        tr = this.transform;
+        CamColor = new Color();
+        CamColor = Color.HSVToRGB(Random.Range(0,360) / 360f, 91f / 100f, 100f / 100f, true);
+        this.GetComponent<Camera>().backgroundColor = CamColor;
     }
     
     void FixedUpdate()

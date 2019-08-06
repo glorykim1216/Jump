@@ -61,7 +61,9 @@ public class UIManager : MonoSingleton<UIManager>
    
     public player Player;
     public override void Init() { }
-
+    public ParticleSystem UiPs;
+    ParticleSystem.MainModule UipsMain;
+    ParticleSystem.ShapeModule UipsShape;
     void Start()
     {
         //tween 시작시 2번클릭 방지
@@ -86,7 +88,9 @@ public class UIManager : MonoSingleton<UIManager>
         EffectScrollViewObj.SetActive(false);
         
         GameManager.Instance.Init();
-
+        UipsMain = UiPs.main;
+        UipsShape = UiPs.shape;
+        UipsMain.loop = true;
         StartCoroutine("cor_CrossBannerAnim");
     }
 
@@ -642,6 +646,10 @@ public class UIManager : MonoSingleton<UIManager>
                 gold2CountDown.enabled = false;
                 //resultGoldDoubleBtn.gameObject.SetActive(false);
                 isCountDown = false;
+
+                UipsMain.loop = false;
+                UipsShape.sphericalDirectionAmount = 1f;
+
             }
 
             yield return null;
