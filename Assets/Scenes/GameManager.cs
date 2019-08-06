@@ -210,7 +210,7 @@ public class GameManager : MonoSingleton<GameManager>
         ADManager.Instance.init();
         Init();
         isDBLoad = true;
-        GetOfflineGold();
+        Gold += GetOfflineGold();
         //BestScore = 0;
         //Gold = Gold;
     }
@@ -314,15 +314,13 @@ public class GameManager : MonoSingleton<GameManager>
         SceneManager.LoadScene("SampleScene");
     }
 
-    public void GetOfflineGold()
+    public int GetOfflineGold()
     {
-        //TEST
         DateTime oldTime = DateTime.ParseExact(saveDateTime, "yyyyMMddHHmmss", System.Globalization.CultureInfo.InstalledUICulture);
         TimeSpan span = DateTime.Now - oldTime;
 
         // 초 단위로 변경
-        Debug.Log(span.TotalSeconds);
-
-        // 아래 골드 값 반환 필요 return int
+        double temp = (span.TotalSeconds / 60) * offlineGoldLevel;
+        return (int)temp;
     }
 }
