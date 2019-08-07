@@ -24,6 +24,8 @@ public class UIManager : MonoSingleton<UIManager>
     public Button resultGoldBtn;
     public Button resultGoldDoubleBtn;
 
+    public Button instagramBtn;
+
     public Text resultScoreText;
     public Text resultGoldText;
     public Text resultGoldBtnText;
@@ -74,6 +76,7 @@ public class UIManager : MonoSingleton<UIManager>
         vibrationBtn.onClick.AddListener(VibrationOption);
         resultGoldBtn.onClick.AddListener(ViewAD);
         crossBanner.GetComponent<Button>().onClick.AddListener(OpenPlayStore);
+        instagramBtn.GetComponent<Button>().onClick.AddListener(() => { Application.OpenURL("https://www.instagram.com/gamenest_studio/"); });
         VibrationOnOffCheck();
 
         SkinObj = skinEffectObj.transform.Find("Skin").gameObject;
