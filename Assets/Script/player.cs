@@ -27,10 +27,10 @@ public class player : MonoBehaviour
     private bool isAlive = true;
 
     // wall
-    public Transform wall1;
-    public Transform wall2;
+    public Transform[] wall;
+    private int wallNum;
     private float loopPosition;
-    private float loopValue = 1000;
+    private float loopValue = 2000;
     private bool isMove = false;
 
     public Transform bestScoreWall;
@@ -41,7 +41,7 @@ public class player : MonoBehaviour
 
     public Animator leftWing;
     public Animator rightWing;
-    
+
     void Start()
     {
         splashPrefab = Resources.Load("Prefabs/Splash") as GameObject;
@@ -55,8 +55,6 @@ public class player : MonoBehaviour
         psMain.loop = false;
 
         // wall
-        wall1 = GameObject.Find("wall1").transform;
-        wall2 = GameObject.Find("wall2").transform;
         loopPosition = loopValue;
 
         bestScoreWall = GameObject.Find("BestScoreWall").transform;
@@ -76,7 +74,7 @@ public class player : MonoBehaviour
         if (GameManager.Instance.isGamePlaying == false)
             return;
 
-        
+
 
         // wall 이동
         if (tr.position.z > loopPosition)
@@ -137,7 +135,7 @@ public class player : MonoBehaviour
 
         if (rigid.velocity.magnitude <= 1f)
         {
-            
+
             stayEnd = true;
             psMain.loop = false;
             waterPs.Stop();
@@ -152,13 +150,13 @@ public class player : MonoBehaviour
         // 실제 인스턴스 생성. GameObject name의 기본값은 Bullet (clone)
         Splash.name = "bullet"; // name을 변경
         Splash.transform.position = this.transform.position;
-        
+
         leftWing.SetBool("jumpMotion", true);
         leftWing.SetBool("standMotion", false);
-       
+
         rightWing.SetBool("jumpMotion", true);
         rightWing.SetBool("standMotion", false);
-       
+
     }
     void OnTriggerStay(Collider collision) // 충돌한 대상의 collision을 얻는다.
     {
@@ -170,7 +168,7 @@ public class player : MonoBehaviour
         {
             psMain.loop = true;
             waterPs.Play();
-            
+
         }
     }
     void OnTriggerExit(Collider collision) // 충돌한 대상의 collision을 얻는다.
@@ -287,13 +285,14 @@ public class player : MonoBehaviour
     // wall loop
     void WallMove()
     {
-        loopPosition += loopValue;
+        loopPosition += loopValue*2;
 
-        if (isMove == false)
-            wall1.position = new Vector3(wall1.position.x, wall1.position.y, loopPosition);
+        wall[wallNum].position = new Vector3(0, 0, loopPosition);
+
+        if (wallNum < 3)
+            wallNum++;
         else
-            wall2.position = new Vector3(wall2.position.x, wall2.position.y, loopPosition);
+            wallNum = 0;
 
-        isMove = !isMove;
     }
 }
