@@ -7,13 +7,13 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Wing_Sub 12
-  m_Shader: {fileID: 4800000, guid: 8783ad2aa5d4a4f40a192f448bfec2dc, type: 3}
+  m_Name: Wing_Sub 21
+  m_Shader: {fileID: 4800000, guid: 700497b4ba648da45853f7a84bd50e4f, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 1
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: 2450
+  m_CustomRenderQueue: -1
   stringTagMap: {}
   disabledShaderPasses: []
   m_SavedProperties:
@@ -36,7 +36,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Albedo:
-        m_Texture: {fileID: 2800000, guid: 7a170cdb7cc88024cb628cfcdbb6705c, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Atlas:
@@ -73,6 +73,10 @@ Material:
         m_Offset: {x: 0, y: 0}
     - _DetailNormalMap:
         m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Diffuse:
+        m_Texture: {fileID: 2800000, guid: 80ee511a5808d8d499a8ca850b8a2129, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _EmissionMap:
@@ -140,27 +144,43 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _TextureSample0:
-        m_Texture: {fileID: 2800000, guid: 4c907719e05f7df47886dd716c0c1c0b, type: 3}
-        m_Scale: {x: 1.46, y: 1.19}
-        m_Offset: {x: -0.27, y: 0}
+        m_Texture: {fileID: 2800000, guid: 94897d6d4dbef3c47bbfb5b828589b72, type: 3}
+        m_Scale: {x: 1.38, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _TextureSample1:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
+        m_Texture: {fileID: 2800000, guid: 03a218ac894fb1743a88b5b77c4af6ed, type: 3}
+        m_Scale: {x: 1.38, y: 1}
         m_Offset: {x: 0, y: 0}
     - _TextureSample2:
-        m_Texture: {fileID: 2800000, guid: 4c907719e05f7df47886dd716c0c1c0b, type: 3}
-        m_Scale: {x: 0.65, y: 1.24}
+        m_Texture: {fileID: 2800000, guid: 94897d6d4dbef3c47bbfb5b828589b72, type: 3}
+        m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _TextureSample3:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _TileableFire:
-        m_Texture: {fileID: 2800000, guid: 7a170cdb7cc88024cb628cfcdbb6705c, type: 3}
+        m_Texture: {fileID: 2800000, guid: a7321f67a2dad304e9c5310cf1426925, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _ToonRamp:
+        m_Texture: {fileID: 2800000, guid: 06e687f68dd96f0448c6d8217bbcf608, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _TopTexture0:
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _WaterNormal:
         m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _albedo:
+        m_Texture: {fileID: 2800000, guid: 10ff51d2d87fb7b46b70b55f8551c146, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _albedotexture:
+        m_Texture: {fileID: 2800000, guid: 10ff51d2d87fb7b46b70b55f8551c146, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _char_woodman_normals:
@@ -193,6 +213,7 @@ Material:
     - GlowColorIntensity: 0
     - GlowEmissionMultiplier: 1
     - GlowOverride: 1
+    - _ASEOutlineWidth: 0
     - _AlbedoMix: 0.5
     - _BrickHeight: 0
     - _BrickTiling: 0
@@ -208,7 +229,7 @@ Material:
     - _Distortion: 0.5
     - _DstBlend: 0
     - _Falloff: 0.02
-    - _Float0: 0
+    - _Float0: 0.12
     - _Float1: 5
     - _FoamDepth: 0
     - _FoamFalloff: 0
@@ -224,6 +245,8 @@ Material:
     - _OcclusionStrength: 1
     - _Opacity: 1
     - _Parallax: 0.02
+    - _RimOffset: 0.24
+    - _RimPower: 3.67
     - _Size: 0.1
     - _Slope: 0.4
     - _Smoothness: 1
@@ -266,8 +289,9 @@ Material:
     - _node_803: 3.19
     m_Colors:
     - EmberColorTint: {r: 0.9926471, g: 0.6777384, b: 0, a: 1}
+    - _ASEOutlineColor: {r: 0, g: 0, b: 0, a: 0}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _Color0: {r: 0, g: 0, b: 0, a: 0}
+    - _Color0: {r: 1, g: 1, b: 1, a: 0}
     - _ColorWaveA: {r: 0.4485294, g: 0.313166, b: 0.1517085, a: 1}
     - _ColorWaveB: {r: 1, g: 0.376056, b: 0.05882353, a: 1}
     - _DeepColor: {r: 0, g: 0, b: 0, a: 0}
@@ -275,6 +299,7 @@ Material:
     - _Max: {r: 0, g: 0, b: 0, a: 0}
     - _Min: {r: 0, g: 0, b: 0, a: 0}
     - _PatternSize: {r: 0, g: 0, b: 0, a: 0}
+    - _RimColor: {r: 0, g: 1, b: 0.8758622, a: 0}
     - _ShalowColor: {r: 1, g: 1, b: 1, a: 0}
     - _TileSize: {r: 2, g: 2, b: 0, a: 0}
     - _TileSpeed: {r: 0, g: 0, b: 0, a: 0}
@@ -282,4 +307,5 @@ Material:
     - _TintColor: {r: 0.38235295, g: 0.38235295, b: 0.38235295, a: 1}
     - _UVOffset0: {r: 0.07, g: 0.1, b: 0.1, a: 0}
     - _UVOffset1: {r: -0.1, g: -0.1, b: -0.1, a: 0}
-    - _emission: {r: 0.24528301, g: 0.24528301, b: 0.24528301, a: 0}
+    - _emission: {r: 0.9741035, g: 0.36320752, b: 1, a: 0}
+    - _wingColor: {r: 0, g: 0, b: 0, a: 0}
