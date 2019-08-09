@@ -60488,6 +60488,7 @@ MonoBehaviour:
   effectScrollBar: {fileID: 756362654}
   Player: {fileID: 1937125052}
   UiPs: {fileID: 1274427920387124671}
+  audioVolume: {fileID: 591011732}
 --- !u!1 &1788105917
 GameObject:
   m_ObjectHideFlags: 0
@@ -64803,8 +64804,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameMode: 1
   upPower: 1
-  forwardPower: 2
-  jumpPower: 10
+  forwardPower: 1
+  jumpPower: 7
   currJumpPower: 0
   isJumping: 0
   tr: {fileID: 0}

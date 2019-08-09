@@ -198,8 +198,8 @@ public class GameManager : MonoSingleton<GameManager>
     public int vibrationValue = 800;
     public bool isVibration = true;
 
-    public float forwardPower = 2;
-    public float jumpPower = 10;
+    public float forwardPower = 1;
+    public float jumpPower = 7;
     public float halfLife = 0.5f;
 
     private float audioVolume = 1;
@@ -225,8 +225,15 @@ public class GameManager : MonoSingleton<GameManager>
 
         SoundManager.Instance.LoadSound();
         SoundManager.Instance.PlaySound(eSound.BGM.ToString(), true, audioVolume);
+        AudioVolume = 0;
+
+        SkillManager.Instance.LoadJson();
         //BestScore = 0;
         //Gold = Gold;
+
+        // TEST_CODE
+        SkillInfo info = SkillManager.Instance.GetValue(277);
+        Debug.Log(info.KEY + ":" + info.GOLD);
     }
     public new void Init()
     {

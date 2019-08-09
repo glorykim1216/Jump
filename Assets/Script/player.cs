@@ -7,8 +7,8 @@ public class player : MonoBehaviour
 {
     public eMode gameMode = eMode.FirstWeak;
     public float upPower = 1;
-    public float forwardPower = 2;
-    public float jumpPower = 10;
+    public float forwardPower = 1;
+    public float jumpPower = 7;
     public float currJumpPower;
     public bool isJumping = false;
     public Transform tr;
@@ -168,7 +168,6 @@ public class player : MonoBehaviour
         {
             psMain.loop = true;
             waterPs.Play();
-            SoundManager.Instance.PlaySound(eSound.Water.ToString(), false, GameManager.Instance.AudioVolume);
         }
     }
     void OnTriggerExit(Collider collision) // 충돌한 대상의 collision을 얻는다.
