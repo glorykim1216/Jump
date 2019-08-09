@@ -202,6 +202,17 @@ public class GameManager : MonoSingleton<GameManager>
     public float jumpPower = 10;
     public float halfLife = 0.5f;
 
+    private float audioVolume = 1;
+    public float AudioVolume
+    {
+        get { return audioVolume; }
+        set
+        {
+            audioVolume = value;
+            SoundManager.Instance.SetAllVolume(audioVolume);
+        }
+    }
+
     private void Awake()
     {
         Screen.SetResolution(720, 1280, true);
@@ -211,6 +222,9 @@ public class GameManager : MonoSingleton<GameManager>
         Init();
         isDBLoad = true;
         Gold += GetOfflineGold();
+
+        SoundManager.Instance.LoadSound();
+        SoundManager.Instance.PlaySound(eSound.BGM.ToString(), true, audioVolume);
         //BestScore = 0;
         //Gold = Gold;
     }

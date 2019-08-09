@@ -168,7 +168,7 @@ public class player : MonoBehaviour
         {
             psMain.loop = true;
             waterPs.Play();
-
+            SoundManager.Instance.PlaySound(eSound.Water.ToString(), false, GameManager.Instance.AudioVolume);
         }
     }
     void OnTriggerExit(Collider collision) // 충돌한 대상의 collision을 얻는다.
@@ -231,6 +231,7 @@ public class player : MonoBehaviour
 
             rigid.velocity = new Vector3(0, 0, 0);
             rigid.AddForce((Vector3.up * upPower + Vector3.forward * forwardPower) * currJumpPower, ForceMode.Impulse);
+            SoundManager.Instance.PlaySound(eSound.Jump.ToString(), false, GameManager.Instance.AudioVolume);
 
             if (forwardPower < 15f)
                 forwardPower += speedIncreaseValue;

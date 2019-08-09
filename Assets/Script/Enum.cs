@@ -11,3 +11,9 @@ public enum eJudgement
     Excellent,
     MAX
 }
+public enum eSound
+{
+    BGM,
+    Water,
+    Jump,
+}

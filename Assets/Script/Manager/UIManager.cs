@@ -6,7 +6,7 @@ using Lofle.Tween;
 using UnityEngine.EventSystems;
 public class UIManager : MonoSingleton<UIManager>
 {
-   
+
     public GameObject OptionPopup;
     public GameObject LobbyUI;
     public GameObject InGameUI;
@@ -60,12 +60,15 @@ public class UIManager : MonoSingleton<UIManager>
     GameObject SkinObj;
     GameObject EffectObj;
 
-   
+
     public player Player;
     public override void Init() { }
     public ParticleSystem UiPs;
     ParticleSystem.MainModule UipsMain;
     ParticleSystem.ShapeModule UipsShape;
+
+    public Slider audioVolume;
+
     void Start()
     {
         //tween 시작시 2번클릭 방지
@@ -77,6 +80,8 @@ public class UIManager : MonoSingleton<UIManager>
         resultGoldBtn.onClick.AddListener(ViewAD);
         crossBanner.GetComponent<Button>().onClick.AddListener(OpenPlayStore);
         instagramBtn.GetComponent<Button>().onClick.AddListener(() => { Application.OpenURL("https://www.instagram.com/gamenest_studio/"); });
+        audioVolume.onValueChanged.AddListener((float value) => { GameManager.Instance.AudioVolume = value; });
+
         VibrationOnOffCheck();
 
         SkinObj = skinEffectObj.transform.Find("Skin").gameObject;
@@ -89,7 +94,7 @@ public class UIManager : MonoSingleton<UIManager>
         BuyEffectIMG.SetActive(false);
         SkinScrollViewObj.SetActive(false);
         EffectScrollViewObj.SetActive(false);
-        
+
         GameManager.Instance.Init();
         UipsMain = UiPs.main;
         UipsShape = UiPs.shape;
@@ -187,7 +192,7 @@ public class UIManager : MonoSingleton<UIManager>
     {
         for (int i = 0; i < 5; i++)
         {
-            if(skinScrollBar.value <=1-(0.2f*i) && skinScrollBar.value>1-(0.2f *(i+1)))
+            if (skinScrollBar.value <= 1 - (0.2f * i) && skinScrollBar.value > 1 - (0.2f * (i + 1)))
             {
 
                 for (int j = 0; j < 20; j++)
@@ -195,7 +200,7 @@ public class UIManager : MonoSingleton<UIManager>
                     //.transform.GetChild( j).gameObject.SetActive(false);
                     SkinObj.transform.GetChild(j).GetComponent<Camera>().enabled = false;
                 }
-                for (int j=0; j<9; j++)
+                for (int j = 0; j < 9; j++)
                 {
                     //SkinObj.transform.GetChild((i*3) +j).gameObject.SetActive(true);
                     SkinObj.transform.GetChild((i * 3) + j).GetComponent<Camera>().enabled = true;
@@ -231,7 +236,7 @@ public class UIManager : MonoSingleton<UIManager>
     {
         GameManager.Instance.SkinADState = true;
         ADManager.Instance.ShowRewardAd();
-        
+
 
         BuyIMG.SetActive(false);
         SkinScrollViewObj.SetActive(false);
@@ -250,7 +255,7 @@ public class UIManager : MonoSingleton<UIManager>
     public void GoldViewAD()
     {
         GameManager.Instance.GoldADState = true;
-        ADManager.Instance.ShowRewardAd();        
+        ADManager.Instance.ShowRewardAd();
         GameManager.Instance.ReStart();
     }
 
@@ -268,7 +273,7 @@ public class UIManager : MonoSingleton<UIManager>
 
             //구입후 이미지 변환 작성해야됨;
             GameObject.Find("Player").GetComponentInChildren<SkinnedMeshRenderer>().material = Resources.Load("Material/Icem" + GameManager.Instance.CurrSkin.ToString()) as Material;
-            
+
         }
         else
         {
@@ -279,7 +284,7 @@ public class UIManager : MonoSingleton<UIManager>
             SkinNumTemp = CurrentSkin;
             GameManager.Instance.TempMat = Resources.Load("Material/Icem" + SkinNumTemp.ToString()) as Material;
 
-            
+
             BuyIMG.SetActive(true);
             //BuyIMG.transform.Find("price").GetComponent<Text>().text = EventSystem.current.currentSelectedGameObject.GetComponent<CheckSkin>().needMoney.ToString();
 
@@ -304,8 +309,8 @@ public class UIManager : MonoSingleton<UIManager>
             EventSystem.current.currentSelectedGameObject.GetComponent<CheckEffect>().CheckImg.SetActive(true);
 
             //구입후 이미지 변환 작성해야됨;
-            MeshRenderer[] rs= GameObject.Find("PlayerWing").GetComponentsInChildren<MeshRenderer>();
-            foreach(MeshRenderer r in rs)
+            MeshRenderer[] rs = GameObject.Find("PlayerWing").GetComponentsInChildren<MeshRenderer>();
+            foreach (MeshRenderer r in rs)
             {
                 r.material = Resources.Load("Material/Wing_Sub " + GameManager.Instance.CurrEffect.ToString()) as Material;
             }
@@ -502,7 +507,7 @@ public class UIManager : MonoSingleton<UIManager>
             }
 
         }
-            
+
         else
         {
             BuyIMG.SetActive(false);
@@ -520,7 +525,7 @@ public class UIManager : MonoSingleton<UIManager>
     {
         if (!EffectScrollViewObj.activeSelf)
         {
-            
+
 
             skinEffectObj.SetActive(true);
             EffectScrollViewObj.SetActive(true);
@@ -545,14 +550,14 @@ public class UIManager : MonoSingleton<UIManager>
                     }
                 }
             }
-        }     
+        }
         else
         {
             BuyEffectIMG.SetActive(false);
             EffectScrollViewObj.SetActive(false);
             skinEffectObj.SetActive(false);
         }
-          
+
     }
 
     public void SkinSelectedValue()
@@ -605,7 +610,7 @@ public class UIManager : MonoSingleton<UIManager>
             resultNewBestScoreImage.SetActive(true);
         }
         resultScoreText.text = currScoreText.text;
- 
+
         resultGoldText.text = string.Format("{0:#,##0}", GameManager.Instance.RewardGold);
         resultGoldBtnText.text = resultGoldText.text;
 
@@ -618,18 +623,18 @@ public class UIManager : MonoSingleton<UIManager>
     {
         GameManager.Instance.Gold += GameManager.Instance.RewardGold;
         GameManager.Instance.ADVideoCount++;
-        if (GameManager.Instance.ADVideoCount%2==0)
+        if (GameManager.Instance.ADVideoCount % 2 == 0)
         {
             //ADManager.Instance.ShowInterstitialAd();
             ADManager.Instance.ShowRewardAd();
-            
-        } 
+
+        }
         else if (GameManager.Instance.ADVideoCount % 2 == 1)
         {
             Debug.Log("adsf");
             ADManager.Instance.ShowRewardedAd();
 
-          
+
         }
         GameManager.Instance.ReStart();
         Debug.Log("GameManager.Instance.ShowRewardedAd" + GameManager.Instance.ADVideoCount);
@@ -657,7 +662,7 @@ public class UIManager : MonoSingleton<UIManager>
 
             yield return null;
         }
-      
+
     }
 
     IEnumerator cor_CrossBannerAnim()
