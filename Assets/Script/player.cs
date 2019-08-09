@@ -77,8 +77,8 @@ public class player : MonoBehaviour
 
 
         // wall 이동
-        if (tr.position.z > loopPosition)
-            WallMove();
+        //if (tr.position.z > loopPosition)
+        //    WallMove();
 
         if (GameManager.Instance.BestScore > 10 && tr.position.z >= GameManager.Instance.BestScore - 100 && bestScoreWall.gameObject.activeSelf == false)
             bestScoreWall.gameObject.SetActive(true);

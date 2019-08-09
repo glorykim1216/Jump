@@ -13,7 +13,7 @@ Material:
   m_LightmapFlags: 1
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: 2450
+  m_CustomRenderQueue: -1
   stringTagMap: {}
   disabledShaderPasses: []
   m_SavedProperties:
@@ -36,7 +36,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Albedo:
-        m_Texture: {fileID: 2800000, guid: 7a170cdb7cc88024cb628cfcdbb6705c, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Atlas:
@@ -140,23 +140,23 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _TextureSample0:
-        m_Texture: {fileID: 2800000, guid: ab118c89f81b1d34ca4af7da0d8f6c40, type: 3}
-        m_Scale: {x: 1.71, y: 1.46}
-        m_Offset: {x: -0.49, y: 0}
+        m_Texture: {fileID: 2800000, guid: 24301464e902b7d4782c16ead9cfed00, type: 3}
+        m_Scale: {x: 2.98, y: 4.13}
+        m_Offset: {x: -0.52, y: -1.04}
     - _TextureSample1:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: bd734c29baceb63499732f24fbaea45f, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _TextureSample2:
-        m_Texture: {fileID: 2800000, guid: ab118c89f81b1d34ca4af7da0d8f6c40, type: 3}
-        m_Scale: {x: 1.37, y: 1.54}
-        m_Offset: {x: 0, y: 0.18}
+        m_Texture: {fileID: 2800000, guid: 2b1e7eedd7ee0e84495e702c91bc240a, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _TextureSample3:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _TileableFire:
-        m_Texture: {fileID: 2800000, guid: 7a170cdb7cc88024cb628cfcdbb6705c, type: 3}
+        m_Texture: {fileID: 2800000, guid: 5a5b20f962bdb22428da08e032649287, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _WaterNormal:
@@ -277,9 +277,9 @@ Material:
     - _PatternSize: {r: 0, g: 0, b: 0, a: 0}
     - _ShalowColor: {r: 1, g: 1, b: 1, a: 0}
     - _TileSize: {r: 2, g: 2, b: 0, a: 0}
-    - _TileSpeed: {r: 0, g: 0, b: 0, a: 0}
+    - _TileSpeed: {r: -24, g: 0, b: 0, a: 0}
     - _Tint: {r: 0, g: 0, b: 0, a: 0}
     - _TintColor: {r: 0.38235295, g: 0.38235295, b: 0.38235295, a: 1}
     - _UVOffset0: {r: 0.07, g: 0.1, b: 0.1, a: 0}
     - _UVOffset1: {r: -0.1, g: -0.1, b: -0.1, a: 0}
-    - _emission: {r: 0.6132076, g: 0.6132076, b: 0.6132076, a: 0}
+    - _emission: {r: 1, g: 0.941301, b: 0, a: 0}
