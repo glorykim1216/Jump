@@ -89,6 +89,7 @@ public class UIManager : MonoSingleton<UIManager>
                     GameManager.Instance.UpPowerLevel++;
                     jumpBtnLvText.text = "Lv " + SkillManager.Instance.GetValue(GameManager.Instance.UpPowerLevel).KEY;
                     jumpBtnGoldText.text = SkillManager.Instance.GetValue(GameManager.Instance.UpPowerLevel).GOLD;
+                    GameManager.Instance.SetJumpPower();
                 }
                 break;
             case eSkillBtn.Speed:
@@ -98,6 +99,7 @@ public class UIManager : MonoSingleton<UIManager>
                     GameManager.Instance.ForwardPowerLevel++;
                     speedBtnLvText.text = "Lv " + SkillManager.Instance.GetValue(GameManager.Instance.ForwardPowerLevel).KEY;
                     speedBtnGoldText.text = SkillManager.Instance.GetValue(GameManager.Instance.ForwardPowerLevel).GOLD;
+                    GameManager.Instance.SetForwardPower();
                 }
                 break;
             case eSkillBtn.OfflineGold:

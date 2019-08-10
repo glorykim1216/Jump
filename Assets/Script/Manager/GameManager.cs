@@ -224,7 +224,6 @@ public class GameManager : MonoSingleton<GameManager>
 
         SoundManager.Instance.LoadSound();
         SoundManager.Instance.PlaySound(eSound.BGM.ToString(), true, audioVolume);
-        AudioVolume = 0;
 
         SkillManager.Instance.LoadJson();
         // JSON_TEST_CODE
@@ -252,8 +251,17 @@ public class GameManager : MonoSingleton<GameManager>
         SaveDateTime = DatabaseManager.Instance.ItemList[0].dateTime;
         isDBLoad = true;
 
+        SetJumpPower();
+        SetForwardPower();
+    }
+    public void SetJumpPower()
+    {
         jumpPower = 10 + (17.0f / 300.0f) * (float)UpPowerLevel;
-        forwardPower = 2 + (48 / 300) * (float)ForwardPowerLevel;
+    }
+    public void SetForwardPower()
+    {
+        forwardPower = 2 + (48.0f / 300.0f) * (float)ForwardPowerLevel;
+
     }
     // DB 저장
     public void DatabaseSave(bool _value)
