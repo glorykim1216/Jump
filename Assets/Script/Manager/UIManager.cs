@@ -481,9 +481,9 @@ public class UIManager : MonoSingleton<UIManager>
     {
         if (!SkinScrollViewObj.activeSelf)
         {
-            skinEffectObj.SetActive(true);
+            skinEffectObj.SetActive(false);
             SkinScrollViewObj.SetActive(true);
-            skinEffectObj.transform.Find("Skin").gameObject.SetActive(true);
+            skinEffectObj.transform.Find("Skin").gameObject.SetActive(false);
             skinEffectObj.transform.Find("Effect").gameObject.SetActive(false);
 
             skinScrollBar.value = 1;
