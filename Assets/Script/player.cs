@@ -22,16 +22,10 @@ public class player : MonoBehaviour
     int jumpCount;
     bool stayEnd;
     bool isFever;
+    bool gameOverCheck;
     GameObject splashPrefab;
 
     private bool isAlive = true;
-
-    // wall
-    public Transform[] wall;
-    private int wallNum;
-    private float loopPosition;
-    private float loopValue = 2000;
-    private bool isMove = false;
 
     public Transform bestScoreWall;
 
@@ -54,9 +48,6 @@ public class player : MonoBehaviour
         psMain = waterPs.main;
         psMain.loop = false;
 
-        // wall
-        loopPosition = loopValue;
-
         bestScoreWall = GameObject.Find("BestScoreWall").transform;
         bestScoreWall.gameObject.SetActive(false);
         bestScoreWall.position = new Vector3(bestScoreWall.position.x, bestScoreWall.position.y, GameManager.Instance.BestScore);
@@ -74,8 +65,6 @@ public class player : MonoBehaviour
         if (GameManager.Instance.isGamePlaying == false)
             return;
 
-
-
         // wall 이동
         //if (tr.position.z > loopPosition)
         //    WallMove();
@@ -85,14 +74,21 @@ public class player : MonoBehaviour
 
         GameManager.Instance.distance = (int)tr.position.z;
 
+        if (firstJump == false && isFever == false && rigid.velocity.z < 0.2f)
+        {
+            StartCoroutine(GameManager.Instance.GameOver());
+        }
+
         if (isAlive == false)
             return;
 
-        if (firstJump == false && isFever == false && rigid.velocity.z < 0.2f)
+        if (gameOverCheck == true && tr.position.y < -0.1f)
         {
             GameManager.Instance.SetJudgement(eJudgement.Fail);
-            StartCoroutine(GameManager.Instance.GameOver());
+            isAlive = false;
         }
+
+
         //#if UNITY_ANDROID && !UNITY_EDITOR
         if (Application.platform == RuntimePlatform.Android)
         {
@@ -195,6 +191,7 @@ public class player : MonoBehaviour
                 currJumpPower = jumpPower;
                 rigid.AddForce((Vector3.up * upPower + Vector3.forward * forwardPower) * currJumpPower, ForceMode.Impulse);
                 firstJump = false;
+                StartCoroutine("cor_FirstJump");
                 return;
             }
 
@@ -282,17 +279,9 @@ public class player : MonoBehaviour
         }
         StartCoroutine(GameManager.Instance.GameOver());
     }
-    // wall loop
-    void WallMove()
+    IEnumerator cor_FirstJump()
     {
-        loopPosition += loopValue*2;
-
-        wall[wallNum].position = new Vector3(0, 0, loopPosition);
-
-        if (wallNum < 3)
-            wallNum++;
-        else
-            wallNum = 0;
-
+        yield return new WaitForSeconds(1);
+        gameOverCheck = true;
     }
 }
