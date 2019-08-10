@@ -17,3 +17,9 @@ public enum eSound
     Water,
     Jump,
 }
+public enum eSkillBtn
+{
+    Jump,
+    Speed,
+    OfflineGold
+}

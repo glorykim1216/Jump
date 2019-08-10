@@ -46,14 +46,19 @@ public class DatabaseManager : MonoSingleton<DatabaseManager>
     string m_NameDB = "TestDB.db";  // db 파일 이름
     string Filepath = string.Empty;
 
-    public void Load()
+    public bool Load()
     {
-        LoadDB();
-        LoadTable();
+        bool db = LoadDB();
+        bool table = LoadTable();
+
+        if (db && table)
+            return true;
+        else
+            return false;
     }
 
     // DB파일이 있는지 검사하고 없으면 생성
-    public void LoadDB()
+    public bool LoadDB()
     {
         if (Application.platform == RuntimePlatform.Android)
         {
@@ -80,10 +85,11 @@ public class DatabaseManager : MonoSingleton<DatabaseManager>
                 while (!loadDB.isDone) { }
             }
         }
+        return true;
     }
 
     // 테이블이 있는지 검사하고 없으면 생성
-    public void LoadTable()
+    public bool LoadTable()
     {
         bool isTable = true;
         string connectionString = "URI=file:" + Filepath;
@@ -122,6 +128,8 @@ public class DatabaseManager : MonoSingleton<DatabaseManager>
 
         }
         SelectItemTable();
+
+        return true;
     }
 
     // 테이블 생성
@@ -139,7 +147,7 @@ public class DatabaseManager : MonoSingleton<DatabaseManager>
 
                 // 테이블을 생성하는 SQL 쿼리문
                 string sqlQuery = "CREATE TABLE `" + Test_DB_Table.DatabaseTable.ToString() +
-                    "`( `Gold` INTEGER NOT NULL, `BestScore` INTEGER NOT NULL, `OpenSkinList` INTEGER NOT NULL, `CurrSkin` INTEGER NOT NULL, `UpPower` INTEGER NOT NULL, `ForwardPower` INTEGER NOT NULL, `OpenEffectList` INTEGER NOT NULL, `CurrEffect` INTEGER NOT NULL)";
+                    "`( `Gold` INTEGER NOT NULL, `BestScore` INTEGER NOT NULL, `OpenSkinList` INTEGER NOT NULL, `CurrSkin` INTEGER NOT NULL, `UpPowerLevel` INTEGER NOT NULL, `ForwardPowerLevel` INTEGER NOT NULL, `OfflineGoldLevel` INTEGER NOT NULL, `OpenEffectList` INTEGER NOT NULL, `CurrEffect` INTEGER NOT NULL)";
                 dbCmd.CommandText = sqlQuery;
 
                 using (IDataReader reader = dbCmd.ExecuteReader()) // 테이블에 있는 데이터들이 들어간다. 
@@ -227,7 +235,7 @@ public class DatabaseManager : MonoSingleton<DatabaseManager>
             using (IDbCommand dbCmd = dbConnection.CreateCommand())  // EnterSqL에 명령 할 수 있다. 
             {
                 string sqlQuery = "INSERT INTO " + Test_DB_Table.DatabaseTable.ToString() +
-                    " (Gold, BestScore, OpenSkinList, CurrSkin, UpPowerLevel, ForwardPowerLevel, OpenEffectList, CurrEffect, DateTime) VALUES (0, 0, 0, 0, 1, 1, 0, 0 ,0, 0)";
+                    " (Gold, BestScore, OpenSkinList, CurrSkin, UpPowerLevel, ForwardPowerLevel, OfflineGoldLevel, OpenEffectList, CurrEffect, DateTime) VALUES (0, 0, 0, 0, 1, 1, 1, 0, 0, 0)";
                 dbCmd.CommandText = sqlQuery;
 
                 using (IDataReader reader = dbCmd.ExecuteReader()) // 테이블에 있는 데이터들이 들어간다. 

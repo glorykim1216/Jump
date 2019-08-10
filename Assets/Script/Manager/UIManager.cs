@@ -6,7 +6,6 @@ using Lofle.Tween;
 using UnityEngine.EventSystems;
 public class UIManager : MonoSingleton<UIManager>
 {
-
     public GameObject OptionPopup;
     public GameObject LobbyUI;
     public GameObject InGameUI;
@@ -25,6 +24,17 @@ public class UIManager : MonoSingleton<UIManager>
     public Button resultGoldDoubleBtn;
 
     public Button instagramBtn;
+
+    public Button jumpBtn;
+    public Button speedBtn;
+    public Button offlineGoldBtn;
+
+    private Text jumpBtnLvText;
+    private Text jumpBtnGoldText;
+    private Text speedBtnLvText;
+    private Text speedBtnGoldText;
+    private Text offlineGoldBtnLvText;
+    private Text offlineGoldBtnGoldText;
 
     public Text resultScoreText;
     public Text resultGoldText;
@@ -68,10 +78,45 @@ public class UIManager : MonoSingleton<UIManager>
     ParticleSystem.ShapeModule UipsShape;
 
     public Slider audioVolume;
+    private void SkillBtn(eSkillBtn _value)
+    {
+        switch (_value)
+        {
+            case eSkillBtn.Jump:
+                if (GameManager.Instance.Gold > int.Parse(SkillManager.Instance.GetValue(GameManager.Instance.UpPowerLevel).GOLD))
+                {
+                    GameManager.Instance.Gold -= int.Parse(SkillManager.Instance.GetValue(GameManager.Instance.UpPowerLevel).GOLD);
+                    GameManager.Instance.UpPowerLevel++;
+                    jumpBtnLvText.text = "Lv " + SkillManager.Instance.GetValue(GameManager.Instance.UpPowerLevel).KEY;
+                    jumpBtnGoldText.text = SkillManager.Instance.GetValue(GameManager.Instance.UpPowerLevel).GOLD;
+                }
+                break;
+            case eSkillBtn.Speed:
+                if (GameManager.Instance.Gold > int.Parse(SkillManager.Instance.GetValue(GameManager.Instance.ForwardPowerLevel).GOLD))
+                {
+                    GameManager.Instance.Gold -= int.Parse(SkillManager.Instance.GetValue(GameManager.Instance.ForwardPowerLevel).GOLD);
+                    GameManager.Instance.ForwardPowerLevel++;
+                    speedBtnLvText.text = "Lv " + SkillManager.Instance.GetValue(GameManager.Instance.ForwardPowerLevel).KEY;
+                    speedBtnGoldText.text = SkillManager.Instance.GetValue(GameManager.Instance.ForwardPowerLevel).GOLD;
+                }
+                break;
+            case eSkillBtn.OfflineGold:
+                if (GameManager.Instance.Gold > int.Parse(SkillManager.Instance.GetValue(GameManager.Instance.OfflineGoldLevel).GOLD))
+                {
+                    GameManager.Instance.Gold -= int.Parse(SkillManager.Instance.GetValue(GameManager.Instance.OfflineGoldLevel).GOLD);
+                    GameManager.Instance.OfflineGoldLevel++;
+                    offlineGoldBtnLvText.text = "Lv " + SkillManager.Instance.GetValue(GameManager.Instance.OfflineGoldLevel).KEY;
+                    offlineGoldBtnGoldText.text = SkillManager.Instance.GetValue(GameManager.Instance.OfflineGoldLevel).GOLD;
+                }
+                break;
+        }
 
+    }
     void Start()
     {
-        //tween 시작시 2번클릭 방지
+        GameManager.Instance.Init();
+
+        //tween ½ÃÀÛ½Ã 2¹øÅ¬¸¯ ¹æÁö
         //tween.PlayReverse();
         skinEffectObj.SetActive(false);
         SkinScrollViewObj.SetActive(true);
@@ -81,6 +126,25 @@ public class UIManager : MonoSingleton<UIManager>
         crossBanner.GetComponent<Button>().onClick.AddListener(OpenPlayStore);
         instagramBtn.GetComponent<Button>().onClick.AddListener(() => { Application.OpenURL("https://www.instagram.com/gamenest_studio/"); });
         audioVolume.onValueChanged.AddListener((float value) => { GameManager.Instance.AudioVolume = value; });
+
+        jumpBtn.onClick.AddListener(() => SkillBtn(eSkillBtn.Jump));
+        speedBtn.onClick.AddListener(() => SkillBtn(eSkillBtn.Speed));
+        offlineGoldBtn.onClick.AddListener(() => SkillBtn(eSkillBtn.OfflineGold));
+
+        jumpBtnLvText = jumpBtn.transform.Find("LevelText").GetComponent<Text>();
+        jumpBtnGoldText = jumpBtn.transform.Find("GoldText").GetComponent<Text>();
+        speedBtnLvText = speedBtn.transform.Find("LevelText").GetComponent<Text>();
+        speedBtnGoldText = speedBtn.transform.Find("GoldText").GetComponent<Text>();
+        offlineGoldBtnLvText = offlineGoldBtn.transform.Find("LevelText").GetComponent<Text>();
+        offlineGoldBtnGoldText = offlineGoldBtn.transform.Find("GoldText").GetComponent<Text>();
+
+        jumpBtnLvText.text = "Lv " + SkillManager.Instance.GetValue(GameManager.Instance.UpPowerLevel).KEY;
+        jumpBtnGoldText.text = SkillManager.Instance.GetValue(GameManager.Instance.UpPowerLevel).GOLD;
+        speedBtnLvText.text = "Lv " + SkillManager.Instance.GetValue(GameManager.Instance.ForwardPowerLevel).KEY;
+        speedBtnGoldText.text = SkillManager.Instance.GetValue(GameManager.Instance.ForwardPowerLevel).GOLD;
+        offlineGoldBtnLvText.text = "Lv " + SkillManager.Instance.GetValue(GameManager.Instance.OfflineGoldLevel).KEY;
+        offlineGoldBtnGoldText.text = SkillManager.Instance.GetValue(GameManager.Instance.OfflineGoldLevel).GOLD;
+
 
         VibrationOnOffCheck();
 

@@ -198,8 +198,8 @@ public class GameManager : MonoSingleton<GameManager>
     public int vibrationValue = 800;
     public bool isVibration = true;
 
-    public float forwardPower = 1;
-    public float jumpPower = 7;
+    public float forwardPower = 2;
+    public float jumpPower = 10;
     public float halfLife = 0.5f;
 
     private float audioVolume = 1;
@@ -213,14 +213,13 @@ public class GameManager : MonoSingleton<GameManager>
         }
     }
 
-    private void Awake()
+    void Awake()
     {
         Screen.SetResolution(720, 1280, true);
 
-        DatabaseManager.Instance.Load();
-        ADManager.Instance.init();
+        isDBLoad = DatabaseManager.Instance.Load();
         Init();
-        isDBLoad = true;
+        ADManager.Instance.init();
         Gold += GetOfflineGold();
 
         SoundManager.Instance.LoadSound();
@@ -228,12 +227,12 @@ public class GameManager : MonoSingleton<GameManager>
         AudioVolume = 0;
 
         SkillManager.Instance.LoadJson();
+        // JSON_TEST_CODE
+        //SkillInfo skillInfo = SkillManager.Instance.GetValue(277);
+        //Debug.Log(skillInfo.KEY + ":" + skillInfo.GOLD);
+
         //BestScore = 0;
         //Gold = Gold;
-
-        // TEST_CODE
-        SkillInfo info = SkillManager.Instance.GetValue(277);
-        Debug.Log(info.KEY + ":" + info.GOLD);
     }
     public new void Init()
     {
@@ -252,6 +251,9 @@ public class GameManager : MonoSingleton<GameManager>
         CurrEffect = DatabaseManager.Instance.ItemList[0].currEffect;
         SaveDateTime = DatabaseManager.Instance.ItemList[0].dateTime;
         isDBLoad = true;
+
+        jumpPower = 10 + (17.0f / 300.0f) * (float)UpPowerLevel;
+        forwardPower = 2 + (48 / 300) * (float)ForwardPowerLevel;
     }
     // DB 저장
     public void DatabaseSave(bool _value)
@@ -341,7 +343,7 @@ public class GameManager : MonoSingleton<GameManager>
         TimeSpan span = DateTime.Now - oldTime;
 
         // 초 단위로 변경
-        double temp = (span.TotalSeconds / 60) * offlineGoldLevel;
+        double temp = (int)(span.TotalSeconds / 60) * offlineGoldLevel;
         return (int)temp;
     }
 }
