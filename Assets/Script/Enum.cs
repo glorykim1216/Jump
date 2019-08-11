@@ -14,7 +14,10 @@ public enum eJudgement
 public enum eSound
 {
     BGM,
+    button_UI,
+    button_UI_rise,
     Water,
+    drip,
     Jump,
 }
 public enum eSkillBtn

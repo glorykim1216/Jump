@@ -142,6 +142,8 @@ public class player : MonoBehaviour
     }
     void OnTriggerEnter(Collider collision) // 충돌한 대상의 collision을 얻는다.
     {
+        if (GameManager.Instance.isGamePlaying != false)
+            SoundManager.Instance.PlaySound(eSound.drip.ToString(), false, GameManager.Instance.AudioVolume);
         GameObject Splash = MonoBehaviour.Instantiate(splashPrefab) as GameObject;
         // 실제 인스턴스 생성. GameObject name의 기본값은 Bullet (clone)
         Splash.name = "bullet"; // name을 변경
@@ -182,7 +184,7 @@ public class player : MonoBehaviour
         if (isJumping == true)
         {
             isJumping = false;
-
+            SoundManager.Instance.PlaySound(eSound.Jump.ToString(), false, GameManager.Instance.AudioVolume);
             gage -= 10;
             GameManager.Instance.SetGagebar(gage / 100);
 
@@ -219,7 +221,7 @@ public class player : MonoBehaviour
                 StartCoroutine(GameManager.Instance.GameOver());
                 return;
             }
-            SoundManager.Instance.PlaySound(eSound.Jump.ToString(), false, GameManager.Instance.AudioVolume);
+          
 
             if (jumpCount < 2)
             {
