@@ -7,7 +7,9 @@ public class SoundManager : MonoSingleton<SoundManager>
     static int soundMaxNum = 5; // 사운드 동시 출력 최대 갯수
     public AudioSource[] audioSource = new AudioSource[soundMaxNum];
     private Dictionary<string, AudioClip> DicAudioClip = new Dictionary<string, AudioClip>();
-
+    int FileID;
+    int SoundID;
+    string[] SoundString;
     public void LoadSound()
     {
         // 사운드 동시 출력 최대 갯수 만큼 AudioSource 생성
@@ -25,8 +27,47 @@ public class SoundManager : MonoSingleton<SoundManager>
         {
             DicAudioClip.Add(resourcesAudioClip[i].name, resourcesAudioClip[i]);
         }
+        //안드로이드 사운드
+        // Set up Android Native Audio
+        AndroidNativeAudio.makePool();
+
+        //FileID = new int[System.Enum.GetValues(typeof(eSound)).Length];
+        //SoundID = new int[System.Enum.GetValues(typeof(eSound)).Length];
+        //SoundString = System.Enum.GetNames(typeof(eSound));
+        //for (int i=0; i< System.Enum.GetValues(typeof(eSound)).Length; i++)
+        //{
+        //    //Debug.Log(SoundString[i]);
+        //    if(i==0)
+        //        FileID[i] = AndroidNativeAudio.load("Sound/" + SoundString[i] + ".mp3");
+        //    else
+        //        FileID[i] = AndroidNativeAudio.load("Sound/" + SoundString[i] + ".wav");
+
+        //    Debug.Log(SoundString[i]);
+
+
+        //}
+
+        //FileID = AndroidNativeAudio.load("Sound/drip.wav");
+        //SoundID = AndroidNativeAudio.play(FileID);
+        //SoundID[1] = AndroidNativeAudio.play(FileID[1], 1, -1, 1, 1);
+
     }
 
+    void OnApplicationQuit()
+    {
+        // Clean up when done
+        //for (int i = 0; i < System.Enum.GetValues(typeof(eSound)).Length; i++)
+        //{
+            
+        //}
+        AndroidNativeAudio.unload(FileID);
+        AndroidNativeAudio.releasePool();
+    }
+    public void PlaySound(eSound _clip, int _loop = 0, float _volume = 1.0f)
+    {
+        //SoundID[FileID[(int)_clip]] = AndroidNativeAudio.play(FileID[(int)_clip], _volume,-_volume,1, _loop);
+        
+    }
     // 음원 재생 (음원, 반복 여부, 음량)
     public void PlaySound(string _clip, bool _loop = false, float _volume = 1.0f)
     {

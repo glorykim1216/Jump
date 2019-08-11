@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/GoogleTEST.unity
     guid: eaf72402f68a7a5488d7cad48ac1a85c
+  - enabled: 0
+    path: Assets/Android Native Audio/Examples/ANA/ANA Example.unity
+    guid: 4d3eda1bf1bc4374faa7bec0d87879f9
   m_configObjects: {}

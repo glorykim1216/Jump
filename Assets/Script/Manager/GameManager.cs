@@ -224,7 +224,7 @@ public class GameManager : MonoSingleton<GameManager>
 
         SoundManager.Instance.LoadSound();
         SoundManager.Instance.PlaySound(eSound.BGM.ToString(), true, audioVolume);
-
+        //SoundManager.Instance.PlaySound(eSound.BGM, 1, audioVolume);
         SkillManager.Instance.LoadJson();
         // JSON_TEST_CODE
         //SkillInfo skillInfo = SkillManager.Instance.GetValue(277);
