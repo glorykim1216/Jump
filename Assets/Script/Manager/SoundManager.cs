@@ -14,6 +14,9 @@ public class SoundManager : MonoSingleton<SoundManager>
         for (int i = 0; i < soundMaxNum; i++)
         {
             audioSource[i] = this.gameObject.AddComponent<AudioSource>();
+            audioSource[i].bypassEffects = true;
+            audioSource[i].bypassListenerEffects = true;
+            audioSource[i].bypassReverbZones = true;
         }
 
         // 사운드 로드
