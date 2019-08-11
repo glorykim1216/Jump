@@ -163,12 +163,14 @@ public class ADManager : MonoSingleton<ADManager>
         }
         if (GameManager.Instance.EffectADState)
         {
-            //이미지 변환작업해야됨
             MeshRenderer[] rs = GameObject.Find("PlayerWing").GetComponentsInChildren<MeshRenderer>();
             foreach (MeshRenderer r in rs)
             {
-                r.material = Resources.Load("Material/Wing_Sub " + GameManager.Instance.CurrEffect.ToString()) as Material;
+                //r.material = Resources.Load("Material/Wing_Sub " + UIManager.Instance.SkinNumTemp.ToString()) as Material;
+                r.material = GameManager.Instance.TempMat;
+
             }
+
             GameManager.Instance.EffectADState = false;
         }
 
