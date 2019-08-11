@@ -185,7 +185,7 @@ public class GameManager : MonoSingleton<GameManager>
     private string saveDateTime;
     public string SaveDateTime
     {
-        get { return SaveDateTime; }
+        get { return saveDateTime; }
         set
         {
             saveDateTime = value;
@@ -347,6 +347,9 @@ public class GameManager : MonoSingleton<GameManager>
 
     public int GetOfflineGold()
     {
+        if (saveDateTime == "0")
+            return 0;
+
         DateTime oldTime = DateTime.ParseExact(saveDateTime, "yyyyMMddHHmmss", System.Globalization.CultureInfo.InstalledUICulture);
         TimeSpan span = DateTime.Now - oldTime;
 

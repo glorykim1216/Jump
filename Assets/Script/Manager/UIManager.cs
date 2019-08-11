@@ -40,6 +40,8 @@ public class UIManager : MonoSingleton<UIManager>
     public Text resultGoldText;
     public Text resultGoldBtnText;
 
+    public Text countText;
+
     public GameObject SkinScrollViewObj;
     public GameObject EffectScrollViewObj;
     public Sprite vibOn;
@@ -118,8 +120,6 @@ public class UIManager : MonoSingleton<UIManager>
     {
         GameManager.Instance.Init();
 
-        //tween ½ÃÀÛ½Ã 2¹øÅ¬¸¯ ¹æÁö
-        //tween.PlayReverse();
         skinEffectObj.SetActive(false);
         SkinScrollViewObj.SetActive(true);
         EffectScrollViewObj.SetActive(true);
@@ -646,7 +646,7 @@ public class UIManager : MonoSingleton<UIManager>
         StopCoroutine("cor_CrossBannerAnim");
         LobbyUI.SetActive(false);
         InGameUI.SetActive(true);
-        GameManager.Instance.isGamePlaying = true;
+        StartCoroutine("cor_StartCount");
         Player.Init();
     }
     // 진동 옵션
@@ -754,5 +754,19 @@ public class UIManager : MonoSingleton<UIManager>
     public void OpenPlayStore()
     {
         Application.OpenURL("market://details?id=com.FakeWorld.Square");
+    }
+
+    IEnumerator cor_StartCount()
+    {
+        countText.text = "3";
+        yield return new WaitForSeconds(1.0f);
+        countText.text = "2";
+        yield return new WaitForSeconds(1.0f);
+        countText.text = "1";
+        yield return new WaitForSeconds(1.0f);
+        countText.text = "Go!";
+        yield return new WaitForSeconds(1.0f);
+        countText.gameObject.SetActive(false);
+        GameManager.Instance.isGamePlaying = true;
     }
 }
