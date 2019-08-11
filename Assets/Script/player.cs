@@ -219,6 +219,7 @@ public class player : MonoBehaviour
                 StartCoroutine(GameManager.Instance.GameOver());
                 return;
             }
+            SoundManager.Instance.PlaySound(eSound.Jump.ToString(), false, GameManager.Instance.AudioVolume);
 
             if (jumpCount < 2)
             {
@@ -227,7 +228,6 @@ public class player : MonoBehaviour
 
             rigid.velocity = new Vector3(0, 0, 0);
             rigid.AddForce((Vector3.up * upPower + Vector3.forward * forwardPower) * currJumpPower, ForceMode.Impulse);
-            SoundManager.Instance.PlaySound(eSound.Jump.ToString(), false, GameManager.Instance.AudioVolume);
 
             if (forwardPower < 15f)
                 forwardPower += speedIncreaseValue;
