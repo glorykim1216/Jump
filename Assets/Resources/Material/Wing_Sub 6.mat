@@ -36,7 +36,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Albedo:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: 1ce5e1005d360c64e9676b9703d17567, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Atlas:
@@ -140,15 +140,15 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _TextureSample0:
-        m_Texture: {fileID: 2800000, guid: 80ee511a5808d8d499a8ca850b8a2129, type: 3}
-        m_Scale: {x: 1, y: 1.71}
+        m_Texture: {fileID: 2800000, guid: b271b752f88ea45478b526f9a8b763b0, type: 3}
+        m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _TextureSample1:
-        m_Texture: {fileID: 2800000, guid: 4366a62ce0a96624c888482db714a1a8, type: 3}
+        m_Texture: {fileID: 2800000, guid: cccc116a6334dc1428687697c5a11d58, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _TextureSample2:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: b3d940e75e1f5d24684cd93a2758e1bf, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _TextureSample3:
@@ -156,7 +156,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _TileableFire:
-        m_Texture: {fileID: 2800000, guid: 32063ee55899abf44803d5bb0b4c618b, type: 3}
+        m_Texture: {fileID: 2800000, guid: 55dc59ed2ddca9f4f89077b8e7028f3f, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _WaterNormal:
@@ -208,8 +208,8 @@ Material:
     - _Distortion: 0.5
     - _DstBlend: 0
     - _Falloff: 0.02
-    - _Float0: 0.1
-    - _Float1: 5
+    - _Float0: 3.78
+    - _Float1: 1.75
     - _FoamDepth: 0
     - _FoamFalloff: 0
     - _FoamSmoothness: 0
@@ -277,9 +277,9 @@ Material:
     - _PatternSize: {r: 0, g: 0, b: 0, a: 0}
     - _ShalowColor: {r: 1, g: 1, b: 1, a: 0}
     - _TileSize: {r: 2, g: 2, b: 0, a: 0}
-    - _TileSpeed: {r: 0, g: 0, b: 0, a: 0}
+    - _TileSpeed: {r: -3, g: 0, b: 42.03, a: 48.3}
     - _Tint: {r: 0, g: 0, b: 0, a: 0}
     - _TintColor: {r: 0.38235295, g: 0.38235295, b: 0.38235295, a: 1}
     - _UVOffset0: {r: 0.07, g: 0.1, b: 0.1, a: 0}
     - _UVOffset1: {r: -0.1, g: -0.1, b: -0.1, a: 0}
-    - _emission: {r: 0.9339623, g: 0.5457363, b: 0, a: 0}
+    - _emission: {r: 0.7735849, g: 0.025542913, b: 0.10425498, a: 0}

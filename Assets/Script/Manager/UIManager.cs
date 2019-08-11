@@ -691,8 +691,8 @@ public class UIManager : MonoSingleton<UIManager>
         GameManager.Instance.ADVideoCount++;
         if (GameManager.Instance.ADVideoCount % 2 == 0)
         {
-            //ADManager.Instance.ShowInterstitialAd();
-            ADManager.Instance.ShowRewardAd();
+            ADManager.Instance.ShowInterstitialAd();
+            //ADManager.Instance.ShowRewardAd();
 
         }
         else if (GameManager.Instance.ADVideoCount % 2 == 1)

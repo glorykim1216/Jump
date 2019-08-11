@@ -122,7 +122,7 @@ public class ADManager : MonoSingleton<ADManager>
     {
         print("HandleOnInterstitialAdClosed event received.");
 
-        //if(GameManager.Instance.SkinADState)
+        //if (GameManager.Instance.SkinADState)
         //{
         //    GameObject.Find("Player").GetComponentInChildren<SkinnedMeshRenderer>().material = GameManager.Instance.TempMat;
         //    GameManager.Instance.SkinADState = false;

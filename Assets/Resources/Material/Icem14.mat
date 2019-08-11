@@ -261,7 +261,7 @@ Material:
     - _ASEOutlineColor: {r: 0, g: 0, b: 0, a: 0}
     - _BaseTint: {r: 1, g: 1, b: 1, a: 0}
     - _Color: {r: 1, g: 0, b: 0, a: 1}
-    - _Color0: {r: 0, g: 0.7176471, b: 1, a: 1}
+    - _Color0: {r: 0, g: 1, b: 0.11449838, a: 1}
     - _Color1: {r: 1, g: 0, b: 0, a: 1}
     - _Color2: {r: 1, g: 1, b: 1, a: 0}
     - _Edgecolor: {r: 1, g: 0.697198, b: 0, a: 0.666}
@@ -271,7 +271,7 @@ Material:
     - _Maincolor: {r: 1, g: 1, b: 1, a: 0.666}
     - _Mainpanningspeed: {r: 0, g: 0, b: 0, a: 0}
     - _OutlineTint: {r: 0.5294118, g: 0.5294118, b: 0.5294118, a: 0}
-    - _RimColor: {r: 0.1462264, g: 0.91697377, b: 1, a: 0}
+    - _RimColor: {r: 1, g: 1, b: 1, a: 0}
     - _Secondarycolor: {r: 0, g: 0, b: 0, a: 0}
     - _Secondarypanningspeed: {r: 0, g: 0, b: 0, a: 0}
     - _SpecColor: {r: 1, g: 1, b: 1, a: 0}
