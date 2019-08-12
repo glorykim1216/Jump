@@ -130,6 +130,7 @@ public class UIManager : MonoSingleton<UIManager>
         crossBanner.GetComponent<Button>().onClick.AddListener(OpenPlayStore);
         instagramBtn.GetComponent<Button>().onClick.AddListener(() => { Application.OpenURL("https://www.instagram.com/gamenest_studio/"); });
         audioVolume.onValueChanged.AddListener((float value) => { GameManager.Instance.AudioVolume = value; });
+        audioVolume.value = GameManager.Instance.AudioVolume;
 
         jumpBtn.onClick.AddListener(() => SkillBtn(eSkillBtn.Jump));
         speedBtn.onClick.AddListener(() => SkillBtn(eSkillBtn.Speed));
@@ -163,7 +164,6 @@ public class UIManager : MonoSingleton<UIManager>
         SkinScrollViewObj.SetActive(false);
         EffectScrollViewObj.SetActive(false);
 
-        GameManager.Instance.Init();
         UipsMain = UiPs.main;
         UipsShape = UiPs.shape;
         UipsMain.loop = true;
@@ -745,7 +745,7 @@ public class UIManager : MonoSingleton<UIManager>
     public void VibrationOption()
     {
         SoundManager.Instance.PlaySound(eSound.button_UI);
-        GameManager.Instance.isVibration = !GameManager.Instance.isVibration;
+        GameManager.Instance.IsVibration = !GameManager.Instance.IsVibration;
         //SoundManager.Instance.PlaySound(eSound.button_UI.ToString(), false, GameManager.Instance.AudioVolume);
         VibrationOnOffCheck();
     }
@@ -753,7 +753,7 @@ public class UIManager : MonoSingleton<UIManager>
     public void VibrationOnOffCheck()
     {
        
-        if (GameManager.Instance.isVibration == true)
+        if (GameManager.Instance.IsVibration == true)
         {
             vibrationBtn.GetComponent<Image>().sprite = vibOn;
         }

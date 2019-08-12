@@ -18,7 +18,10 @@ public class DataTable
     public int openEffectList;
     public int currEffect;
     public string dateTime;
-    public DataTable(int _gold, int _bestScore, int _openSkinList, int _currSkin, int _upPowerLevel, int _forwardPower, int _offlineGoldLevel, int _openEffectList, int _currEffect, string _dateTime)
+    public string soundVolume;
+    public int vibration;
+    public DataTable(int _gold, int _bestScore, int _openSkinList, int _currSkin, int _upPowerLevel, int _forwardPower, int _offlineGoldLevel
+        , int _openEffectList, int _currEffect, string _dateTime, string _soundVolume, int _vibration)
     {
         gold = _gold;
         bestScore = _bestScore;
@@ -30,6 +33,8 @@ public class DataTable
         openEffectList = _openEffectList;
         currEffect = _currEffect;
         dateTime = _dateTime;
+        soundVolume = _soundVolume;
+        vibration = _vibration;
     }
 }
 
@@ -147,7 +152,7 @@ public class DatabaseManager : MonoSingleton<DatabaseManager>
 
                 // 테이블을 생성하는 SQL 쿼리문
                 string sqlQuery = "CREATE TABLE `" + Test_DB_Table.DatabaseTable.ToString() +
-                    "`( `Gold` INTEGER NOT NULL, `BestScore` INTEGER NOT NULL, `OpenSkinList` INTEGER NOT NULL, `CurrSkin` INTEGER NOT NULL, `UpPowerLevel` INTEGER NOT NULL, `ForwardPowerLevel` INTEGER NOT NULL, `OfflineGoldLevel` INTEGER NOT NULL, `OpenEffectList` INTEGER NOT NULL, `CurrEffect` INTEGER NOT NULL)";
+                    "`( `Gold` INTEGER NOT NULL, `BestScore` INTEGER NOT NULL, `OpenSkinList` INTEGER NOT NULL, `CurrSkin` INTEGER NOT NULL, `UpPowerLevel` INTEGER NOT NULL, `ForwardPowerLevel` INTEGER NOT NULL, `OfflineGoldLevel` INTEGER NOT NULL, `OpenEffectList` INTEGER NOT NULL, `CurrEffect` INTEGER NOT NULL, `DataTime` TEXT NOT NULL, `SoundVolume` TEXT NOT NULL, `Vibration` INTEGER NOT NULL)";
                 dbCmd.CommandText = sqlQuery;
 
                 using (IDataReader reader = dbCmd.ExecuteReader()) // 테이블에 있는 데이터들이 들어간다. 
@@ -204,7 +209,7 @@ public class DatabaseManager : MonoSingleton<DatabaseManager>
                     while (reader.Read())
                     {
                         // Debug.Log(reader.GetString(1));  //  타입명 . (몇 열에있는것을 부를것인가)
-                        ItemList.Add(new DataTable(reader.GetInt32(0), reader.GetInt32(1), reader.GetInt32(2), reader.GetInt32(3), reader.GetInt32(4), reader.GetInt32(5), reader.GetInt32(6), reader.GetInt32(7), reader.GetInt32(8), reader.GetString(9)));
+                        ItemList.Add(new DataTable(reader.GetInt32(0), reader.GetInt32(1), reader.GetInt32(2), reader.GetInt32(3), reader.GetInt32(4), reader.GetInt32(5), reader.GetInt32(6), reader.GetInt32(7), reader.GetInt32(8), reader.GetString(9), reader.GetString(10), reader.GetInt32(11)));
                     }
 
                     reader.Close();
@@ -235,7 +240,7 @@ public class DatabaseManager : MonoSingleton<DatabaseManager>
             using (IDbCommand dbCmd = dbConnection.CreateCommand())  // EnterSqL에 명령 할 수 있다. 
             {
                 string sqlQuery = "INSERT INTO " + Test_DB_Table.DatabaseTable.ToString() +
-                    " (Gold, BestScore, OpenSkinList, CurrSkin, UpPowerLevel, ForwardPowerLevel, OfflineGoldLevel, OpenEffectList, CurrEffect, DateTime) VALUES (0, 0, 0, 0, 1, 1, 1, 0, 0, 0)";
+                    " (Gold, BestScore, OpenSkinList, CurrSkin, UpPowerLevel, ForwardPowerLevel, OfflineGoldLevel, OpenEffectList, CurrEffect, DateTime, SoundVolume, Vibration) VALUES (0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 1, 1)";
                 dbCmd.CommandText = sqlQuery;
 
                 using (IDataReader reader = dbCmd.ExecuteReader()) // 테이블에 있는 데이터들이 들어간다. 
@@ -314,38 +319,62 @@ public class DatabaseManager : MonoSingleton<DatabaseManager>
         }
         SelectItemTable();
     }
+    public void UpdateItemTable(string _soundVolume, int _vibration)
+    {
+        string connectionString = "URI=file:" + Filepath;
+
+        using (IDbConnection dbConnection = new SqliteConnection(connectionString))
+        {
+            dbConnection.Open();
+            using (IDbCommand dbCmd = dbConnection.CreateCommand())  // EnterSqL에 명령 할 수 있다. 
+            {
+                string sqlQuery = "UPDATE " + Test_DB_Table.DatabaseTable.ToString() +
+                    " SET SoundVolume='" + _soundVolume + "', Vibration='" + _vibration + "'";
+
+                dbCmd.CommandText = sqlQuery;
+
+                using (IDataReader reader = dbCmd.ExecuteReader()) // 테이블에 있는 데이터들이 들어간다. 
+                {
+                    reader.Close();
+                    dbCmd.Dispose();
+                    dbConnection.Close();
+                }
+            }
+        }
+        SelectItemTable();
+    }
 
     // TEST_CODE
-    public void test()
-    {
-        SelectItemTable();
-        //UpdateItemTable(0, 1, 2,1,1,1);
-        SelectItemTable();
+    //public void test()
+    //{
+    //    SelectItemTable();
+    //    //UpdateItemTable(0, 1, 2,1,1,1);
+    //    SelectItemTable();
 
 
-        //Skin 관련 진수변환 코드
-        // 10진수 to 2진수
-        int t = 8;
-        List<int> test = new List<int>();
-        for (int i = 0; t > 0; i++)
-        {
-            test.Add(t % 2);
-            t = t / 2;
-        }
-        for (int i = 0; i < test.Count; i++)
-        {
-            Debug.Log(test[i]);
-        }
-        Debug.Log("----------------");
+    //    //Skin 관련 진수변환 코드
+    //    // 10진수 to 2진수
+    //    int t = 8;
+    //    List<int> test = new List<int>();
+    //    for (int i = 0; t > 0; i++)
+    //    {
+    //        test.Add(t % 2);
+    //        t = t / 2;
+    //    }
+    //    for (int i = 0; i < test.Count; i++)
+    //    {
+    //        Debug.Log(test[i]);
+    //    }
+    //    Debug.Log("----------------");
 
-        // 2진수 to 10진수
-        int re = 0;
-        for (int i = 0; i < test.Count; i++)
-        {
-            re += test[i] * (int)Mathf.Pow(2, i);
-        }
-        Debug.Log(re);
-    }
+    //    // 2진수 to 10진수
+    //    int re = 0;
+    //    for (int i = 0; i < test.Count; i++)
+    //    {
+    //        re += test[i] * (int)Mathf.Pow(2, i);
+    //    }
+    //    Debug.Log(re);
+    //}
     private void OnApplicationQuit()
     {
         UpdateItemTable(DateTime.Now.ToString("yyyyMMddHHmmss"));
