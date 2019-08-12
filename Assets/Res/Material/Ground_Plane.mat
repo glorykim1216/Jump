@@ -9,8 +9,8 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: Ground_Plane
   m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
-  m_ShaderKeywords: _COLOR_ON _DETAIL_MULX2 _EMISSION _NORMALMAP _PARALLAXMAP _TEX_ON
-    _TOGGLESWITCH0_ON _VCOLOR_ON
+  m_ShaderKeywords: _COLOR_ON _DETAIL_MULX2 _EMISSION _NORMALMAP _PARALLAXMAP _SMOOTHNESS_TEXTURE_ALBEDO_CHANNEL_A
+    _TEX_ON _TOGGLESWITCH0_ON _VCOLOR_ON
   m_LightmapFlags: 1
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -61,7 +61,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BumpMap:
-        m_Texture: {fileID: 2800000, guid: 00e0021f9f2d77a4fb3d5957267488e7, type: 3}
+        m_Texture: {fileID: 2800000, guid: 4de629530ed1b0841ae9c2e46bf8d64e, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Checkers:
@@ -110,7 +110,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     - _EmissionMap:
         m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 12000}
+        m_Scale: {x: 1, y: 20000}
         m_Offset: {x: 0, y: 0}
     - _FalloffTex:
         m_Texture: {fileID: 0}
@@ -149,8 +149,8 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: efd0eee9e4394a94db1426ce0bb7a902, type: 3}
-        m_Scale: {x: 1, y: 12000}
+        m_Texture: {fileID: 2800000, guid: 9225278e4db734b4ca7c0c116243e2c1, type: 3}
+        m_Scale: {x: 1, y: 20000}
         m_Offset: {x: 0, y: 0}
     - _MainTexture:
         m_Texture: {fileID: 0}
@@ -297,7 +297,7 @@ Material:
     - _BaseSmoothness: 0.327
     - _Bias: 0
     - _Brightness: 2.16
-    - _BumpScale: 1
+    - _BumpScale: 0.82
     - _BurnOffset: 1
     - _BurnTilling: 1
     - _CharcoalMix: 1
@@ -328,7 +328,7 @@ Material:
     - _FresnelScale: 0
     - _Globalopacity: 0.881
     - _GlossMapScale: 1
-    - _Glossiness: 0
+    - _Glossiness: 0.669
     - _GlossyReflections: 1
     - _GradientHeight: 10.15
     - _HazeHAmp: 0
@@ -359,7 +359,7 @@ Material:
     - _Oscillation: 2
     - _Outerfresnelintensity: 1
     - _Outline: 0
-    - _Parallax: 0.0197
+    - _Parallax: 0.005
     - _Power: 2
     - _PulsationAmplitude: 1
     - _PulsationSpeed: 5
@@ -371,7 +371,7 @@ Material:
     - _Shininess: 0.7
     - _Size: 0.1
     - _Smoothness: 0
-    - _SmoothnessTextureChannel: 0
+    - _SmoothnessTextureChannel: 1
     - _SnowAmount: 0
     - _SoapAmount: 0
     - _Specular: 0
@@ -417,7 +417,7 @@ Material:
     - _EdgeColor: {r: 0.9411765, g: 0.9197947, b: 0.7474049, a: 0}
     - _Edgecolor: {r: 0.7941176, g: 0.1284602, b: 0.1284602, a: 0.666}
     - _Emission: {r: 0, g: 0, b: 0, a: 0}
-    - _EmissionColor: {r: 0.03773582, g: 0.03773582, b: 0.03773582, a: 1}
+    - _EmissionColor: {r: 0.16037738, g: 0.16037738, b: 0.16037738, a: 1}
     - _FlakesColor1: {r: 0.9528302, g: 0.25618547, b: 0.26997086, a: 0}
     - _FlakesColor2: {r: 1, g: 0.9310344, b: 0, a: 0}
     - _Flip: {r: 1, g: 1, b: 1, a: 1}
