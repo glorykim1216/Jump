@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Android Native Audio/Examples/ANA/ANA Example.unity
     guid: 4d3eda1bf1bc4374faa7bec0d87879f9
+  - enabled: 0
+    path: Assets/Android Native Audio/Examples/ANA Music/ANA Music Example.unity
+    guid: 5ae2270fa5e773c42bb50c87f889f9cc
   m_configObjects: {}

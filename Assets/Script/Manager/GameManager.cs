@@ -223,8 +223,10 @@ public class GameManager : MonoSingleton<GameManager>
         Gold += GetOfflineGold();
 
         SoundManager.Instance.LoadSound();
-        SoundManager.Instance.PlaySound(eSound.BGM.ToString(), true, audioVolume);
+        //SoundManager.Instance.PlaySound(eSound.BGM.ToString(), true, audioVolume);
         //SoundManager.Instance.PlaySound(eSound.BGM, 1, audioVolume);
+        //SoundManager.Instance.PlaySound(eSound.BGM, 1);
+        
         SkillManager.Instance.LoadJson();
         // JSON_TEST_CODE
         //SkillInfo skillInfo = SkillManager.Instance.GetValue(277);
@@ -232,6 +234,10 @@ public class GameManager : MonoSingleton<GameManager>
 
         //BestScore = 0;
         //Gold = Gold;
+    }
+    private void Start()
+    {
+        SoundManager.Instance.PlaySoundBackground();
     }
     public new void Init()
     {

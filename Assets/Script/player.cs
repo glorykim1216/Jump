@@ -144,7 +144,7 @@ public class player : MonoBehaviour
     {
         if (GameManager.Instance.isGamePlaying != false)
         {
-            SoundManager.Instance.PlaySound(eSound.drip);
+            SoundManager.Instance.PlaySound(eSound.drip, 0);
             //SoundManager.Instance.PlaySound(eSound.drip.ToString(), false, GameManager.Instance.AudioVolume);
         }
         GameObject Splash = MonoBehaviour.Instantiate(splashPrefab) as GameObject;
@@ -187,7 +187,7 @@ public class player : MonoBehaviour
         if (isJumping == true)
         {
             isJumping = false;
-            SoundManager.Instance.PlaySound(eSound.Jump);
+            SoundManager.Instance.PlaySound(eSound.Jump, 0);
             //SoundManager.Instance.PlaySound(eSound.Jump.ToString(), false, GameManager.Instance.AudioVolume);
             gage -= 10;
             GameManager.Instance.SetGagebar(gage / 100);
