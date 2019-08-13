@@ -208,7 +208,7 @@ public class player : MonoBehaviour
                 upPower *= 0.97f;
                 GameManager.Instance.SetJudgement(eJudgement.Excellent);
                 // 진동
-                if (GameManager.Instance.IsVibration == true)
+                if (GameManager.Instance.isVibration == true)
                     Vibration.Vibrate(GameManager.Instance.vibrationValue);
             }
             else if (tr.position.y >= -0.1f)
@@ -217,7 +217,7 @@ public class player : MonoBehaviour
                 upPower *= 0.9f;
                 GameManager.Instance.SetJudgement(eJudgement.Good);
                 // 진동
-                if (GameManager.Instance.IsVibration == true)
+                if (GameManager.Instance.isVibration == true)
                     Vibration.Vibrate((int)(GameManager.Instance.vibrationValue * 0.5f));
             }
             else
@@ -256,7 +256,7 @@ public class player : MonoBehaviour
 
         currJumpPower = jumpPower * 0.9f;
         // 진동
-        if (GameManager.Instance.IsVibration == true)
+        if (GameManager.Instance.isVibration == true)
             Vibration.Vibrate((int)(GameManager.Instance.vibrationValue * 0.5f));
 
         rigid.velocity = new Vector3(0, 0, 1);

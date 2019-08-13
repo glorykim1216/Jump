@@ -196,16 +196,7 @@ public class GameManager : MonoSingleton<GameManager>
     public bool isGamePlaying = false;
 
     public int vibrationValue = 800;
-    private bool isVibration = true;
-    public bool IsVibration
-    {
-        get { return isVibration; }
-        set
-        {
-            isVibration = value;
-            DatabaseManager.Instance.UpdateItemTable(audioVolume.ToString(), isVibration ? 1 : 0);
-        }
-    }
+    public bool isVibration = true;
 
     public float forwardPower = 2;
     public float jumpPower = 10;
@@ -219,7 +210,6 @@ public class GameManager : MonoSingleton<GameManager>
         {
             audioVolume = value;
             SoundManager.Instance.SetAllVolume(audioVolume);
-            DatabaseManager.Instance.UpdateItemTable(audioVolume.ToString(), IsVibration ? 1 : 0);
         }
     }
 
@@ -228,11 +218,11 @@ public class GameManager : MonoSingleton<GameManager>
         Screen.SetResolution(720, 1280, true);
 
         isDBLoad = DatabaseManager.Instance.Load();
-        SoundManager.Instance.LoadSound();
         Init();
         ADManager.Instance.init();
         Gold += GetOfflineGold();
 
+        SoundManager.Instance.LoadSound();
         SoundManager.Instance.PlaySound(eSound.BGM.ToString(), true, audioVolume);
         //SoundManager.Instance.PlaySound(eSound.BGM, 1, audioVolume);
         SkillManager.Instance.LoadJson();
@@ -251,16 +241,14 @@ public class GameManager : MonoSingleton<GameManager>
 
         Gold = DatabaseManager.Instance.ItemList[0].gold;
         BestScore = DatabaseManager.Instance.ItemList[0].bestScore;
-        openSkinList = DatabaseManager.Instance.ItemList[0].openSkinList;
-        currSkin = DatabaseManager.Instance.ItemList[0].currSkin;
-        upPowerLevel = DatabaseManager.Instance.ItemList[0].upPowerLevel;
-        forwardPowerLevel = DatabaseManager.Instance.ItemList[0].forwardPowerLevel;
-        offlineGoldLevel = DatabaseManager.Instance.ItemList[0].offlineGoldLevel;
-        openEffectList = DatabaseManager.Instance.ItemList[0].openEffectList;
-        currEffect = DatabaseManager.Instance.ItemList[0].currEffect;
-        saveDateTime = DatabaseManager.Instance.ItemList[0].dateTime;
-        isVibration = (DatabaseManager.Instance.ItemList[0].vibration == 1) ? true : false;
-        audioVolume = float.Parse(DatabaseManager.Instance.ItemList[0].soundVolume);
+        OpenSkinList = DatabaseManager.Instance.ItemList[0].openSkinList;
+        CurrSkin = DatabaseManager.Instance.ItemList[0].currSkin;
+        UpPowerLevel = DatabaseManager.Instance.ItemList[0].upPowerLevel;
+        ForwardPowerLevel = DatabaseManager.Instance.ItemList[0].forwardPowerLevel;
+        OfflineGoldLevel = DatabaseManager.Instance.ItemList[0].offlineGoldLevel;
+        OpenEffectList = DatabaseManager.Instance.ItemList[0].openEffectList;
+        CurrEffect = DatabaseManager.Instance.ItemList[0].currEffect;
+        SaveDateTime = DatabaseManager.Instance.ItemList[0].dateTime;
         isDBLoad = true;
 
         SetJumpPower();
