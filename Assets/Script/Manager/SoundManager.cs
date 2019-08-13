@@ -7,8 +7,9 @@ public class SoundManager : MonoSingleton<SoundManager>
     static int soundMaxNum = 5; // 사운드 동시 출력 최대 갯수
     public AudioSource[] audioSource = new AudioSource[soundMaxNum];
     private Dictionary<string, AudioClip> DicAudioClip = new Dictionary<string, AudioClip>();
-    int FileID;
-    int SoundID;
+    int[] FileID;
+    int[] SoundID;
+    int MusicID;
     string[] SoundString;
     public void LoadSound()
     {
@@ -29,44 +30,60 @@ public class SoundManager : MonoSingleton<SoundManager>
         }
         //안드로이드 사운드
         // Set up Android Native Audio
-        AndroidNativeAudio.makePool();
+        AndroidNativeAudio.makePool(16);
 
-        //FileID = new int[System.Enum.GetValues(typeof(eSound)).Length];
-        //SoundID = new int[System.Enum.GetValues(typeof(eSound)).Length];
-        //SoundString = System.Enum.GetNames(typeof(eSound));
-        //for (int i=0; i< System.Enum.GetValues(typeof(eSound)).Length; i++)
-        //{
-        //    //Debug.Log(SoundString[i]);
-        //    if(i==0)
-        //        FileID[i] = AndroidNativeAudio.load("Sound/" + SoundString[i] + ".mp3");
-        //    else
-        //        FileID[i] = AndroidNativeAudio.load("Sound/" + SoundString[i] + ".wav");
+       FileID = new int[System.Enum.GetValues(typeof(eSound)).Length];
+        Debug.Log("System.Enum.GetValues(typeof(eSound)).Length" + System.Enum.GetValues(typeof(eSound)).Length);
+        Debug.Log("FileID.Length" + FileID.Length);
 
-        //    Debug.Log(SoundString[i]);
+        SoundID = new int[System.Enum.GetValues(typeof(eSound)).Length];
 
+       
+        Debug.Log("SoundID.Length" + SoundID.Length);
 
-        //}
+        SoundString = System.Enum.GetNames(typeof(eSound));
+        for (int i = 0; i < System.Enum.GetValues(typeof(eSound)).Length; i++)
+        {
+            //Debug.Log(SoundString[i]);
+            if (i == 0)
+                FileID[i] = AndroidNativeAudio.load("Sound/" + SoundString[i] + ".mp3");
+            else
+                FileID[i] = AndroidNativeAudio.load("Sound/" + SoundString[i] + ".wav");
 
-        //FileID = AndroidNativeAudio.load("Sound/drip.wav");
-        //SoundID = AndroidNativeAudio.play(FileID);
-        //SoundID[1] = AndroidNativeAudio.play(FileID[1], 1, -1, 1, 1);
+            Debug.Log(SoundString[i]);
 
+            //SoundID[i] = AndroidNativeAudio.play(FileID[i], 1, -1, 1, 1);
+        }
     }
-
+    void Loaded(int musicID)
+    {
+        // Get music duration
+        Debug.Log("load end");
+    }
+    void StoppedStrings(int musicID)
+    {
+        Debug.Log("play start");
+    }
     void OnApplicationQuit()
     {
         // Clean up when done
+        for (int i = 0; i < System.Enum.GetValues(typeof(eSound)).Length; i++)
+        {
+            AndroidNativeAudio.unload(FileID[i]);
+        }
+        AndroidNativeAudio.releasePool();
+        ANAMusic.release(MusicID);
+    }
+    public void PlaySound(eSound enumS)
+    {
+        AndroidNativeAudio.setVolume(SoundID[(int)enumS], GameManager.Instance.AudioVolume);
+        SoundID[(int)enumS] = AndroidNativeAudio.play(FileID[(int)enumS], GameManager.Instance.AudioVolume);
+        AndroidNativeAudio.setVolume(SoundID[(int)enumS], GameManager.Instance.AudioVolume);
         //for (int i = 0; i < System.Enum.GetValues(typeof(eSound)).Length; i++)
         //{
-            
+        //    SoundID[i] = AndroidNativeAudio.play(FileID[i]);
         //}
-        AndroidNativeAudio.unload(FileID);
-        AndroidNativeAudio.releasePool();
-    }
-    public void PlaySound(eSound _clip, int _loop = 0, float _volume = 1.0f)
-    {
-        //SoundID[FileID[(int)_clip]] = AndroidNativeAudio.play(FileID[(int)_clip], _volume,-_volume,1, _loop);
-        
+        Debug.Log("GameManager.Instance.AudioVolume" + GameManager.Instance.AudioVolume);
     }
     // 음원 재생 (음원, 반복 여부, 음량)
     public void PlaySound(string _clip, bool _loop = false, float _volume = 1.0f)

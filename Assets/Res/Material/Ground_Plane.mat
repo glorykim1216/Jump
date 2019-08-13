@@ -61,7 +61,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BumpMap:
-        m_Texture: {fileID: 2800000, guid: 00e0021f9f2d77a4fb3d5957267488e7, type: 3}
+        m_Texture: {fileID: 2800000, guid: 17e606a8973ff3a4cbd23231747f93b4, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Checkers:
@@ -109,8 +109,8 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _EmissionMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 12000}
+        m_Texture: {fileID: 2800000, guid: 17352c00a3526a649a99b6de15c7da32, type: 3}
+        m_Scale: {x: 1, y: 20000}
         m_Offset: {x: 0, y: 0}
     - _FalloffTex:
         m_Texture: {fileID: 0}
@@ -149,8 +149,8 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: efd0eee9e4394a94db1426ce0bb7a902, type: 3}
-        m_Scale: {x: 1, y: 12000}
+        m_Texture: {fileID: 2800000, guid: a959d789c1904a340a8177ca624f3558, type: 3}
+        m_Scale: {x: 1, y: 20000}
         m_Offset: {x: 0, y: 0}
     - _MainTexture:
         m_Texture: {fileID: 0}
@@ -193,11 +193,11 @@ Material:
         m_Scale: {x: 1, y: 10000}
         m_Offset: {x: 0, y: 0}
     - _OcclusionMap:
-        m_Texture: {fileID: 2800000, guid: 120ede8c4897abf488ebbcd0d0b46ede, type: 3}
+        m_Texture: {fileID: 2800000, guid: 2239fdef444ad6543be6e55b56c2f578, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _ParallaxMap:
-        m_Texture: {fileID: 2800000, guid: 9f8d9d9e60979574ea22974d2e2c08d4, type: 3}
+        m_Texture: {fileID: 2800000, guid: 2239fdef444ad6543be6e55b56c2f578, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _R_AO_G_Edges:
@@ -354,12 +354,12 @@ Material:
     - _NoiseMultiply: 0
     - _NoiseScale: 0
     - _NoiseTilling: 5
-    - _OcclusionStrength: 0
+    - _OcclusionStrength: 1
     - _Opacity: 1
     - _Oscillation: 2
     - _Outerfresnelintensity: 1
     - _Outline: 0
-    - _Parallax: 0.0197
+    - _Parallax: 0.0384
     - _Power: 2
     - _PulsationAmplitude: 1
     - _PulsationSpeed: 5
@@ -417,7 +417,7 @@ Material:
     - _EdgeColor: {r: 0.9411765, g: 0.9197947, b: 0.7474049, a: 0}
     - _Edgecolor: {r: 0.7941176, g: 0.1284602, b: 0.1284602, a: 0.666}
     - _Emission: {r: 0, g: 0, b: 0, a: 0}
-    - _EmissionColor: {r: 0.03773582, g: 0.03773582, b: 0.03773582, a: 1}
+    - _EmissionColor: {r: 0.16037738, g: 0.16037738, b: 0.16037738, a: 1}
     - _FlakesColor1: {r: 0.9528302, g: 0.25618547, b: 0.26997086, a: 0}
     - _FlakesColor2: {r: 1, g: 0.9310344, b: 0, a: 0}
     - _Flip: {r: 1, g: 1, b: 1, a: 1}

@@ -82,7 +82,8 @@ public class UIManager : MonoSingleton<UIManager>
     public Slider audioVolume;
     private void SkillBtn(eSkillBtn _value)
     {
-        SoundManager.Instance.PlaySound(eSound.button_UI_rise.ToString(), false, GameManager.Instance.AudioVolume);
+        //SoundManager.Instance.PlaySound(eSound.button_UI_rise.ToString(), false, GameManager.Instance.AudioVolume);
+        SoundManager.Instance.PlaySound(eSound.button_UI_rise);
         switch (_value)
         {
             case eSkillBtn.Jump:
@@ -129,6 +130,7 @@ public class UIManager : MonoSingleton<UIManager>
         crossBanner.GetComponent<Button>().onClick.AddListener(OpenPlayStore);
         instagramBtn.GetComponent<Button>().onClick.AddListener(() => { Application.OpenURL("https://www.instagram.com/gamenest_studio/"); });
         audioVolume.onValueChanged.AddListener((float value) => { GameManager.Instance.AudioVolume = value; });
+        audioVolume.value = GameManager.Instance.AudioVolume;
 
         jumpBtn.onClick.AddListener(() => SkillBtn(eSkillBtn.Jump));
         speedBtn.onClick.AddListener(() => SkillBtn(eSkillBtn.Speed));
@@ -359,7 +361,8 @@ public class UIManager : MonoSingleton<UIManager>
 
     public void FreeSkin()
     {
-        SoundManager.Instance.PlaySound(eSound.button_UI.ToString(), false, GameManager.Instance.AudioVolume);
+        SoundManager.Instance.PlaySound(eSound.button_UI);
+        //SoundManager.Instance.PlaySound(eSound.button_UI.ToString(), false, GameManager.Instance.AudioVolume);
         GameManager.Instance.SkinADState = true;
         ADManager.Instance.ShowRewardAd();
 
@@ -370,7 +373,8 @@ public class UIManager : MonoSingleton<UIManager>
 
     public void FreeEffect()
     {
-        SoundManager.Instance.PlaySound(eSound.button_UI.ToString(), false, GameManager.Instance.AudioVolume);
+        SoundManager.Instance.PlaySound(eSound.button_UI);
+        //SoundManager.Instance.PlaySound(eSound.button_UI.ToString(), false, GameManager.Instance.AudioVolume);
         GameManager.Instance.EffectADState = true;
         ADManager.Instance.ShowRewardAd();
 
@@ -381,7 +385,8 @@ public class UIManager : MonoSingleton<UIManager>
 
     public void GoldViewAD()
     {
-        SoundManager.Instance.PlaySound(eSound.button_UI.ToString(), false, GameManager.Instance.AudioVolume);
+        SoundManager.Instance.PlaySound(eSound.button_UI);
+        // SoundManager.Instance.PlaySound(eSound.button_UI.ToString(), false, GameManager.Instance.AudioVolume);
         GameManager.Instance.GoldADState = true;
         ADManager.Instance.ShowRewardAd();
         GameManager.Instance.ReStart();
@@ -389,7 +394,8 @@ public class UIManager : MonoSingleton<UIManager>
 
     public void CheckSkin(int CurrentSkin)
     {
-        SoundManager.Instance.PlaySound(eSound.button_UI.ToString(), false, GameManager.Instance.AudioVolume);
+        SoundManager.Instance.PlaySound(eSound.button_UI);
+        //SoundManager.Instance.PlaySound(eSound.button_UI.ToString(), false, GameManager.Instance.AudioVolume);
         if (EventSystem.current.currentSelectedGameObject.GetComponent<CheckSkin>().BuyCheck)
         {
             foreach (CheckSkin k in CheckSkinData)
@@ -426,7 +432,8 @@ public class UIManager : MonoSingleton<UIManager>
 
     public void CheckEffect(int CurrentSkin)
     {
-        SoundManager.Instance.PlaySound(eSound.button_UI.ToString(), false, GameManager.Instance.AudioVolume);
+        SoundManager.Instance.PlaySound(eSound.button_UI);
+        //SoundManager.Instance.PlaySound(eSound.button_UI.ToString(), false, GameManager.Instance.AudioVolume);
         Debug.Log("priceTemp : ");
         if (EventSystem.current.currentSelectedGameObject.GetComponent<CheckEffect>().BuyCheck)
         {
@@ -456,8 +463,14 @@ public class UIManager : MonoSingleton<UIManager>
 
 
             BuyEffectIMG.SetActive(true);
-            //BuyIMG.transform.Find("price").GetComponent<Text>().text = EventSystem.current.currentSelectedGameObject.GetComponent<CheckSkin>().needMoney.ToString();
 
+            if (CurrentSkin == 20)
+            {
+                BuyEffectIMG.GetComponentInChildren<Price>().GetComponentsInChildren<RawImage>()[1].color = new Color(1, 1, 1, 1);
+                BuyEffectIMG.GetComponentInChildren<Price>().GetComponentsInChildren<RawImage>()[1].texture = renderTemp;
+            }
+            else
+                BuyEffectIMG.GetComponentInChildren<Price>().GetComponentsInChildren<RawImage>()[1].color = new Color(1, 1, 1, 0);
 
         }
         Debug.Log("CurrentSkin : " + GameManager.Instance.CurrEffect);
@@ -467,7 +480,8 @@ public class UIManager : MonoSingleton<UIManager>
 
     public void Purchase()
     {
-        SoundManager.Instance.PlaySound(eSound.button_UI.ToString(), false, GameManager.Instance.AudioVolume);
+        SoundManager.Instance.PlaySound(eSound.button_UI);
+        //SoundManager.Instance.PlaySound(eSound.button_UI.ToString(), false, GameManager.Instance.AudioVolume);
         if (GameManager.Instance.Gold > ObjTemp.GetComponent<CheckSkin>().needMoney)
         {
             GameManager.Instance.Gold -= ObjTemp.GetComponent<CheckSkin>().needMoney;
@@ -536,7 +550,8 @@ public class UIManager : MonoSingleton<UIManager>
     }
     public void PurchaseEffect()
     {
-        SoundManager.Instance.PlaySound(eSound.button_UI.ToString(), false, GameManager.Instance.AudioVolume);
+        SoundManager.Instance.PlaySound(eSound.button_UI);
+        //SoundManager.Instance.PlaySound(eSound.button_UI.ToString(), false, GameManager.Instance.AudioVolume);
         if (GameManager.Instance.Gold > ObjTemp.GetComponent<CheckEffect>().needMoney)
         {
             GameManager.Instance.Gold -= ObjTemp.GetComponent<CheckEffect>().needMoney;
@@ -611,7 +626,8 @@ public class UIManager : MonoSingleton<UIManager>
 
     public void SkinButton()
     {
-        SoundManager.Instance.PlaySound(eSound.button_UI.ToString(), false, GameManager.Instance.AudioVolume);
+        SoundManager.Instance.PlaySound(eSound.button_UI);
+        //SoundManager.Instance.PlaySound(eSound.button_UI.ToString(), false, GameManager.Instance.AudioVolume);
         if (!SkinScrollViewObj.activeSelf)
         {
             skinEffectObj.SetActive(false);
@@ -651,13 +667,15 @@ public class UIManager : MonoSingleton<UIManager>
     }
     public void BackButton()
     {
-        SoundManager.Instance.PlaySound(eSound.button_UI.ToString(), false, GameManager.Instance.AudioVolume);
+        SoundManager.Instance.PlaySound(eSound.button_UI);
+        //SoundManager.Instance.PlaySound(eSound.button_UI.ToString(), false, GameManager.Instance.AudioVolume);
         BuyIMG.SetActive(false);
         BuyEffectIMG.SetActive(false);
     }
     public void EffectButton()
     {
-        SoundManager.Instance.PlaySound(eSound.button_UI.ToString(), false, GameManager.Instance.AudioVolume);
+        SoundManager.Instance.PlaySound(eSound.button_UI);
+        //SoundManager.Instance.PlaySound(eSound.button_UI.ToString(), false, GameManager.Instance.AudioVolume);
         if (!EffectScrollViewObj.activeSelf)
         {
 
@@ -702,13 +720,15 @@ public class UIManager : MonoSingleton<UIManager>
     // 옵션창 On
     public void OpenOption()
     {
-        SoundManager.Instance.PlaySound(eSound.button_UI.ToString(), false, GameManager.Instance.AudioVolume);
+        SoundManager.Instance.PlaySound(eSound.button_UI);
+        //SoundManager.Instance.PlaySound(eSound.button_UI.ToString(), false, GameManager.Instance.AudioVolume);
         OptionPopup.SetActive(true);
     }
     // 옵션창 Off
     public void CloseOption()
     {
-        SoundManager.Instance.PlaySound(eSound.button_UI.ToString(), false, GameManager.Instance.AudioVolume);
+        SoundManager.Instance.PlaySound(eSound.button_UI);
+        //SoundManager.Instance.PlaySound(eSound.button_UI.ToString(), false, GameManager.Instance.AudioVolume);
         OptionPopup.SetActive(false);
     }
     // 게임시작
@@ -723,8 +743,9 @@ public class UIManager : MonoSingleton<UIManager>
     // 진동 옵션
     public void VibrationOption()
     {
+        SoundManager.Instance.PlaySound(eSound.button_UI);
         GameManager.Instance.isVibration = !GameManager.Instance.isVibration;
-        SoundManager.Instance.PlaySound(eSound.button_UI.ToString(), false, GameManager.Instance.AudioVolume);
+        //SoundManager.Instance.PlaySound(eSound.button_UI.ToString(), false, GameManager.Instance.AudioVolume);
         VibrationOnOffCheck();
     }
     // 진동 On/Off 체크
@@ -760,7 +781,8 @@ public class UIManager : MonoSingleton<UIManager>
 
     public void ViewAD()
     {
-        SoundManager.Instance.PlaySound(eSound.button_UI.ToString(), false, GameManager.Instance.AudioVolume);
+        SoundManager.Instance.PlaySound(eSound.button_UI);
+        //SoundManager.Instance.PlaySound(eSound.button_UI.ToString(), false, GameManager.Instance.AudioVolume);
         GameManager.Instance.Gold += GameManager.Instance.RewardGold;
         GameManager.Instance.ADVideoCount++;
         if (GameManager.Instance.ADVideoCount % 2 == 0)

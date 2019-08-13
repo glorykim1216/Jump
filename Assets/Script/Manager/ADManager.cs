@@ -167,7 +167,8 @@ public class ADManager : MonoSingleton<ADManager>
             MeshRenderer[] rs = GameObject.Find("PlayerWing").GetComponentsInChildren<MeshRenderer>();
             foreach (MeshRenderer r in rs)
             {
-                r.material = Resources.Load("Material/Wing_Sub " + GameManager.Instance.CurrEffect.ToString()) as Material;
+                //r.material = Resources.Load("Material/Wing_Sub " + GameManager.Instance.CurrEffect.ToString()) as Material;
+                r.material = GameManager.Instance.TempMat;
             }
             GameManager.Instance.EffectADState = false;
         }
@@ -254,7 +255,8 @@ public class ADManager : MonoSingleton<ADManager>
                         MeshRenderer[] rs = GameObject.Find("PlayerWing").GetComponentsInChildren<MeshRenderer>();
                         foreach (MeshRenderer r in rs)
                         {
-                            r.material = Resources.Load("Material/Wing_Sub " + GameManager.Instance.CurrEffect.ToString()) as Material;
+                            //r.material = Resources.Load("Material/Wing_Sub " + GameManager.Instance.CurrEffect.ToString()) as Material;
+                            r.material = GameManager.Instance.TempMat;
                         }
                         GameManager.Instance.EffectADState = false;
                     }
