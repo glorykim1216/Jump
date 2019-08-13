@@ -747,7 +747,7 @@ public class UIManager : MonoSingleton<UIManager>
     public void VibrationOption()
     {
         SoundManager.Instance.PlaySound(eSound.button_UI, 0);
-        GameManager.Instance.isVibration = !GameManager.Instance.isVibration;
+        GameManager.Instance.IsVibration = !GameManager.Instance.IsVibration;
         //SoundManager.Instance.PlaySound(eSound.button_UI.ToString(), false, GameManager.Instance.AudioVolume);
         VibrationOnOffCheck();
     }
@@ -755,7 +755,7 @@ public class UIManager : MonoSingleton<UIManager>
     public void VibrationOnOffCheck()
     {
        
-        if (GameManager.Instance.isVibration == true)
+        if (GameManager.Instance.IsVibration == true)
         {
             vibrationBtn.GetComponent<Image>().sprite = vibOn;
         }
