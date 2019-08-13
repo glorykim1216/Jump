@@ -121,7 +121,7 @@ public class UIManager : MonoSingleton<UIManager>
     void Start()
     {
         GameManager.Instance.Init();
-
+        SoundManager.Instance.PlaySoundBackground();
         skinEffectObj.SetActive(false);
         SkinScrollViewObj.SetActive(true);
         EffectScrollViewObj.SetActive(true);
@@ -361,6 +361,7 @@ public class UIManager : MonoSingleton<UIManager>
 
     public void FreeSkin()
     {
+        SoundManager.Instance.PlayPause();
         SoundManager.Instance.PlaySound(eSound.button_UI,0);
         //SoundManager.Instance.PlaySound(eSound.button_UI.ToString(), false, GameManager.Instance.AudioVolume);
         GameManager.Instance.SkinADState = true;
@@ -373,6 +374,7 @@ public class UIManager : MonoSingleton<UIManager>
 
     public void FreeEffect()
     {
+        SoundManager.Instance.PlayPause();
         SoundManager.Instance.PlaySound(eSound.button_UI,0);
         //SoundManager.Instance.PlaySound(eSound.button_UI.ToString(), false, GameManager.Instance.AudioVolume);
         GameManager.Instance.EffectADState = true;
@@ -385,6 +387,7 @@ public class UIManager : MonoSingleton<UIManager>
 
     public void GoldViewAD()
     {
+        SoundManager.Instance.PlayPause();
         SoundManager.Instance.PlaySound(eSound.button_UI,0);
         // SoundManager.Instance.PlaySound(eSound.button_UI.ToString(), false, GameManager.Instance.AudioVolume);
         GameManager.Instance.GoldADState = true;
@@ -781,6 +784,7 @@ public class UIManager : MonoSingleton<UIManager>
 
     public void ViewAD()
     {
+        SoundManager.Instance.PlayPause();
         SoundManager.Instance.PlaySound(eSound.button_UI, 0);
         //SoundManager.Instance.PlaySound(eSound.button_UI.ToString(), false, GameManager.Instance.AudioVolume);
         GameManager.Instance.Gold += GameManager.Instance.RewardGold;

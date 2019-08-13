@@ -237,7 +237,7 @@ public class GameManager : MonoSingleton<GameManager>
     }
     private void Start()
     {
-        SoundManager.Instance.PlaySoundBackground();
+        //SoundManager.Instance.PlayPause();
     }
     public new void Init()
     {

@@ -93,11 +93,16 @@ public class SoundManager : MonoSingleton<SoundManager>
 
     public void PlaySoundBackground()
     {
-        ANAMusic.play(MusicID);
+        // Check playing state
+        if (!ANAMusic.isPlaying(MusicID))
+        {
+            // Pause
+            ANAMusic.play(MusicID, StoppedStrings);
+        }
+       
         ANAMusic.setPlayInBackground(MusicID, false);
         ANAMusic.setLooping(MusicID, true);
         ANAMusic.setVolume(MusicID, GameManager.Instance.AudioVolume);
-
     }
     // 음원 재생 (음원, 반복 여부, 음량)
     public void PlaySound(string _clip, bool _loop = false, float _volume = 1.0f)
@@ -150,6 +155,30 @@ public class SoundManager : MonoSingleton<SoundManager>
         //    audioSource[i].Stop();
         //}
     }
+
+    public void PlayPause()
+    {
+        // Check playing state
+        if (ANAMusic.isPlaying(MusicID))
+        {
+            // Pause
+            ANAMusic.pause(MusicID);
+           
+        }
+        //else
+        //{
+        //    // Play with completion callback
+        //    ANAMusic.play(MusicID, StoppedStrings);
+            
+        //}
+
+        ANAMusic.setPlayInBackground(MusicID, false);
+        ANAMusic.setLooping(MusicID, true);
+        ANAMusic.setVolume(MusicID, GameManager.Instance.AudioVolume);
+
+    }
+
+   
 
     // 모든 사운드 볼륨 변경
     public void SetAllVolume(float _value)

@@ -96,11 +96,11 @@ public class ADManager : MonoSingleton<ADManager>
         {
             if (deviceId.Length > 0)
                 request = new AdRequest.Builder().AddTestDevice(AdRequest.TestDeviceSimulator).AddTestDevice(deviceId).Build();
-            else
-                unitId = "ca-app-pub-3940256099942544/5224354917"; //테스트 유닛 ID
+            //else
+            //    unitId = "ca-app-pub-3940256099942544/5224354917"; //테스트 유닛 ID
 
         }
-        ad.LoadAd(request, unitId);
+        ad.LoadAd(request, appId);
 
         //광고 요청이 성공적으로 로드되면 호출됩니다.
         ad.OnAdLoaded += OnAdLoaded;
@@ -178,11 +178,13 @@ public class ADManager : MonoSingleton<ADManager>
             GameManager.Instance.Gold += (GameManager.Instance.RewardGold * 2);
             GameManager.Instance.GoldADState = false;
         }
+        //SoundManager.Instance.PlaySoundBackground();
         LoadAd();
     }
     void OnAdClosed(object sender, EventArgs e)
     {
         Debug.Log("OnAdClosed");
+        SoundManager.Instance.PlaySoundBackground();
         LoadAd();
     }
     void OnAdLeavingApplication(object sender, EventArgs e) { Debug.Log("OnAdLeavingApplication"); }
@@ -266,11 +268,13 @@ public class ADManager : MonoSingleton<ADManager>
                         GameManager.Instance.Gold += (GameManager.Instance.RewardGold * 2);
                         GameManager.Instance.GoldADState = false;
                     }
+                    SoundManager.Instance.PlaySoundBackground();
                     //GameManager.Instance.ReStart();
                     break;
                 }
             case ShowResult.Skipped:
                 {
+                    SoundManager.Instance.PlaySoundBackground();
                     Debug.Log("The ad was skipped before reaching the end.");
                     //GameManager.Instance.ReStart();
                     // to do ...
@@ -280,6 +284,7 @@ public class ADManager : MonoSingleton<ADManager>
                 }
             case ShowResult.Failed:
                 {
+                    SoundManager.Instance.PlaySoundBackground();
                     Debug.LogError("The ad failed to be shown.");
                     //GameManager.Instance.ReStart();
                     // to do ...
