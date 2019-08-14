@@ -236,7 +236,7 @@ public class GameManager : MonoSingleton<GameManager>
         SoundManager.Instance.PlaySound(eSound.BGM.ToString(), true, audioVolume);
         //SoundManager.Instance.PlaySound(eSound.BGM, 1, audioVolume);
         //SoundManager.Instance.PlaySound(eSound.BGM, 1);
-        
+
         SkillManager.Instance.LoadJson();
         // JSON_TEST_CODE
         //SkillInfo skillInfo = SkillManager.Instance.GetValue(277);
@@ -367,8 +367,11 @@ public class GameManager : MonoSingleton<GameManager>
         DateTime oldTime = DateTime.ParseExact(saveDateTime, "yyyyMMddHHmmss", System.Globalization.CultureInfo.InstalledUICulture);
         TimeSpan span = DateTime.Now - oldTime;
 
-        // 초 단위로 변경
-        double temp = (int)(span.TotalSeconds / 60) * offlineGoldLevel;
+        // 분 단위로 변경
+        int temp = (int)(span.TotalSeconds / 60);
+        // 최대 120분
+        temp = temp > 120 ? 120 : temp; 
+        temp *= offlineGoldLevel;
         return (int)temp;
     }
 }
