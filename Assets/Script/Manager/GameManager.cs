@@ -372,6 +372,6 @@ public class GameManager : MonoSingleton<GameManager>
         // 최대 120분
         temp = temp > 120 ? 120 : temp; 
         temp *= offlineGoldLevel;
-        return (int)temp;
+        return temp;
     }
 }
