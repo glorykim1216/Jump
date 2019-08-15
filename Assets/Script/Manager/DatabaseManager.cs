@@ -240,7 +240,8 @@ public class DatabaseManager : MonoSingleton<DatabaseManager>
             using (IDbCommand dbCmd = dbConnection.CreateCommand())  // EnterSqL에 명령 할 수 있다. 
             {
                 string sqlQuery = "INSERT INTO " + Test_DB_Table.DatabaseTable.ToString() +
-                    " (Gold, BestScore, OpenSkinList, CurrSkin, UpPowerLevel, ForwardPowerLevel, OfflineGoldLevel, OpenEffectList, CurrEffect, DateTime, SoundVolume, Vibration) VALUES (0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 1, 1)";
+                    " (Gold, BestScore, OpenSkinList, CurrSkin, UpPowerLevel, ForwardPowerLevel, OfflineGoldLevel, OpenEffectList, CurrEffect, DateTime, SoundVolume, Vibration)" +
+                    " VALUES (0, 0, 524288, 1, 1, 1, 1, 524288, 1, 0, 1, 1)";
                 dbCmd.CommandText = sqlQuery;
 
                 using (IDataReader reader = dbCmd.ExecuteReader()) // 테이블에 있는 데이터들이 들어간다. 
