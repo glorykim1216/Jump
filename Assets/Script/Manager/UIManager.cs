@@ -788,20 +788,17 @@ public class UIManager : MonoSingleton<UIManager>
         SoundManager.Instance.PlaySound(eSound.button_UI, 0);
         //SoundManager.Instance.PlaySound(eSound.button_UI.ToString(), false, GameManager.Instance.AudioVolume);
         GameManager.Instance.Gold += GameManager.Instance.RewardGold;
-        GameManager.Instance.ADVideoCount++;
-        if (GameManager.Instance.ADVideoCount % 2 == 0)
+      
+        if (GameManager.Instance.ADVideoCount % 4 == 3)
         {
-            ADManager.Instance.ShowInterstitialAd();
-            //ADManager.Instance.ShowRewardAd();
-
-        }
-        else if (GameManager.Instance.ADVideoCount % 2 == 1)
-        {
-            //Debug.Log("adsf");
             ADManager.Instance.ShowRewardedAd();
-
-
         }
+        else
+        {
+            ADManager.Instance.ShowInterstitialAd(); 
+        }
+        GameManager.Instance.ADVideoCount++;
+
         GameManager.Instance.ReStart();
         //Debug.Log("GameManager.Instance.ShowRewardedAd" + GameManager.Instance.ADVideoCount);
 
