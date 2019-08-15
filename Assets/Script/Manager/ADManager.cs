@@ -27,7 +27,7 @@ public class ADManager : MonoSingleton<ADManager>
     private const string android_game_id = "3217537";
     private const string ios_game_id = "3217536";
     private const string rewarded_video_id = "rewardedVideo";
-
+    bool rewardGold;
     // Start is called before the first frame update
     void Start()
     {
@@ -171,18 +171,33 @@ public class ADManager : MonoSingleton<ADManager>
             }
             GameManager.Instance.EffectADState = false;
         }
-
-        if (GameManager.Instance.GoldADState)
-        {
-            GameManager.Instance.Gold += (GameManager.Instance.RewardGold * 2);
-            GameManager.Instance.GoldADState = false;
-        }
+        rewardGold = true;
+        
         //SoundManager.Instance.PlaySoundBackground();
         LoadAd();
     }
     void OnAdClosed(object sender, EventArgs e)
     {
         Debug.Log("OnAdClosed");
+
+        if(rewardGold)
+        {
+            if (GameManager.Instance.GoldADState)
+            {
+                GameManager.Instance.Gold += (GameManager.Instance.RewardGold * 2);
+                GameManager.Instance.GoldADState = false;
+            }
+            rewardGold = false;
+        }
+        else
+        {
+            if (GameManager.Instance.GoldADState)
+            {
+                GameManager.Instance.Gold += (GameManager.Instance.RewardGold);
+                GameManager.Instance.GoldADState = false;
+            }
+        }
+
         SoundManager.Instance.PlaySoundBackground();
         LoadAd();
     }
@@ -193,10 +208,11 @@ public class ADManager : MonoSingleton<ADManager>
         if (!interstitialAd.IsLoaded())
         {
             RequestInterstitialAd();
-            return;
+            ShowRewardedAd();
+            //return;
         }
-
-        interstitialAd.Show();
+        else
+            interstitialAd.Show();
     }
 
 
@@ -205,9 +221,11 @@ public class ADManager : MonoSingleton<ADManager>
         if (!ad.IsLoaded())
         {
             LoadAd();
-            return;
+            ShowRewardedAd();
+            //return;
         }
-        ad.Show();
+        else
+            ad.Show();
     }
 
     //public void ToggleAd()
@@ -273,6 +291,12 @@ public class ADManager : MonoSingleton<ADManager>
                 }
             case ShowResult.Skipped:
                 {
+
+                    if (GameManager.Instance.GoldADState)
+                    {
+                        GameManager.Instance.Gold += (GameManager.Instance.RewardGold);
+                        GameManager.Instance.GoldADState = false;
+                    }
                     SoundManager.Instance.PlaySoundBackground();
                     Debug.Log("The ad was skipped before reaching the end.");
                     //GameManager.Instance.ReStart();
@@ -283,6 +307,12 @@ public class ADManager : MonoSingleton<ADManager>
                 }
             case ShowResult.Failed:
                 {
+
+                    if (GameManager.Instance.GoldADState)
+                    {
+                        GameManager.Instance.Gold += (GameManager.Instance.RewardGold);
+                        GameManager.Instance.GoldADState = false;
+                    }
                     SoundManager.Instance.PlaySoundBackground();
                     Debug.LogError("The ad failed to be shown.");
                     //GameManager.Instance.ReStart();

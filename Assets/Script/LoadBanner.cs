@@ -95,25 +95,31 @@ public class LoadBanner : MonoBehaviour
 	{
 		if (ad.IsLoaded())
 		{
-			Debug.Log("View Ad");
+			//Debug.Log("View Ad");
 			ad.Show();
 		}
 		else
 		{
-			Debug.Log("Ad is Not Loaded");
+			//Debug.Log("Ad is Not Loaded");
 			LoadAd();
 		}
 	}
 
-	void OnAdLoaded(object sender, EventArgs args) { Debug.Log("OnAdLoaded"); }
-	void OnAdFailedToLoad(object sender, AdFailedToLoadEventArgs e) { Debug.Log("OnAdFailedToLoad"); }
-	void OnAdOpening(object sender, EventArgs e) { Debug.Log("OnAdOpening"); }
-	void OnAdStarted(object sender, EventArgs e) { Debug.Log("OnAdStarted"); }
-	void OnAdRewarded(object sender, Reward e) { Debug.Log("OnAdRewarded"); }
+	void OnAdLoaded(object sender, EventArgs args) { //Debug.Log("OnAdLoaded"); 
+    }
+	void OnAdFailedToLoad(object sender, AdFailedToLoadEventArgs e) { //Debug.Log("OnAdFailedToLoad");
+    }
+	void OnAdOpening(object sender, EventArgs e) { //Debug.Log("OnAdOpening"); 
+    }
+	void OnAdStarted(object sender, EventArgs e) { //Debug.Log("OnAdStarted"); 
+    }
+	void OnAdRewarded(object sender, Reward e) { //Debug.Log("OnAdRewarded"); 
+    }
 	void OnAdClosed(object sender, EventArgs e)
 	{
-		Debug.Log("OnAdClosed");
+		//Debug.Log("OnAdClosed");
 		LoadAd();
 	}
-	void OnAdLeavingApplication(object sender, EventArgs e) { Debug.Log("OnAdLeavingApplication"); }
+	void OnAdLeavingApplication(object sender, EventArgs e) { //Debug.Log("OnAdLeavingApplication"); 
+    }
 }

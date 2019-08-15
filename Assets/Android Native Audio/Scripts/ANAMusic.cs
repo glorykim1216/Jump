@@ -302,7 +302,7 @@ public static class ANAMusic
 	/// <returns>The current position in milliseconds.</returns>
 	public static int getCurrentPosition(int musicID)
 	{
-		Debug.Log(_logPrefix + "getCurrentPosition(" + musicID + ")");
+		//Debug.Log(_logPrefix + "getCurrentPosition(" + musicID + ")");
 		return 1;
 	}
 
@@ -314,7 +314,7 @@ public static class ANAMusic
 	/// <returns>The duration in milliseconds.</returns>
 	public static int getDuration(int musicID)
 	{
-		Debug.Log(_logPrefix + "getDuration(" + musicID + ")");
+		//Debug.Log(_logPrefix + "getDuration(" + musicID + ")");
 		return 1;
 	}
 
@@ -326,7 +326,7 @@ public static class ANAMusic
 	/// <returns>True if the MediaPlayer is currently looping, false otherwise.</returns>
 	public static bool isLooping(int musicID)
 	{
-		Debug.Log(_logPrefix + "isLooping(" + musicID + ")");
+		//Debug.Log(_logPrefix + "isLooping(" + musicID + ")");
 		return false;
 	}
 
@@ -338,7 +338,7 @@ public static class ANAMusic
 	/// <returns>True if currently playing, false otherwise.</returns>
 	public static bool isPlaying(int musicID)
 	{
-		Debug.Log(_logPrefix + "isPlaying(" + musicID + ")");
+		//Debug.Log(_logPrefix + "isPlaying(" + musicID + ")");
 		return false;
 	}
 
@@ -354,7 +354,7 @@ public static class ANAMusic
 	/// <returns>The ID of the loaded music.</returns>
 	public static int load(string audioFile, bool usePersistentDataPath = false, bool loadAsync = false, Action<int> loadedCallback = null, bool playInBackground = false)
 	{
-		Debug.Log(_logPrefix + "load(\"" + audioFile + "\", " + usePersistentDataPath + ", " + loadAsync + ", " + loadedCallback + ", " + playInBackground + ")");
+		//Debug.Log(_logPrefix + "load(\"" + audioFile + "\", " + usePersistentDataPath + ", " + loadAsync + ", " + loadedCallback + ", " + playInBackground + ")");
 		return 1;
 	}
 
@@ -365,7 +365,7 @@ public static class ANAMusic
 	/// <param name="isPaused">Whether or not the application is currently paused.</param>
 	public static void OnApplicationPause(bool isPaused)
 	{
-		Debug.Log(_logPrefix + "OnApplicationPause(" + isPaused + ")");
+		//Debug.Log(_logPrefix + "OnApplicationPause(" + isPaused + ")");
 	}
 
 
@@ -375,7 +375,7 @@ public static class ANAMusic
 	/// <param name="musicID">The ID of the music to use.</param>
 	public static void pause(int musicID)
 	{
-		Debug.Log(_logPrefix + "pause(" + musicID + ")");
+		//Debug.Log(_logPrefix + "pause(" + musicID + ")");
 	}
 
 
@@ -384,7 +384,7 @@ public static class ANAMusic
 	/// </summary>
 	public static void pauseAll()
 	{
-		Debug.Log(_logPrefix + "pauseAll()");
+		//Debug.Log(_logPrefix + "pauseAll()");
 	}
 
 
@@ -395,7 +395,7 @@ public static class ANAMusic
 	/// <param name="completionCallback">If given, the method to call when playback is complete.</param>
 	public static void play(int musicID, Action<int> completionCallback = null)
 	{
-		Debug.Log(_logPrefix + "play(" + musicID + ", " + completionCallback + ")");
+		//Debug.Log(_logPrefix + "play(" + musicID + ", " + completionCallback + ")");
 	}
 
 
@@ -405,7 +405,7 @@ public static class ANAMusic
 	/// <param name="musicID">The ID of the music to use.</param>
 	public static void release(int musicID)
 	{
-		Debug.Log(_logPrefix + "release(" + musicID + ")");
+		//Debug.Log(_logPrefix + "release(" + musicID + ")");
 	}
 
 
@@ -414,7 +414,7 @@ public static class ANAMusic
 	/// </summary>
 	public static void resumeAll()
 	{
-		Debug.Log(_logPrefix + "resumeAll()");
+		//Debug.Log(_logPrefix + "resumeAll()");
 	}
 
 
@@ -425,7 +425,7 @@ public static class ANAMusic
 	/// <param name="msec">the offset in milliseconds from the start to seek to</param>
 	public static void seekTo(int musicID, int msec)
 	{
-		Debug.Log(_logPrefix + "seekTo(" + musicID + ", " + msec + ")");
+		//Debug.Log(_logPrefix + "seekTo(" + musicID + ", " + msec + ")");
 	}
 
 
@@ -436,7 +436,7 @@ public static class ANAMusic
 	/// <param name="looping">whether to loop or not</param>
 	public static void setLooping(int musicID, bool looping)
 	{
-		Debug.Log(_logPrefix + "setLooping(" + musicID + ", " + looping + ")");
+		//Debug.Log(_logPrefix + "setLooping(" + musicID + ", " + looping + ")");
 	}
 
 
@@ -447,7 +447,7 @@ public static class ANAMusic
 	/// <param name="playInBackground">If true, the music will continue playing when the game is not active.  If false, the music will be paused when the game is not active and resumed when it becomes active again.</param>
 	public static void setPlayInBackground(int musicID, bool playInBackground)
 	{
-		Debug.Log(_logPrefix + "setPlayInBackground(" + musicID + ", " + playInBackground + ")");
+		//Debug.Log(_logPrefix + "setPlayInBackground(" + musicID + ", " + playInBackground + ")");
 	}
 
 
@@ -459,7 +459,7 @@ public static class ANAMusic
 	/// <param name="rightVolume">right volume scalar (0.0 to 1.0) Defaults to leftVolume.</param>
 	public static void setVolume(int musicID, float leftVolume, float rightVolume = -1)
 	{
-		Debug.Log(_logPrefix + "setVolume(" + musicID + ", " + leftVolume + ", " + rightVolume + ")");
+		//Debug.Log(_logPrefix + "setVolume(" + musicID + ", " + leftVolume + ", " + rightVolume + ")");
 	}
 
 #endif

@@ -221,10 +221,10 @@ public class DatabaseManager : MonoSingleton<DatabaseManager>
 
 
         //TEST_CODE
-        for (int i = 0; i < ItemList.Count; i++)
-        {
-            Debug.Log(ItemList[i].gold + "::" + ItemList[i].bestScore + "::" + ItemList[i].openSkinList);
-        }
+        //for (int i = 0; i < ItemList.Count; i++)
+        //{
+        //    Debug.Log(ItemList[i].gold + "::" + ItemList[i].bestScore + "::" + ItemList[i].openSkinList);
+        //}
     }
 
     // 테이블에 새로운 투플 삽입

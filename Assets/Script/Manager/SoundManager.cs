@@ -33,13 +33,13 @@ public class SoundManager : MonoSingleton<SoundManager>
         AndroidNativeAudio.makePool(16);
 
         FileID = new int[System.Enum.GetValues(typeof(eSound)).Length];
-        Debug.Log("System.Enum.GetValues(typeof(eSound)).Length" + System.Enum.GetValues(typeof(eSound)).Length);
-        Debug.Log("FileID.Length" + FileID.Length);
+        //Debug.Log("System.Enum.GetValues(typeof(eSound)).Length" + System.Enum.GetValues(typeof(eSound)).Length);
+        //Debug.Log("FileID.Length" + FileID.Length);
 
         SoundID = new int[System.Enum.GetValues(typeof(eSound)).Length];
 
        
-        Debug.Log("SoundID.Length" + SoundID.Length);
+        //Debug.Log("SoundID.Length" + SoundID.Length);
 
         SoundString = System.Enum.GetNames(typeof(eSound));
         for (int i = 0; i < System.Enum.GetValues(typeof(eSound)).Length; i++)
@@ -50,7 +50,7 @@ public class SoundManager : MonoSingleton<SoundManager>
             else
                 FileID[i] = AndroidNativeAudio.load("Sound/" + SoundString[i] + ".wav");
 
-            Debug.Log(SoundString[i]);
+            //Debug.Log(SoundString[i]);
 
             //SoundID[i] = AndroidNativeAudio.play(FileID[i], 1, -1, 1, 1);
         }
@@ -88,7 +88,7 @@ public class SoundManager : MonoSingleton<SoundManager>
         //{
         //    SoundID[i] = AndroidNativeAudio.play(FileID[i]);
         //}
-        Debug.Log("GameManager.Instance.AudioVolume" + GameManager.Instance.AudioVolume);
+        //Debug.Log("GameManager.Instance.AudioVolume" + GameManager.Instance.AudioVolume);
     }
 
     public void PlaySoundBackground()

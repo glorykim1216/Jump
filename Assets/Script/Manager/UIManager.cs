@@ -156,7 +156,7 @@ public class UIManager : MonoSingleton<UIManager>
         SkinObj = skinEffectObj.transform.Find("Skin").gameObject;
         EffectObj = skinEffectObj.transform.Find("Effect").gameObject;
         //GameManager.Instance.OpenSkinList = 231;
-        Debug.Log("GameManager.Instance.OpenSkinList" + GameManager.Instance.OpenSkinList);
+        //Debug.Log("GameManager.Instance.OpenSkinList" + GameManager.Instance.OpenSkinList);
         SkinInit();
         EffectInit();
         BuyIMG.SetActive(false);
@@ -175,7 +175,7 @@ public class UIManager : MonoSingleton<UIManager>
     {
         string test;
         test = System.Convert.ToString(GameManager.Instance.OpenSkinList, 2).PadLeft(20, '0');
-        Debug.Log(test);
+        //Debug.Log(test);
         CheckSkinData = this.gameObject.GetComponentsInChildren<CheckSkin>();
 
         foreach (CheckSkin k in CheckSkinData)
@@ -188,7 +188,7 @@ public class UIManager : MonoSingleton<UIManager>
             CheckSkinData[i].SkinNumber = i + 1;
             if (test[i].ToString() == "1")
             {
-                Debug.Log("!!!!");
+                //Debug.Log("!!!!");
                 CheckSkinData[i].moneyText.color = Color.yellow;
                 CheckSkinData[i].moneyText.text = "OK        ";
                 CheckSkinData[i].moneyImg.enabled = false;
@@ -211,7 +211,7 @@ public class UIManager : MonoSingleton<UIManager>
     {
         string test;
         test = System.Convert.ToString(GameManager.Instance.OpenEffectList, 2).PadLeft(20, '0');
-        Debug.Log(test);
+        //Debug.Log(test);
         CheckEffectData = this.gameObject.GetComponentsInChildren<CheckEffect>();
 
         foreach (CheckEffect k in CheckEffectData)
@@ -224,7 +224,7 @@ public class UIManager : MonoSingleton<UIManager>
             CheckEffectData[i].SkinNumber = i + 1;
             if (test[i].ToString() == "1")
             {
-                Debug.Log("!!!!");
+                //Debug.Log("!!!!");
                 CheckEffectData[i].moneyText.color = Color.yellow;
                 CheckEffectData[i].moneyText.text = "OK        ";
                 CheckEffectData[i].moneyImg.enabled = false;
@@ -428,8 +428,8 @@ public class UIManager : MonoSingleton<UIManager>
 
 
         }
-        Debug.Log("CurrentSkin : " + GameManager.Instance.CurrSkin);
-        Debug.Log("priceTemp : " + priceTemp);
+        //Debug.Log("CurrentSkin : " + GameManager.Instance.CurrSkin);
+        //Debug.Log("priceTemp : " + priceTemp);
         //Debug.Log(EventSystem.current.currentSelectedGameObject.name);
     }
 
@@ -437,7 +437,7 @@ public class UIManager : MonoSingleton<UIManager>
     {
         SoundManager.Instance.PlaySound(eSound.button_UI,0);
         //SoundManager.Instance.PlaySound(eSound.button_UI.ToString(), false, GameManager.Instance.AudioVolume);
-        Debug.Log("priceTemp : ");
+        //Debug.Log("priceTemp : ");
         if (EventSystem.current.currentSelectedGameObject.GetComponent<CheckEffect>().BuyCheck)
         {
             foreach (CheckEffect k in CheckEffectData)
@@ -476,8 +476,8 @@ public class UIManager : MonoSingleton<UIManager>
                 BuyEffectIMG.GetComponentInChildren<Price>().GetComponentsInChildren<RawImage>()[1].color = new Color(1, 1, 1, 0);
 
         }
-        Debug.Log("CurrentSkin : " + GameManager.Instance.CurrEffect);
-        Debug.Log("priceTemp : " + priceTemp);
+        //Debug.Log("CurrentSkin : " + GameManager.Instance.CurrEffect);
+        //Debug.Log("priceTemp : " + priceTemp);
         //Debug.Log(EventSystem.current.currentSelectedGameObject.name);
     }
 
@@ -504,7 +504,7 @@ public class UIManager : MonoSingleton<UIManager>
             GameManager.Instance.OpenSkinList = System.Convert.ToInt32(Num, 2);
             string test;
             test = System.Convert.ToString(GameManager.Instance.OpenSkinList, 2).PadLeft(20, '0');
-            Debug.Log(test);
+            //Debug.Log(test);
 
             foreach (CheckSkin k in CheckSkinData)
             {
@@ -518,7 +518,7 @@ public class UIManager : MonoSingleton<UIManager>
                 CheckSkinData[i].SkinNumber = i + 1;
                 if (test[i].ToString() == "1")
                 {
-                    Debug.Log("!!!!");
+                    //Debug.Log("!!!!");
                     CheckSkinData[i].moneyText.color = Color.yellow;
                     CheckSkinData[i].moneyText.text = "OK        ";
                     CheckSkinData[i].moneyImg.enabled = false;
@@ -574,13 +574,13 @@ public class UIManager : MonoSingleton<UIManager>
             GameManager.Instance.OpenEffectList = System.Convert.ToInt32(Num, 2);
             string test;
             test = System.Convert.ToString(GameManager.Instance.OpenEffectList, 2).PadLeft(20, '0');
-            Debug.Log(test);
+            //Debug.Log(test);
 
             foreach (CheckEffect k in CheckEffectData)
             {
 
                 k.CheckImg.SetActive(false);
-                Debug.Log(k.CheckImg.name);
+                //Debug.Log(k.CheckImg.name);
             }
 
             for (int i = 0; i < CheckEffectData.Length; i++)
@@ -588,7 +588,7 @@ public class UIManager : MonoSingleton<UIManager>
                 CheckEffectData[i].SkinNumber = i + 1;
                 if (test[i].ToString() == "1")
                 {
-                    Debug.Log("!!!!");
+                    //Debug.Log("!!!!");
                     CheckEffectData[i].moneyText.color = Color.yellow;
                     CheckEffectData[i].moneyText.text = "OK        ";
                     CheckEffectData[i].moneyImg.enabled = false;
@@ -606,7 +606,7 @@ public class UIManager : MonoSingleton<UIManager>
 
             BuyEffectIMG.SetActive(false);
             ////
-            Debug.Log("GameManager.Instance.CurrEffect" + GameManager.Instance.CurrEffect);
+            //Debug.Log("GameManager.Instance.CurrEffect" + GameManager.Instance.CurrEffect);
 
             foreach (CheckEffect k in CheckEffectData)
             {
@@ -718,7 +718,7 @@ public class UIManager : MonoSingleton<UIManager>
 
     public void SkinSelectedValue()
     {
-        Debug.Log("작동 잘됨");
+        //Debug.Log("작동 잘됨");
     }
     // 옵션창 On
     public void OpenOption()
@@ -797,13 +797,13 @@ public class UIManager : MonoSingleton<UIManager>
         }
         else if (GameManager.Instance.ADVideoCount % 2 == 1)
         {
-            Debug.Log("adsf");
+            //Debug.Log("adsf");
             ADManager.Instance.ShowRewardedAd();
 
 
         }
         GameManager.Instance.ReStart();
-        Debug.Log("GameManager.Instance.ShowRewardedAd" + GameManager.Instance.ADVideoCount);
+        //Debug.Log("GameManager.Instance.ShowRewardedAd" + GameManager.Instance.ADVideoCount);
 
     }
 

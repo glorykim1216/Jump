@@ -40,7 +40,7 @@ public class UnityAdsHelper : MonoBehaviour
         {
             case ShowResult.Finished:
                 {
-                    Debug.Log("The ad was successfully shown.");
+                    //Debug.Log("The ad was successfully shown.");
 
                     // to do ...
                     // 광고 시청이 완료되었을 때 처리
@@ -49,7 +49,7 @@ public class UnityAdsHelper : MonoBehaviour
                 }
             case ShowResult.Skipped:
                 {
-                    Debug.Log("The ad was skipped before reaching the end.");
+                    //Debug.Log("The ad was skipped before reaching the end.");
 
                     // to do ...
                     // 광고가 스킵되었을 때 처리
