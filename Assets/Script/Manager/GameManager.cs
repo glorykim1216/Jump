@@ -225,7 +225,7 @@ public class GameManager : MonoSingleton<GameManager>
 
     void Awake()
     {
-        Screen.SetResolution(720, 1280, true);
+        Screen.SetResolution(Screen.width, Screen.width/9 *16, true);
 
         isDBLoad = DatabaseManager.Instance.Load();
         SoundManager.Instance.LoadSound();

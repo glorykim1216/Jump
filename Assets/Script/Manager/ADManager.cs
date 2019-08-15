@@ -27,6 +27,8 @@ public class ADManager : MonoSingleton<ADManager>
     private const string android_game_id = "3217537";
     private const string ios_game_id = "3217536";
     private const string rewarded_video_id = "rewardedVideo";
+    private const string Level_Complete_id = "LevelComplete";
+    private const string Banner_id = "Banner";
     bool rewardGold;
     // Start is called before the first frame update
     void Start()
@@ -72,10 +74,15 @@ public class ADManager : MonoSingleton<ADManager>
         //나중에 바꿔야됨
         AdRequest request = new AdRequest.Builder().Build();
         banner.LoadAd(request);
-
+        banner.OnAdFailedToLoad += OnAdFailedToBannerLoad;
         //banner.Show();
     }
 
+    void OnAdFailedToBannerLoad(object sender, AdFailedToLoadEventArgs e)
+    {
+        //Debug.Log("OnAdFailedToLoad");
+        //ShowBannerAd();
+    }
 
     private void RequestInterstitialAd()
     {
@@ -208,7 +215,7 @@ public class ADManager : MonoSingleton<ADManager>
         if (!interstitialAd.IsLoaded())
         {
             RequestInterstitialAd();
-            ShowRewardedAd();
+            ShowLevelAd();
             //return;
         }
         else
@@ -250,6 +257,22 @@ public class ADManager : MonoSingleton<ADManager>
             var options = new ShowOptions { resultCallback = HandleShowResult };
 
             Advertisement.Show(rewarded_video_id, options);
+        }
+    }
+
+    public void ShowLevelAd()
+    {
+        if (Advertisement.IsReady(Level_Complete_id))
+        {
+            Advertisement.Show(Level_Complete_id);
+        }
+    }
+
+    public void ShowBannerAd()
+    {
+        if (Advertisement.IsReady(Banner_id))
+        {
+            Advertisement.Show(Banner_id);
         }
     }
 
