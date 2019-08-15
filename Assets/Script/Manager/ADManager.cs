@@ -24,8 +24,8 @@ public class ADManager : MonoSingleton<ADManager>
     private InterstitialAd interstitialAd;
 
     //유니티 ads id
-    private const string android_game_id = "xxxxxxx";
-    private const string ios_game_id = "xxxxxxx";
+    private const string android_game_id = "3217537";
+    private const string ios_game_id = "3217536";
     private const string rewarded_video_id = "rewardedVideo";
 
     // Start is called before the first frame update
@@ -58,7 +58,7 @@ public class ADManager : MonoSingleton<ADManager>
 
     void InitAd()
     {
-        string id = "ca-app-pub-3940256099942544/6300978111";
+        string id = "ca-app-pub-7733963929534296/5933634214";
         
         //나중에 바꿔야됨
         //#if UNITY_ANDROID
@@ -68,11 +68,9 @@ public class ADManager : MonoSingleton<ADManager>
         //#endif
 
         banner = new BannerView(id, AdSize.SmartBanner, position);
-        AdRequest request = new AdRequest.Builder().AddTestDevice(AdRequest.TestDeviceSimulator).AddTestDevice(deviceId).Build();
+        //AdRequest request = new AdRequest.Builder().AddTestDevice(AdRequest.TestDeviceSimulator).AddTestDevice(deviceId).Build();
         //나중에 바꿔야됨
-        //AdRequest request = new AdRequest.Builder().Build();
-
-
+        AdRequest request = new AdRequest.Builder().Build();
         banner.LoadAd(request);
 
         //banner.Show();
@@ -91,15 +89,16 @@ public class ADManager : MonoSingleton<ADManager>
     }
     void LoadAd()
     {
-        AdRequest request = new AdRequest.Builder().Build();
-        if (isTest)
-        {
-            if (deviceId.Length > 0)
-                request = new AdRequest.Builder().AddTestDevice(AdRequest.TestDeviceSimulator).AddTestDevice(deviceId).Build();
-            //else
-            //    unitId = "ca-app-pub-3940256099942544/5224354917"; //테스트 유닛 ID
 
-        }
+        //if (isTest)
+        //{
+        //    if (deviceId.Length > 0)
+        //        request = new AdRequest.Builder().AddTestDevice(AdRequest.TestDeviceSimulator).AddTestDevice(deviceId).Build();
+        //    //else
+        //    //    unitId = "ca-app-pub-3940256099942544/5224354917"; //테스트 유닛 ID
+
+        //}
+        AdRequest request = new AdRequest.Builder().Build();
         ad.LoadAd(request, appId);
 
         //광고 요청이 성공적으로 로드되면 호출됩니다.
