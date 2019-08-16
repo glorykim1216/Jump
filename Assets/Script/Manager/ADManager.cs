@@ -76,10 +76,17 @@ public class ADManager : MonoSingleton<ADManager>
         banner.LoadAd(request);
         banner.OnAdFailedToLoad += OnAdFailedToBannerLoad;
         //banner.Show();
+        banner.OnAdLoaded += HandleOnAdLoaded_banner;
+    }
+    public void HandleOnAdLoaded_banner(object sender, EventArgs args)
+    {
+        banner.Show();
     }
 
     void OnAdFailedToBannerLoad(object sender, AdFailedToLoadEventArgs e)
     {
+        //InitAd();
+        ShowBannerAd();
         //Debug.Log("OnAdFailedToLoad");
         //ShowBannerAd();
     }
