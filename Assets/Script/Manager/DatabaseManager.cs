@@ -20,8 +20,9 @@ public class DataTable
     public string dateTime;
     public string soundVolume;
     public int vibration;
+    public string deviceID;
     public DataTable(int _gold, int _bestScore, int _openSkinList, int _currSkin, int _upPowerLevel, int _forwardPower, int _offlineGoldLevel
-        , int _openEffectList, int _currEffect, string _dateTime, string _soundVolume, int _vibration)
+        , int _openEffectList, int _currEffect, string _dateTime, string _soundVolume, int _vibration, string _deviceID)
     {
         gold = _gold;
         bestScore = _bestScore;
@@ -35,6 +36,7 @@ public class DataTable
         dateTime = _dateTime;
         soundVolume = _soundVolume;
         vibration = _vibration;
+        deviceID = _deviceID;
     }
 }
 
@@ -152,7 +154,7 @@ public class DatabaseManager : MonoSingleton<DatabaseManager>
 
                 // 테이블을 생성하는 SQL 쿼리문
                 string sqlQuery = "CREATE TABLE `" + Test_DB_Table.DatabaseTable.ToString() +
-                    "`( `Gold` INTEGER NOT NULL, `BestScore` INTEGER NOT NULL, `OpenSkinList` INTEGER NOT NULL, `CurrSkin` INTEGER NOT NULL, `UpPowerLevel` INTEGER NOT NULL, `ForwardPowerLevel` INTEGER NOT NULL, `OfflineGoldLevel` INTEGER NOT NULL, `OpenEffectList` INTEGER NOT NULL, `CurrEffect` INTEGER NOT NULL, `DateTime` TEXT NOT NULL, `SoundVolume` TEXT NOT NULL, `Vibration` INTEGER NOT NULL)";
+                    "`( `Gold` INTEGER NOT NULL, `BestScore` INTEGER NOT NULL, `OpenSkinList` INTEGER NOT NULL, `CurrSkin` INTEGER NOT NULL, `UpPowerLevel` INTEGER NOT NULL, `ForwardPowerLevel` INTEGER NOT NULL, `OfflineGoldLevel` INTEGER NOT NULL, `OpenEffectList` INTEGER NOT NULL, `CurrEffect` INTEGER NOT NULL, `DateTime` TEXT NOT NULL, `SoundVolume` TEXT NOT NULL, `Vibration` INTEGER NOT NULL, `DeviceID` TEXT NOT NULL)";
                 dbCmd.CommandText = sqlQuery;
 
                 using (IDataReader reader = dbCmd.ExecuteReader()) // 테이블에 있는 데이터들이 들어간다. 
@@ -209,7 +211,7 @@ public class DatabaseManager : MonoSingleton<DatabaseManager>
                     while (reader.Read())
                     {
                         // Debug.Log(reader.GetString(1));  //  타입명 . (몇 열에있는것을 부를것인가)
-                        ItemList.Add(new DataTable(reader.GetInt32(0), reader.GetInt32(1), reader.GetInt32(2), reader.GetInt32(3), reader.GetInt32(4), reader.GetInt32(5), reader.GetInt32(6), reader.GetInt32(7), reader.GetInt32(8), reader.GetString(9), reader.GetString(10), reader.GetInt32(11)));
+                        ItemList.Add(new DataTable(reader.GetInt32(0), reader.GetInt32(1), reader.GetInt32(2), reader.GetInt32(3), reader.GetInt32(4), reader.GetInt32(5), reader.GetInt32(6), reader.GetInt32(7), reader.GetInt32(8), reader.GetString(9), reader.GetString(10), reader.GetInt32(11), reader.GetString(12)));
                     }
 
                     reader.Close();
@@ -240,8 +242,8 @@ public class DatabaseManager : MonoSingleton<DatabaseManager>
             using (IDbCommand dbCmd = dbConnection.CreateCommand())  // EnterSqL에 명령 할 수 있다. 
             {
                 string sqlQuery = "INSERT INTO " + Test_DB_Table.DatabaseTable.ToString() +
-                    " (Gold, BestScore, OpenSkinList, CurrSkin, UpPowerLevel, ForwardPowerLevel, OfflineGoldLevel, OpenEffectList, CurrEffect, DateTime, SoundVolume, Vibration)" +
-                    " VALUES (0, 0, 524288, 1, 1, 1, 1, 524288, 1, 0, 1, 1)";
+                    " (Gold, BestScore, OpenSkinList, CurrSkin, UpPowerLevel, ForwardPowerLevel, OfflineGoldLevel, OpenEffectList, CurrEffect, DateTime, SoundVolume, Vibration, DeviceID)" +
+                    " VALUES (0, 0, 524288, 1, 1, 1, 1, 524288, 1, 0, 1, 1, 0)";
                 dbCmd.CommandText = sqlQuery;
 
                 using (IDataReader reader = dbCmd.ExecuteReader()) // 테이블에 있는 데이터들이 들어간다. 
@@ -331,6 +333,30 @@ public class DatabaseManager : MonoSingleton<DatabaseManager>
             {
                 string sqlQuery = "UPDATE " + Test_DB_Table.DatabaseTable.ToString() +
                     " SET SoundVolume='" + _soundVolume + "', Vibration='" + _vibration + "'";
+
+                dbCmd.CommandText = sqlQuery;
+
+                using (IDataReader reader = dbCmd.ExecuteReader()) // 테이블에 있는 데이터들이 들어간다. 
+                {
+                    reader.Close();
+                    dbCmd.Dispose();
+                    dbConnection.Close();
+                }
+            }
+        }
+        SelectItemTable();
+    }
+    public void UpdateItemTable_DeviceID(string _ID)
+    {
+        string connectionString = "URI=file:" + Filepath;
+
+        using (IDbConnection dbConnection = new SqliteConnection(connectionString))
+        {
+            dbConnection.Open();
+            using (IDbCommand dbCmd = dbConnection.CreateCommand())  // EnterSqL에 명령 할 수 있다. 
+            {
+                string sqlQuery = "UPDATE " + Test_DB_Table.DatabaseTable.ToString() +
+                    " SET DeviceID='" + _ID + "'";
 
                 dbCmd.CommandText = sqlQuery;
 

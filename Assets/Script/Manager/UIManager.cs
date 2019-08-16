@@ -80,6 +80,9 @@ public class UIManager : MonoSingleton<UIManager>
     ParticleSystem.ShapeModule UipsShape;
 
     public Slider audioVolume;
+
+    public GameObject DB_Error;
+
     private void SkillBtn(eSkillBtn _value)
     {
         //SoundManager.Instance.PlaySound(eSound.button_UI_rise.ToString(), false, GameManager.Instance.AudioVolume);
@@ -164,7 +167,10 @@ public class UIManager : MonoSingleton<UIManager>
         SkinScrollViewObj.SetActive(false);
         EffectScrollViewObj.SetActive(false);
 
-        GameManager.Instance.PlayerInit();
+        if(GameManager.Instance.PlayerInit()==false)
+        {
+            DB_Error.SetActive(true);
+        }
         UipsMain = UiPs.main;
         UipsShape = UiPs.shape;
         UipsMain.loop = true;

@@ -222,17 +222,11 @@ public class GameManager : MonoSingleton<GameManager>
             DatabaseManager.Instance.UpdateItemTable(audioVolume.ToString(), IsVibration ? 1 : 0);
         }
     }
-
+    private string deviceID;
     
 
     void Awake()
     {
-        
-       
-            
-           
-
-
         Screen.SetResolution(Screen.width, Screen.width/9 *16, true);
 
         isDBLoad = DatabaseManager.Instance.Load();
@@ -271,6 +265,7 @@ public class GameManager : MonoSingleton<GameManager>
         saveDateTime = DatabaseManager.Instance.ItemList[0].dateTime;
         isVibration = (DatabaseManager.Instance.ItemList[0].vibration == 1) ? true : false;
         audioVolume = float.Parse(DatabaseManager.Instance.ItemList[0].soundVolume);
+        deviceID = DatabaseManager.Instance.ItemList[0].deviceID;
         isDBLoad = true;
 
         SetJumpPower();
@@ -280,7 +275,7 @@ public class GameManager : MonoSingleton<GameManager>
 
     }
 
-    public void PlayerInit()
+    public bool PlayerInit()
     {
 
         if (PlayerPrefs.GetInt("Init") == 0)
@@ -290,10 +285,24 @@ public class GameManager : MonoSingleton<GameManager>
             //DB 날짜 초기화
             DatabaseManager.Instance.UpdateItemTable(DateTime.Now.ToString("yyyyMMddHHmmss"));
             //디바이스 아이디 등록
+            string ID = SystemInfo.deviceUniqueIdentifier;
+            DatabaseManager.Instance.UpdateItemTable_DeviceID(ID);
 
+            PlayerPrefs.SetString("DeviceID", ID);
             PlayerPrefs.SetInt("Init", 1);
+            PlayerPrefs.Save();
         }
+        else
+        {
+            // DB 해킹 의심
+            if(deviceID != PlayerPrefs.GetString("DeviceID"))
+            {
+                return false;
+            }
+        }
+        //PlayerPrefs.DeleteAll();
 
+        return true;
     }
     public void SetJumpPower()
     {
