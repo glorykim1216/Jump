@@ -164,10 +164,11 @@ public class UIManager : MonoSingleton<UIManager>
         SkinScrollViewObj.SetActive(false);
         EffectScrollViewObj.SetActive(false);
 
-        GameManager.Instance.Init();
+        GameManager.Instance.PlayerInit();
         UipsMain = UiPs.main;
         UipsShape = UiPs.shape;
         UipsMain.loop = true;
+
         StartCoroutine("cor_CrossBannerAnim");
     }
 
@@ -248,71 +249,70 @@ public class UIManager : MonoSingleton<UIManager>
     }
     string Num;
     // Update is called once per frame
-    void Update()
+    //private void Update()
+    //{
+    //    if(Input.GetKeyDown(KeyCode.A))
+    //        {
+    //        InitAllData();
+    //    }
+    //}
+    public void InitAllData()
     {
-        //초기화
-
-        //if (Input.GetKeyDown(KeyCode.A))
-        //{
-        //    Num = null;
-        //    for (int i = 0; i < CheckSkinData.Length; i++)
-        //    {
-        //        if (i == 0)
-        //            CheckSkinData[i].BuyCheck = true;
-        //        else
-        //            CheckSkinData[i].BuyCheck = false;
-        //    }
+        Num = null;
+        for (int i = 0; i < CheckSkinData.Length; i++)
+        {
+            if (i == 0)
+                CheckSkinData[i].BuyCheck = true;
+            else
+                CheckSkinData[i].BuyCheck = false;
+        }
 
 
-        //    foreach (CheckSkin k in CheckSkinData)
-        //    {
-        //        if (k.BuyCheck)
-        //            Num += "1";
-        //        else
-        //            Num += "0";
-        //    }
-        //    /////
-        //    //저장
-        //    GameManager.Instance.OpenSkinList = System.Convert.ToInt32(Num, 2);
-        //    string test;
-        //    test = System.Convert.ToString(GameManager.Instance.OpenSkinList, 2).PadLeft(20, '0');
-        //    Debug.Log(test);
-
-        //}
-
-        //if (Input.GetKeyDown(KeyCode.S))
-        //{
-        //    Num = null;
-        //    for (int i = 0; i < CheckEffectData.Length; i++)
-        //    {
-        //        if (i == 0)
-        //            CheckEffectData[i].BuyCheck = true;
-        //        else
-        //            CheckEffectData[i].BuyCheck = false;
-        //    }
+        foreach (CheckSkin k in CheckSkinData)
+        {
+            if (k.BuyCheck)
+                Num += "1";
+            else
+                Num += "0";
+        }
+        /////
+        //저장
+        GameManager.Instance.OpenSkinList = System.Convert.ToInt32(Num, 2);
+        string test;
+        test = System.Convert.ToString(GameManager.Instance.OpenSkinList, 2).PadLeft(20, '0');
 
 
-        //    foreach (CheckEffect k in CheckEffectData)
-        //    {
-        //        if (k.BuyCheck)
-        //            Num += "1";
-        //        else
-        //            Num += "0";
-        //    }
-        //    /////
-        //    //저장
-        //    GameManager.Instance.OpenEffectList = System.Convert.ToInt32(Num, 2);
-        //    string test;
-        //    test = System.Convert.ToString(GameManager.Instance.OpenEffectList, 2).PadLeft(20, '0');
-        //    Debug.Log(test);
+        Num = null;
+        for (int i = 0; i < CheckEffectData.Length; i++)
+        {
+            if (i == 0)
+                CheckEffectData[i].BuyCheck = true;
+            else
+                CheckEffectData[i].BuyCheck = false;
+        }
 
-        //}
-        //if (Input.GetKeyDown(KeyCode.S))
-        //{
-        //    GameManager.Instance.Gold = 100000;
-        //    GameManager.Instance.BestScore = 0;
-        //    GameManager.Instance.UpPowerLevel = 1;
-        //}
+
+        foreach (CheckEffect k in CheckEffectData)
+        {
+            if (k.BuyCheck)
+                Num += "1";
+            else
+                Num += "0";
+        }
+        /////
+        //저장
+        GameManager.Instance.OpenEffectList = System.Convert.ToInt32(Num, 2);
+        string test2;
+        test2 = System.Convert.ToString(GameManager.Instance.OpenEffectList, 2).PadLeft(20, '0');
+
+
+        GameManager.Instance.CurrEffect = 1;
+        GameManager.Instance.CurrSkin = 1;
+        GameManager.Instance.Gold = 0;
+        GameManager.Instance.BestScore = 0;
+        GameManager.Instance.UpPowerLevel = 1;
+        GameManager.Instance.ForwardPowerLevel = 1;
+        GameManager.Instance.OfflineGoldLevel = 1;
     }
 
     public void OptimizeSkin()

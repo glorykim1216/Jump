@@ -223,8 +223,16 @@ public class GameManager : MonoSingleton<GameManager>
         }
     }
 
+    
+
     void Awake()
     {
+        
+       
+            
+           
+
+
         Screen.SetResolution(Screen.width, Screen.width/9 *16, true);
 
         isDBLoad = DatabaseManager.Instance.Load();
@@ -267,6 +275,25 @@ public class GameManager : MonoSingleton<GameManager>
 
         SetJumpPower();
         SetForwardPower();
+   
+
+
+    }
+
+    public void PlayerInit()
+    {
+
+        if (PlayerPrefs.GetInt("Init") == 0)
+        {
+            //ui skin effect gold score level 초기화
+            UIManager.Instance.InitAllData();
+            //DB 날짜 초기화
+            DatabaseManager.Instance.UpdateItemTable(DateTime.Now.ToString("yyyyMMddHHmmss"));
+            //디바이스 아이디 등록
+
+            PlayerPrefs.SetInt("Init", 1);
+        }
+
     }
     public void SetJumpPower()
     {
