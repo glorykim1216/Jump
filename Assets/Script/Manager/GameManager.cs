@@ -277,7 +277,7 @@ public class GameManager : MonoSingleton<GameManager>
 
     public bool PlayerInit()
     {
-
+        //PlayerPrefs.DeleteAll();
         if (PlayerPrefs.GetInt("Init") == 0)
         {
             //ui skin effect gold score level 초기화
@@ -300,7 +300,7 @@ public class GameManager : MonoSingleton<GameManager>
                 return false;
             }
         }
-        //PlayerPrefs.DeleteAll();
+        
 
         return true;
     }
