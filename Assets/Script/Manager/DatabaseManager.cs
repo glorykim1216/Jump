@@ -42,6 +42,30 @@ public class DataTable
     }
 }
 
+public class JellyDB
+{
+    public int gold { get; set; }
+    public int bestScore { get; set; }
+    public int openSkinList { get; set; }
+    public int currSkin { get; set; }
+    public int upPowerLevel { get; set; }
+    public int forwardPowerLevel { get; set; }
+    public int offlineGoldLevel { get; set; }
+    public int openEffectList { get; set; }
+    public int currEffect { get; set; }
+    public string dateTime { get; set; }
+    public string soundVolume { get; set; }
+    public int vibration { get; set; }
+    public string deviceID { get; set; }
+
+   
+    public override string ToString()
+    {
+        return string.Format("[DatabaseTable: Gold={0}, BestScore={1},  OpenSkinList={2}, CurrSkin={3}, UpPowerLevel={4},  ForwardPowerLevel={5}, OfflineGoldLevel={6}, OpenEffectList={7},  CurrEffect={8}, DateTime={9}, SoundVolume={10},  Vibration={11}, DeviceID={12}]",
+            this.gold, this.bestScore, this.openSkinList, this.currSkin, this.upPowerLevel, this.forwardPowerLevel, this.offlineGoldLevel, this.openEffectList, this.currEffect, this.dateTime, this.soundVolume, this.vibration, this.deviceID);
+    }
+}
+
 public enum Test_DB_Table    // 테이블 이름
 {
     DatabaseTable,
@@ -59,17 +83,13 @@ public class DatabaseManager : MonoSingleton<DatabaseManager>
 
     public bool Load()
     {
-        string dbPath = string.Format(@"Assets/StreamingAssets/{0}", m_NameDB);
-        _connection = new SQLiteConnection(dbPath, "333333");
+        bool db = LoadDB();
+        bool table = LoadTable();
 
-
-        //bool db = LoadDB();
-        //bool table = LoadTable();
-
-        //if (db && table)
-        //    return true;
-        //else
-        return false;
+        if (db && table)
+            return true;
+        else
+            return false;
     }
 
     // DB파일이 있는지 검사하고 없으면 생성
@@ -115,8 +135,10 @@ public class DatabaseManager : MonoSingleton<DatabaseManager>
         bool isTable = true;
         string connectionString = "URI=file:" + Filepath;
 
+        string dbPath = string.Format(@"Assets/StreamingAssets/{0}", m_NameDB);
+        _connection = new SQLiteConnection(dbPath, "123123");
 
-
+        _connection.CreateTable<JellyDB>();
 
         // using을 사용함으로써 비정상적인 예외가 발생할 경우 using 블록을 빠져나갈 때 자동적으로 Dispose 메소드를 호출한다.
         using (IDbConnection dbConnection = new SqliteConnection(connectionString))

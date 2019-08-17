@@ -495,8 +495,8 @@ namespace SqlCipher4Unity3D
             {
                 _sw.Stop();
                 _elapsedMilliseconds += _sw.ElapsedMilliseconds;
-                Debug.WriteLine("Finished in {0} ms ({1:0.0} s total)", _sw.ElapsedMilliseconds,
-                    _elapsedMilliseconds / 1000.0);
+                //Debug.WriteLine("Finished in {0} ms ({1:0.0} s total)", _sw.ElapsedMilliseconds,
+                //    _elapsedMilliseconds / 1000.0);
             }
 
             return r;
