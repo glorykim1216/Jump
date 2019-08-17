@@ -5,7 +5,9 @@ using Mono.Data.Sqlite;
 using System.IO;
 using System.Data;
 using System;
-
+using SqlCipher4Unity3D;
+using System.Text;
+using Sqlite3DatabaseHandle = System.IntPtr;
 public class DataTable
 {
     public int gold;
@@ -52,16 +54,22 @@ public class DatabaseManager : MonoSingleton<DatabaseManager>
 
     string m_NameDB = "TestDB.db";  // db 파일 이름
     string Filepath = string.Empty;
+    private SQLiteConnection _connection;
+    SqliteConnection sqlCnn;
 
     public bool Load()
     {
-        bool db = LoadDB();
-        bool table = LoadTable();
+        string dbPath = string.Format(@"Assets/StreamingAssets/{0}", m_NameDB);
+        _connection = new SQLiteConnection(dbPath, "333333");
 
-        if (db && table)
-            return true;
-        else
-            return false;
+
+        //bool db = LoadDB();
+        //bool table = LoadTable();
+
+        //if (db && table)
+        //    return true;
+        //else
+        return false;
     }
 
     // DB파일이 있는지 검사하고 없으면 생성
@@ -94,12 +102,21 @@ public class DatabaseManager : MonoSingleton<DatabaseManager>
         }
         return true;
     }
-
+    private static byte[] GetNullTerminatedUtf8(string s)
+    {
+        int utf8Length = Encoding.UTF8.GetByteCount(s);
+        byte[] bytes = new byte[utf8Length + 1];
+        utf8Length = Encoding.UTF8.GetBytes(s, 0, s.Length, bytes, 0);
+        return bytes;
+    }
     // 테이블이 있는지 검사하고 없으면 생성
     public bool LoadTable()
     {
         bool isTable = true;
         string connectionString = "URI=file:" + Filepath;
+
+
+
 
         // using을 사용함으로써 비정상적인 예외가 발생할 경우 using 블록을 빠져나갈 때 자동적으로 Dispose 메소드를 호출한다.
         using (IDbConnection dbConnection = new SqliteConnection(connectionString))
