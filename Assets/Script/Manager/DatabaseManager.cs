@@ -37,7 +37,7 @@ public class DatabaseManager : MonoSingleton<DatabaseManager>
 {
     public JellyDB ItemList;  // db에 있는 아이템을 저장할 리스트
 
-    string m_NameDB = "TestDB.db";  // db 파일 이름
+    string m_NameDB = "MyDB.db";  // db 파일 이름
 
     DataService ds;
 

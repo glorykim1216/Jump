@@ -229,10 +229,7 @@ public class GameManager : MonoSingleton<GameManager>
     {
         Screen.SetResolution(Screen.width, Screen.width / 9 * 16, true);
 
-        if (PlayerInit() == false)
-        {
-            UIManager.Instance.SetDB_Error();
-        }
+       
 
         isDBLoad = DatabaseManager.Instance.Load();
         Init();
@@ -254,6 +251,13 @@ public class GameManager : MonoSingleton<GameManager>
 
         //BestScore = 0;
         //Gold = Gold;
+    }
+    private void Start()
+    {
+        if (PlayerInit() == false)
+        {
+            UIManager.Instance.SetDB_Error();
+        }
     }
     public new void Init()
     {
@@ -290,8 +294,9 @@ public class GameManager : MonoSingleton<GameManager>
     public bool PlayerInit()
     {
         //PlayerPrefs.DeleteAll();
-
-        if (PlayerPrefs.GetInt("Init") == 0)
+        //초기 DB뽑기
+        //주석1. if문 {} 를 제외하고 주석
+        if (DatabaseManager.Instance.ItemList.deviceID == "0")
         {
             //DB 테이블 생성
             DatabaseManager.Instance.CreateTable();
@@ -299,21 +304,23 @@ public class GameManager : MonoSingleton<GameManager>
             DatabaseManager.Instance.UpdateItemTable(DateTime.Now.ToString("yyyyMMddHHmmss"));
             //디바이스 아이디 등록
             string ID = SystemInfo.deviceUniqueIdentifier;
-            DatabaseManager.Instance.UpdateItemTable_DeviceID(ID);
 
+            //주석2. ID 0으로 만든다.
+            DatabaseManager.Instance.UpdateItemTable_DeviceID(ID);
+           
             //ui skin effect gold score level 초기화
             UIManager.Instance.InitAllData();
 
-            PlayerPrefs.SetString("DeviceID", ID);
-            PlayerPrefs.SetInt("Init", 1);
-            PlayerPrefs.Save();
+           
         }
+        //주석3. else문 전부 주석
         else
         {
+            //DatabaseManager.Instance.UpdateItemTable_DeviceID("0");
             isDBLoad = DatabaseManager.Instance.Load();
             Init();
             // DB 해킹 의심
-            if (deviceID != PlayerPrefs.GetString("DeviceID"))
+            if (deviceID != DatabaseManager.Instance.ItemList.deviceID)
             {
                 return false;
             }
