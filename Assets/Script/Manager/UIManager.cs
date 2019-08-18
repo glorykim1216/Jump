@@ -167,17 +167,17 @@ public class UIManager : MonoSingleton<UIManager>
         SkinScrollViewObj.SetActive(false);
         EffectScrollViewObj.SetActive(false);
 
-        if(GameManager.Instance.PlayerInit()==false)
-        {
-            DB_Error.SetActive(true);
-        }
+  
         UipsMain = UiPs.main;
         UipsShape = UiPs.shape;
         UipsMain.loop = true;
 
         StartCoroutine("cor_CrossBannerAnim");
     }
-
+    public void SetDB_Error()
+    {
+        DB_Error.SetActive(true);
+    }
     void SkinInit()
     {
         string test;
@@ -264,6 +264,8 @@ public class UIManager : MonoSingleton<UIManager>
     //}
     public void InitAllData()
     {
+        CheckSkinData = this.gameObject.GetComponentsInChildren<CheckSkin>();
+
         Num = null;
         for (int i = 0; i < CheckSkinData.Length; i++)
         {
@@ -287,6 +289,7 @@ public class UIManager : MonoSingleton<UIManager>
         string test;
         test = System.Convert.ToString(GameManager.Instance.OpenSkinList, 2).PadLeft(20, '0');
 
+        CheckEffectData = this.gameObject.GetComponentsInChildren<CheckEffect>();
 
         Num = null;
         for (int i = 0; i < CheckEffectData.Length; i++)

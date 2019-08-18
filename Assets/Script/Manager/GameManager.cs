@@ -182,7 +182,7 @@ public class GameManager : MonoSingleton<GameManager>
         }
     }
 
-    private string saveDateTime;
+    private string saveDateTime = "0";
     public string SaveDateTime
     {
         get { return saveDateTime; }
@@ -223,15 +223,21 @@ public class GameManager : MonoSingleton<GameManager>
         }
     }
     private string deviceID;
-    
+
 
     void Awake()
     {
-        Screen.SetResolution(Screen.width, Screen.width/9 *16, true);
+        Screen.SetResolution(Screen.width, Screen.width / 9 * 16, true);
 
         isDBLoad = DatabaseManager.Instance.Load();
-        SoundManager.Instance.LoadSound();
         Init();
+
+        if (PlayerInit() == false)
+        {
+            UIManager.Instance.SetDB_Error();
+        }
+
+        SoundManager.Instance.LoadSound();
         ADManager.Instance.init();
         Gold += GetOfflineGold();
 
@@ -253,24 +259,28 @@ public class GameManager : MonoSingleton<GameManager>
 
         isDBLoad = false;
 
-        Gold = DatabaseManager.Instance.ItemList[0].gold;
-        BestScore = DatabaseManager.Instance.ItemList[0].bestScore;
-        openSkinList = DatabaseManager.Instance.ItemList[0].openSkinList;
-        currSkin = DatabaseManager.Instance.ItemList[0].currSkin;
-        upPowerLevel = DatabaseManager.Instance.ItemList[0].upPowerLevel;
-        forwardPowerLevel = DatabaseManager.Instance.ItemList[0].forwardPowerLevel;
-        offlineGoldLevel = DatabaseManager.Instance.ItemList[0].offlineGoldLevel;
-        openEffectList = DatabaseManager.Instance.ItemList[0].openEffectList;
-        currEffect = DatabaseManager.Instance.ItemList[0].currEffect;
-        saveDateTime = DatabaseManager.Instance.ItemList[0].dateTime;
-        isVibration = (DatabaseManager.Instance.ItemList[0].vibration == 1) ? true : false;
-        audioVolume = float.Parse(DatabaseManager.Instance.ItemList[0].soundVolume);
-        deviceID = DatabaseManager.Instance.ItemList[0].deviceID;
-        isDBLoad = true;
+        if (DatabaseManager.Instance.ItemList != null)
+        {
 
-        SetJumpPower();
-        SetForwardPower();
-   
+            Gold = DatabaseManager.Instance.ItemList.gold;
+            BestScore = DatabaseManager.Instance.ItemList.bestScore;
+            openSkinList = DatabaseManager.Instance.ItemList.openSkinList;
+            currSkin = DatabaseManager.Instance.ItemList.currSkin;
+            upPowerLevel = DatabaseManager.Instance.ItemList.upPowerLevel;
+            forwardPowerLevel = DatabaseManager.Instance.ItemList.forwardPowerLevel;
+            offlineGoldLevel = DatabaseManager.Instance.ItemList.offlineGoldLevel;
+            openEffectList = DatabaseManager.Instance.ItemList.openEffectList;
+            currEffect = DatabaseManager.Instance.ItemList.currEffect;
+            saveDateTime = DatabaseManager.Instance.ItemList.dateTime;
+            isVibration = (DatabaseManager.Instance.ItemList.vibration == 1) ? true : false;
+            audioVolume = float.Parse(DatabaseManager.Instance.ItemList.soundVolume);
+            deviceID = DatabaseManager.Instance.ItemList.deviceID;
+            isDBLoad = true;
+
+            SetJumpPower();
+            SetForwardPower();
+
+        }
 
 
     }
@@ -278,15 +288,19 @@ public class GameManager : MonoSingleton<GameManager>
     public bool PlayerInit()
     {
         //PlayerPrefs.DeleteAll();
+
         if (PlayerPrefs.GetInt("Init") == 0)
         {
-            //ui skin effect gold score level 초기화
-            UIManager.Instance.InitAllData();
+            //DB 테이블 생성
+            DatabaseManager.Instance.CreateTable();
             //DB 날짜 초기화
             DatabaseManager.Instance.UpdateItemTable(DateTime.Now.ToString("yyyyMMddHHmmss"));
             //디바이스 아이디 등록
             string ID = SystemInfo.deviceUniqueIdentifier;
             DatabaseManager.Instance.UpdateItemTable_DeviceID(ID);
+
+            //ui skin effect gold score level 초기화
+            UIManager.Instance.InitAllData();
 
             PlayerPrefs.SetString("DeviceID", ID);
             PlayerPrefs.SetInt("Init", 1);
@@ -295,12 +309,12 @@ public class GameManager : MonoSingleton<GameManager>
         else
         {
             // DB 해킹 의심
-            if(deviceID != PlayerPrefs.GetString("DeviceID"))
+            if (deviceID != PlayerPrefs.GetString("DeviceID"))
             {
                 return false;
             }
         }
-        
+        //PlayerPrefs.DeleteAll();
 
         return true;
     }
@@ -406,7 +420,7 @@ public class GameManager : MonoSingleton<GameManager>
         // 분 단위로 변경
         int temp = (int)(span.TotalSeconds / 60);
         // 최대 120분
-        temp = temp > 120 ? 120 : temp; 
+        temp = temp > 120 ? 120 : temp;
         temp *= offlineGoldLevel;
         return temp;
     }
