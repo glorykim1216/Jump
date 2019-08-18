@@ -43,12 +43,13 @@ public class DatabaseManager : MonoSingleton<DatabaseManager>
 
     public void CreateTable()
     {
-        //ds.CreateDB();
+        ds = new DataService(m_NameDB);
+
+        ds.CreateDB();
     }
     public bool Load()
     {
         ds = new DataService(m_NameDB);
-        //ds.CreateDB();
 
         IEnumerable<JellyDB> DBs = ds.GetJellyDB();
 

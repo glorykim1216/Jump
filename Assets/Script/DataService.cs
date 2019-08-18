@@ -59,9 +59,6 @@ public class DataService
 #endif
 
                 Debug.Log("Database written");
-    
-                _connection = new SQLiteConnection(dbPath, "Jelly123123");
-                CreateDB();
             }
             
             var dbPath = filepath;

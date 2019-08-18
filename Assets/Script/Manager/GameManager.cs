@@ -229,13 +229,15 @@ public class GameManager : MonoSingleton<GameManager>
     {
         Screen.SetResolution(Screen.width, Screen.width / 9 * 16, true);
 
-        isDBLoad = DatabaseManager.Instance.Load();
-        Init();
-
         if (PlayerInit() == false)
         {
             UIManager.Instance.SetDB_Error();
         }
+
+        isDBLoad = DatabaseManager.Instance.Load();
+        Init();
+
+      
 
         SoundManager.Instance.LoadSound();
         ADManager.Instance.init();
@@ -308,6 +310,8 @@ public class GameManager : MonoSingleton<GameManager>
         }
         else
         {
+            isDBLoad = DatabaseManager.Instance.Load();
+            Init();
             // DB 해킹 의심
             if (deviceID != PlayerPrefs.GetString("DeviceID"))
             {
