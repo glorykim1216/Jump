@@ -229,12 +229,12 @@ public class GameManager : MonoSingleton<GameManager>
     {
         Screen.SetResolution(Screen.width, Screen.width / 9 * 16, true);
 
-       
+
 
         isDBLoad = DatabaseManager.Instance.Load();
         Init();
 
-      
+
 
         SoundManager.Instance.LoadSound();
         ADManager.Instance.init();
@@ -295,7 +295,7 @@ public class GameManager : MonoSingleton<GameManager>
     {
         //PlayerPrefs.DeleteAll();
         //초기 DB뽑기
-       
+
         if (DatabaseManager.Instance.ItemList.deviceID == "0")
         {
             //DB 테이블 생성
@@ -305,16 +305,14 @@ public class GameManager : MonoSingleton<GameManager>
             //디바이스 아이디 등록
             string ID = SystemInfo.deviceUniqueIdentifier;
 
-           
             DatabaseManager.Instance.UpdateItemTable_DeviceID(ID);
-           
+
             //ui skin effect gold score level 초기화
             UIManager.Instance.InitAllData();
 
             PlayerPrefs.SetString("DeviceID", ID);
             PlayerPrefs.Save();
         }
-      
         else
         {
             //최종빌드시 아래 한줄 살려놧따가 지워야함 DeviceID "0"으로 초기화;
@@ -329,7 +327,8 @@ public class GameManager : MonoSingleton<GameManager>
                 return false;
             }
         }
-     
+
+        //PlayerPrefs.DeleteAll();
 
         return true;
     }

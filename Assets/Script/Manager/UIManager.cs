@@ -24,6 +24,7 @@ public class UIManager : MonoSingleton<UIManager>
     public Button resultGoldDoubleBtn;
 
     public Button instagramBtn;
+    public Button privacyPolicyBtn;
 
     public Button jumpBtn;
     public Button speedBtn;
@@ -132,6 +133,7 @@ public class UIManager : MonoSingleton<UIManager>
         resultGoldBtn.onClick.AddListener(ViewAD);
         crossBanner.GetComponent<Button>().onClick.AddListener(OpenPlayStore);
         instagramBtn.GetComponent<Button>().onClick.AddListener(() => { Application.OpenURL("https://www.instagram.com/gamenest_studio/"); });
+        privacyPolicyBtn.GetComponent<Button>().onClick.AddListener(() => { Application.OpenURL("https://gameneststudio.webs.com/privacy-policy"); });
         audioVolume.onValueChanged.AddListener((float value) => { GameManager.Instance.AudioVolume = value; });
         audioVolume.value = GameManager.Instance.AudioVolume;
 
