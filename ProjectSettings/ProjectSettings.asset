@@ -155,7 +155,7 @@ PlayerSettings:
   androidSupportedAspectRatio: 1
   androidMaxAspectRatio: 2.1
   applicationIdentifier:
-    Android: com.Estachio.jump
+    Android: com.Estachio.Jelly
   buildNumber: {}
   AndroidBundleVersionCode: 1
   AndroidMinSdkVersion: 16
@@ -246,7 +246,7 @@ PlayerSettings:
   AndroidTargetArchitectures: 3
   AndroidSplashScreenScale: 0
   androidSplashScreen: {fileID: 0}
-  AndroidKeystoreName: D:/1.Unity Project/Jump/JellyKeyStore.keystore
+  AndroidKeystoreName: E:/secret/JellyKeyStore.keystore
   AndroidKeyaliasName: jelly
   AndroidBuildApkPerCpuArchitecture: 0
   AndroidTVCompatibility: 1
