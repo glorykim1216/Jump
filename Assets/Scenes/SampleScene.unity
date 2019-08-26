@@ -748,7 +748,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BuyCheck: 0
-  needMoney: 1500
+  needMoney: 3000
   moneyText: {fileID: 0}
   moneyImg: {fileID: 0}
   CheckImg: {fileID: 0}
@@ -1463,7 +1463,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BuyCheck: 0
-  needMoney: 9500
+  needMoney: 19000
   moneyText: {fileID: 0}
   moneyImg: {fileID: 0}
   CheckImg: {fileID: 0}
@@ -2006,7 +2006,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BuyCheck: 0
-  needMoney: 9000
+  needMoney: 18000
   moneyText: {fileID: 0}
   moneyImg: {fileID: 0}
   CheckImg: {fileID: 0}
@@ -2306,7 +2306,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BuyCheck: 0
-  needMoney: 3500
+  needMoney: 7000
   moneyText: {fileID: 0}
   moneyImg: {fileID: 0}
   CheckImg: {fileID: 0}
@@ -3422,7 +3422,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BuyCheck: 0
-  needMoney: 4500
+  needMoney: 9000
   moneyText: {fileID: 0}
   moneyImg: {fileID: 0}
   CheckImg: {fileID: 0}
@@ -6197,7 +6197,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BuyCheck: 1
-  needMoney: 1500
+  needMoney: 3000
   moneyText: {fileID: 0}
   moneyImg: {fileID: 0}
   CheckImg: {fileID: 0}
@@ -6597,7 +6597,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BuyCheck: 0
-  needMoney: 1500
+  needMoney: 3000
   moneyText: {fileID: 0}
   moneyImg: {fileID: 0}
   CheckImg: {fileID: 0}
@@ -8842,7 +8842,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BuyCheck: 0
-  needMoney: 2000
+  needMoney: 4000
   moneyText: {fileID: 0}
   moneyImg: {fileID: 0}
   CheckImg: {fileID: 0}
@@ -10023,7 +10023,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BuyCheck: 0
-  needMoney: 4000
+  needMoney: 8000
   moneyText: {fileID: 0}
   moneyImg: {fileID: 0}
   CheckImg: {fileID: 0}
@@ -12117,7 +12117,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BuyCheck: 0
-  needMoney: 1500
+  needMoney: 3000
   moneyText: {fileID: 0}
   moneyImg: {fileID: 0}
   CheckImg: {fileID: 0}
@@ -14328,7 +14328,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BuyCheck: 0
-  needMoney: 10000
+  needMoney: 20000
   moneyText: {fileID: 0}
   moneyImg: {fileID: 0}
   CheckImg: {fileID: 0}
@@ -14846,7 +14846,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BuyCheck: 0
-  needMoney: 1500
+  needMoney: 3000
   moneyText: {fileID: 0}
   moneyImg: {fileID: 0}
   CheckImg: {fileID: 0}
@@ -15347,7 +15347,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BuyCheck: 0
-  needMoney: 1500
+  needMoney: 3000
   moneyText: {fileID: 0}
   moneyImg: {fileID: 0}
   CheckImg: {fileID: 0}
@@ -19794,7 +19794,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BuyCheck: 0
-  needMoney: 1500
+  needMoney: 3000
   moneyText: {fileID: 0}
   moneyImg: {fileID: 0}
   CheckImg: {fileID: 0}
@@ -21073,7 +21073,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BuyCheck: 0
-  needMoney: 1500
+  needMoney: 3000
   moneyText: {fileID: 0}
   moneyImg: {fileID: 0}
   CheckImg: {fileID: 0}
@@ -23363,7 +23363,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BuyCheck: 0
-  needMoney: 8500
+  needMoney: 17000
   moneyText: {fileID: 0}
   moneyImg: {fileID: 0}
   CheckImg: {fileID: 0}
@@ -25341,7 +25341,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BuyCheck: 0
-  needMoney: 8000
+  needMoney: 16000
   moneyText: {fileID: 0}
   moneyImg: {fileID: 0}
   CheckImg: {fileID: 0}
@@ -27699,7 +27699,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BuyCheck: 0
-  needMoney: 5000
+  needMoney: 10000
   moneyText: {fileID: 0}
   moneyImg: {fileID: 0}
   CheckImg: {fileID: 0}
@@ -33315,7 +33315,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BuyCheck: 0
-  needMoney: 1500
+  needMoney: 3000
   moneyText: {fileID: 0}
   moneyImg: {fileID: 0}
   CheckImg: {fileID: 0}
@@ -35446,7 +35446,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BuyCheck: 0
-  needMoney: 1500
+  needMoney: 3000
   moneyText: {fileID: 0}
   moneyImg: {fileID: 0}
   CheckImg: {fileID: 0}
@@ -36867,7 +36867,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BuyCheck: 0
-  needMoney: 1500
+  needMoney: 3000
   moneyText: {fileID: 0}
   moneyImg: {fileID: 0}
   CheckImg: {fileID: 0}
@@ -37330,7 +37330,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BuyCheck: 0
-  needMoney: 1500
+  needMoney: 3000
   moneyText: {fileID: 0}
   moneyImg: {fileID: 0}
   CheckImg: {fileID: 0}
@@ -37894,7 +37894,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BuyCheck: 1
-  needMoney: 1500
+  needMoney: 3000
   moneyText: {fileID: 0}
   moneyImg: {fileID: 0}
   CheckImg: {fileID: 0}
@@ -38041,7 +38041,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BuyCheck: 0
-  needMoney: 3000
+  needMoney: 6000
   moneyText: {fileID: 0}
   moneyImg: {fileID: 0}
   CheckImg: {fileID: 0}
@@ -38188,7 +38188,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BuyCheck: 0
-  needMoney: 6500
+  needMoney: 13000
   moneyText: {fileID: 0}
   moneyImg: {fileID: 0}
   CheckImg: {fileID: 0}
@@ -39048,7 +39048,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BuyCheck: 0
-  needMoney: 20000
+  needMoney: 40000
   moneyText: {fileID: 0}
   moneyImg: {fileID: 0}
   CheckImg: {fileID: 0}
@@ -40625,7 +40625,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BuyCheck: 0
-  needMoney: 7000
+  needMoney: 14000
   moneyText: {fileID: 0}
   moneyImg: {fileID: 0}
   CheckImg: {fileID: 0}
@@ -40648,7 +40648,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1060405596
 RectTransform:
   m_ObjectHideFlags: 0
@@ -41059,7 +41059,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BuyCheck: 0
-  needMoney: 7500
+  needMoney: 15000
   moneyText: {fileID: 0}
   moneyImg: {fileID: 0}
   CheckImg: {fileID: 0}
@@ -41971,7 +41971,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BuyCheck: 0
-  needMoney: 1500
+  needMoney: 3000
   moneyText: {fileID: 0}
   moneyImg: {fileID: 0}
   CheckImg: {fileID: 0}
@@ -42593,7 +42593,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BuyCheck: 0
-  needMoney: 5500
+  needMoney: 11000
   moneyText: {fileID: 0}
   moneyImg: {fileID: 0}
   CheckImg: {fileID: 0}
@@ -44879,7 +44879,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BuyCheck: 1
-  needMoney: 1000
+  needMoney: 2000
   moneyText: {fileID: 0}
   moneyImg: {fileID: 0}
   CheckImg: {fileID: 0}
@@ -50421,7 +50421,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BuyCheck: 0
-  needMoney: 1500
+  needMoney: 3000
   moneyText: {fileID: 0}
   moneyImg: {fileID: 0}
   CheckImg: {fileID: 0}
@@ -50663,7 +50663,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BuyCheck: 0
-  needMoney: 1500
+  needMoney: 3000
   moneyText: {fileID: 0}
   moneyImg: {fileID: 0}
   CheckImg: {fileID: 0}
@@ -61760,7 +61760,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BuyCheck: 0
-  needMoney: 1500
+  needMoney: 3000
   moneyText: {fileID: 0}
   moneyImg: {fileID: 0}
   CheckImg: {fileID: 0}
@@ -63170,7 +63170,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BuyCheck: 0
-  needMoney: 1500
+  needMoney: 3000
   moneyText: {fileID: 0}
   moneyImg: {fileID: 0}
   CheckImg: {fileID: 0}
@@ -66991,7 +66991,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BuyCheck: 0
-  needMoney: 1500
+  needMoney: 3000
   moneyText: {fileID: 0}
   moneyImg: {fileID: 0}
   CheckImg: {fileID: 0}
@@ -68547,7 +68547,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BuyCheck: 0
-  needMoney: 6000
+  needMoney: 12000
   moneyText: {fileID: 0}
   moneyImg: {fileID: 0}
   CheckImg: {fileID: 0}
@@ -70147,7 +70147,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BuyCheck: 0
-  needMoney: 2500
+  needMoney: 5000
   moneyText: {fileID: 0}
   moneyImg: {fileID: 0}
   CheckImg: {fileID: 0}
@@ -72252,7 +72252,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BuyCheck: 0
-  needMoney: 1500
+  needMoney: 3000
   moneyText: {fileID: 0}
   moneyImg: {fileID: 0}
   CheckImg: {fileID: 0}
@@ -73856,7 +73856,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BuyCheck: 0
-  needMoney: 1500
+  needMoney: 3000
   moneyText: {fileID: 0}
   moneyImg: {fileID: 0}
   CheckImg: {fileID: 0}
@@ -76499,7 +76499,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BuyCheck: 0
-  needMoney: 1500
+  needMoney: 3000
   moneyText: {fileID: 0}
   moneyImg: {fileID: 0}
   CheckImg: {fileID: 0}
