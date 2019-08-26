@@ -403,6 +403,7 @@ public class UIManager : MonoSingleton<UIManager>
         // SoundManager.Instance.PlaySound(eSound.button_UI.ToString(), false, GameManager.Instance.AudioVolume);
         GameManager.Instance.GoldADState = true;
         ADManager.Instance.ShowRewardAd();
+        DatabaseManager.Instance.UpdateItemTable(GameManager.Instance.BestScore);
         GameManager.Instance.ReStart();
     }
 
@@ -809,7 +810,7 @@ public class UIManager : MonoSingleton<UIManager>
             ADManager.Instance.ShowInterstitialAd(); 
         }
         GameManager.Instance.ADVideoCount++;
-
+        DatabaseManager.Instance.UpdateItemTable(GameManager.Instance.BestScore);
         GameManager.Instance.ReStart();
         //Debug.Log("GameManager.Instance.ShowRewardedAd" + GameManager.Instance.ADVideoCount);
 

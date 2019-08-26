@@ -103,6 +103,22 @@ public class DatabaseManager : MonoSingleton<DatabaseManager>
         }
     }
 
+    public void UpdateItemTable(int _score)
+    {
+        IEnumerable<JellyDB> DBs = ds.GetJellyDB();
+
+        if (DBs != null)
+        {
+            foreach (JellyDB DB in DBs)
+            {
+                DB.bestScore = _score;
+
+                ItemList = DB;
+            }
+            ds._connection.UpdateAll(DBs);
+        }
+    }
+
     public void UpdateItemTable(string _soundVolume, int _vibration)
     {
         IEnumerable<JellyDB> DBs = ds.GetJellyDB();
