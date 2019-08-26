@@ -229,7 +229,7 @@ public class GameManager : MonoSingleton<GameManager>
     {
         Screen.SetResolution(Screen.width, Screen.width / 9 * 16, true);
 
-
+        Application.targetFrameRate = 30;
 
         isDBLoad = DatabaseManager.Instance.Load();
         Init();
