@@ -306,10 +306,10 @@ public class GameManager : MonoSingleton<GameManager>
             string ID = SystemInfo.deviceUniqueIdentifier;
 
             DatabaseManager.Instance.UpdateItemTable_DeviceID(ID);
-            DatabaseManager.Instance.UpdateItemTableInitSkinEffectList();
+           
             //ui skin effect gold score level 초기화
             UIManager.Instance.InitAllData();
-
+            DatabaseManager.Instance.UpdateItemTableInitSkinEffectList();
             PlayerPrefs.SetString("DeviceID", ID);
             PlayerPrefs.Save();
         }

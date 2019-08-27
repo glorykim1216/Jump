@@ -259,62 +259,62 @@ public class UIManager : MonoSingleton<UIManager>
     // Update is called once per frame
     //private void Update()
     //{
-    //    if(Input.GetKeyDown(KeyCode.A))
-    //        {
+    //    if (Input.GetKeyDown(KeyCode.A))
+    //    {
     //        InitAllData();
     //    }
     //}
     public void InitAllData()
     {
-        CheckSkinData = this.gameObject.GetComponentsInChildren<CheckSkin>();
+        //CheckSkinData = this.gameObject.GetComponentsInChildren<CheckSkin>();
 
-        Num = null;
-        for (int i = 0; i < CheckSkinData.Length; i++)
-        {
-            if (i == 0)
-                CheckSkinData[i].BuyCheck = true;
-            else
-                CheckSkinData[i].BuyCheck = false;
-        }
+        //Num = null;
+        //for (int i = 0; i < CheckSkinData.Length; i++)
+        //{
+        //    if (i == 0)
+        //        CheckSkinData[i].BuyCheck = true;
+        //    else
+        //        CheckSkinData[i].BuyCheck = false;
+        //}
 
 
-        foreach (CheckSkin k in CheckSkinData)
-        {
-            if (k.BuyCheck)
-                Num += "1";
-            else
-                Num += "0";
-        }
+        //foreach (CheckSkin k in CheckSkinData)
+        //{
+        //    if (k.BuyCheck)
+        //        Num += "1";
+        //    else
+        //        Num += "0";
+        //}
+        ///////
+        ////저장
+        //GameManager.Instance.OpenSkinList = System.Convert.ToInt32(Num, 2);
+        //string test;
+        //test = System.Convert.ToString(GameManager.Instance.OpenSkinList, 2).PadLeft(20, '0');
+
+        //CheckEffectData = this.gameObject.GetComponentsInChildren<CheckEffect>();
+
+        //Num = null;
+        //for (int i = 0; i < CheckEffectData.Length; i++)
+        //{
+        //    if (i == 0)
+        //        CheckEffectData[i].BuyCheck = true;
+        //    else
+        //        CheckEffectData[i].BuyCheck = false;
+        //}
+
+
+        //foreach (CheckEffect k in CheckEffectData)
+        //{
+        //    if (k.BuyCheck)
+        //        Num += "1";
+        //    else
+        //        Num += "0";
+        //}
         /////
         //저장
-        GameManager.Instance.OpenSkinList = System.Convert.ToInt32(Num, 2);
-        string test;
-        test = System.Convert.ToString(GameManager.Instance.OpenSkinList, 2).PadLeft(20, '0');
-
-        CheckEffectData = this.gameObject.GetComponentsInChildren<CheckEffect>();
-
-        Num = null;
-        for (int i = 0; i < CheckEffectData.Length; i++)
-        {
-            if (i == 0)
-                CheckEffectData[i].BuyCheck = true;
-            else
-                CheckEffectData[i].BuyCheck = false;
-        }
-
-
-        foreach (CheckEffect k in CheckEffectData)
-        {
-            if (k.BuyCheck)
-                Num += "1";
-            else
-                Num += "0";
-        }
-        /////
-        //저장
-        GameManager.Instance.OpenEffectList = System.Convert.ToInt32(Num, 2);
-        string test2;
-        test2 = System.Convert.ToString(GameManager.Instance.OpenEffectList, 2).PadLeft(20, '0');
+        //GameManager.Instance.OpenEffectList = System.Convert.ToInt32(Num, 2);
+        //string test2;
+        //test2 = System.Convert.ToString(GameManager.Instance.OpenEffectList, 2).PadLeft(20, '0');
 
 
         GameManager.Instance.CurrEffect = 1;
