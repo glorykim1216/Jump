@@ -309,7 +309,9 @@ public class GameManager : MonoSingleton<GameManager>
            
             //ui skin effect gold score level 초기화
             UIManager.Instance.InitAllData();
-            DatabaseManager.Instance.UpdateItemTableInitSkinEffectList();
+            //DatabaseManager.Instance.UpdateItemTableInitSkinEffectList();
+            OpenSkinList = 524288;
+            OpenEffectList = 524288;
             PlayerPrefs.SetString("DeviceID", ID);
             PlayerPrefs.Save();
         }
