@@ -119,6 +119,22 @@ public class DatabaseManager : MonoSingleton<DatabaseManager>
         }
     }
 
+    public void UpdateItemTableInitSkinEffectList()
+    {
+        IEnumerable<JellyDB> DBs = ds.GetJellyDB();
+
+        if (DBs != null)
+        {
+            foreach (JellyDB DB in DBs)
+            {
+                DB.openSkinList = 524288;
+                DB.openEffectList = 524288;
+                ItemList = DB;
+            }
+            ds._connection.UpdateAll(DBs);
+        }
+    }
+
     public void UpdateItemTable(string _soundVolume, int _vibration)
     {
         IEnumerable<JellyDB> DBs = ds.GetJellyDB();
