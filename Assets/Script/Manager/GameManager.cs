@@ -430,6 +430,9 @@ public class GameManager : MonoSingleton<GameManager>
         if (saveDateTime == "0")
             return 0;
 
+        // 오프라인 골드 획득 후 날짜 다시 저장
+        DatabaseManager.Instance.UpdateItemTable(DateTime.Now.ToString("yyyyMMddHHmmss"));
+        
         DateTime oldTime = DateTime.ParseExact(saveDateTime, "yyyyMMddHHmmss", System.Globalization.CultureInfo.InstalledUICulture);
         TimeSpan span = DateTime.Now - oldTime;
 
