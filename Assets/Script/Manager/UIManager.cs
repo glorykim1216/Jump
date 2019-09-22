@@ -84,6 +84,9 @@ public class UIManager : MonoSingleton<UIManager>
 
     public GameObject DB_Error;
 
+    public Image crossBannerImg;
+    Sprite[] crossBannerSprites;
+
     private void SkillBtn(eSkillBtn _value)
     {
         //SoundManager.Instance.PlaySound(eSound.button_UI_rise.ToString(), false, GameManager.Instance.AudioVolume);
@@ -173,6 +176,8 @@ public class UIManager : MonoSingleton<UIManager>
         UipsMain = UiPs.main;
         UipsShape = UiPs.shape;
         UipsMain.loop = true;
+
+        crossBannerSprites = Resources.LoadAll<Sprite>("CrossBanner");
 
         StartCoroutine("cor_CrossBannerAnim");
     }
@@ -844,25 +849,30 @@ public class UIManager : MonoSingleton<UIManager>
     {
         while (true)
         {
-            crossBanner.rotation = Quaternion.Euler(0, 0, 4.5f);
-            yield return new WaitForSeconds(0.1f);
-            crossBanner.rotation = Quaternion.Euler(0, 0, 3.0f);
-            yield return new WaitForSeconds(0.1f);
-            crossBanner.rotation = Quaternion.Euler(0, 0, 4.5f);
-            yield return new WaitForSeconds(0.1f);
-            crossBanner.rotation = Quaternion.Euler(0, 0, 3.0f);
-            yield return new WaitForSeconds(0.1f);
-            crossBanner.rotation = Quaternion.Euler(0, 0, 4.5f);
-            yield return new WaitForSeconds(0.1f);
-            crossBanner.rotation = Quaternion.Euler(0, 0, 3.0f);
-            yield return new WaitForSeconds(0.1f);
-            crossBanner.rotation = Quaternion.Euler(0, 0, 4.5f);
-            yield return new WaitForSeconds(1.0f);
+            for(int i=0;i< crossBannerSprites.Length;i++)
+            {
+                yield return new WaitForSeconds(0.1f);
+                crossBannerImg.sprite = crossBannerSprites[i];
+            }
+            //crossBanner.rotation = Quaternion.Euler(0, 0, 4.5f);
+            //yield return new WaitForSeconds(0.1f);
+            //crossBanner.rotation = Quaternion.Euler(0, 0, 3.0f);
+            //yield return new WaitForSeconds(0.1f);
+            //crossBanner.rotation = Quaternion.Euler(0, 0, 4.5f);
+            //yield return new WaitForSeconds(0.1f);
+            //crossBanner.rotation = Quaternion.Euler(0, 0, 3.0f);
+            //yield return new WaitForSeconds(0.1f);
+            //crossBanner.rotation = Quaternion.Euler(0, 0, 4.5f);
+            //yield return new WaitForSeconds(0.1f);
+            //crossBanner.rotation = Quaternion.Euler(0, 0, 3.0f);
+            //yield return new WaitForSeconds(0.1f);
+            //crossBanner.rotation = Quaternion.Euler(0, 0, 4.5f);
+            //yield return new WaitForSeconds(1.0f);
         }
     }
     public void OpenPlayStore()
     {
-        Application.OpenURL("market://details?id=com.FakeWorld.Square");
+        Application.OpenURL("market://details?id=com.planb.goatjump");
     }
 
     IEnumerator cor_StartCount()
